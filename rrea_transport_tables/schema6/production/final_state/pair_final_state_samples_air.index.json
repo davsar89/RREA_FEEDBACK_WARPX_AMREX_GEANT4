@@ -1,0 +1,2437 @@
+{
+  "binary_magic": "RREAPAIR",
+  "binary_sha256": "57d7908a76d745f8d373f1ba4b7be1e358754e4b8c7adfc1f10862be307614c0",
+  "binary_version": 1,
+  "blocks": [
+    {
+      "byte_offset": 64,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1024999.9999999999,
+      "record_offset": 0,
+      "source_sha256": [
+        "723687947eb2f711ff047187b5ba26d8d0561ed1f7b6f261229b62f831cdf506"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 589888,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1024999.9999999999,
+      "record_offset": 4096,
+      "source_sha256": [
+        "723687947eb2f711ff047187b5ba26d8d0561ed1f7b6f261229b62f831cdf506"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 1179712,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1030000.0,
+      "record_offset": 8192,
+      "source_sha256": [
+        "4124ef519f7b59da15edceacb0e924c5d509545ad8c4ba25d47dd751475057b3"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 1769536,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1030000.0,
+      "record_offset": 12288,
+      "source_sha256": [
+        "4124ef519f7b59da15edceacb0e924c5d509545ad8c4ba25d47dd751475057b3"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 2359360,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1050000.0,
+      "record_offset": 16384,
+      "source_sha256": [
+        "65c2495397d3d099e553ec4e0e58875358d1a32184406abeaced434094132170"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 2949184,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1050000.0,
+      "record_offset": 20480,
+      "source_sha256": [
+        "65c2495397d3d099e553ec4e0e58875358d1a32184406abeaced434094132170"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 3539008,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1100000.0,
+      "record_offset": 24576,
+      "source_sha256": [
+        "fdd2cbdccaed06ee755a1cceedd546f8c3fc8ac3984359be6a66d0c4ec55463d"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 4128832,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1100000.0,
+      "record_offset": 28672,
+      "source_sha256": [
+        "fdd2cbdccaed06ee755a1cceedd546f8c3fc8ac3984359be6a66d0c4ec55463d"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 4718656,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1200000.0,
+      "record_offset": 32768,
+      "source_sha256": [
+        "ecd19823126eac1f7fb6597640b757332fe13e847caecd730a32207ee8d4a20a"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 5308480,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1200000.0,
+      "record_offset": 36864,
+      "source_sha256": [
+        "ecd19823126eac1f7fb6597640b757332fe13e847caecd730a32207ee8d4a20a"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 5898304,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1500000.0,
+      "record_offset": 40960,
+      "source_sha256": [
+        "dcebfd0cca088d97177347acdb03aa1edb7d891aca06788c87812172ff54c668"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 6488128,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1500000.0,
+      "record_offset": 45056,
+      "source_sha256": [
+        "dcebfd0cca088d97177347acdb03aa1edb7d891aca06788c87812172ff54c668"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 7077952,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 2000000.0,
+      "record_offset": 49152,
+      "source_sha256": [
+        "2c2327e2435433eb6d58c2390d583f0be40863ae1f56304896a69157dac6821b"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 7667776,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 2000000.0,
+      "record_offset": 53248,
+      "source_sha256": [
+        "2c2327e2435433eb6d58c2390d583f0be40863ae1f56304896a69157dac6821b"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 8257600,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 3000000.0,
+      "record_offset": 57344,
+      "source_sha256": [
+        "2525f9c4035459ef8dbe77e037d450a935d60f4bf583ee50b42337e4a6137daf"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 8847424,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 3000000.0,
+      "record_offset": 61440,
+      "source_sha256": [
+        "2525f9c4035459ef8dbe77e037d450a935d60f4bf583ee50b42337e4a6137daf"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 9437248,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 5000000.0,
+      "record_offset": 65536,
+      "source_sha256": [
+        "c11bb6fbdcda199240e9c1968025623e01291f971d872fd3e95c3887502d52d6"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 10027072,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 5000000.0,
+      "record_offset": 69632,
+      "source_sha256": [
+        "c11bb6fbdcda199240e9c1968025623e01291f971d872fd3e95c3887502d52d6"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 10616896,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 10000000.0,
+      "record_offset": 73728,
+      "source_sha256": [
+        "647e59282fc813fde5ad97931a6c2cae430656aa7fdf7ce0b7f3c88e2de67422"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 11206720,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 10000000.0,
+      "record_offset": 77824,
+      "source_sha256": [
+        "647e59282fc813fde5ad97931a6c2cae430656aa7fdf7ce0b7f3c88e2de67422"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 11796544,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 30000000.0,
+      "record_offset": 81920,
+      "source_sha256": [
+        "30b355d9f2a84385004c8370bb5985dc6c08072d17f5469d00a6126298e505ce"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 12386368,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 30000000.0,
+      "record_offset": 86016,
+      "source_sha256": [
+        "30b355d9f2a84385004c8370bb5985dc6c08072d17f5469d00a6126298e505ce"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 12976192,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 100000000.0,
+      "record_offset": 90112,
+      "source_sha256": [
+        "77c8071565ae5e89c5d0f2f3f07d8b7621e23055eff63e815d1125fa04d02518"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 13566016,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 100000000.0,
+      "record_offset": 94208,
+      "source_sha256": [
+        "77c8071565ae5e89c5d0f2f3f07d8b7621e23055eff63e815d1125fa04d02518"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 14155840,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 300000000.0,
+      "record_offset": 98304,
+      "source_sha256": [
+        "c08e0d51b0d59f9b4b95e90e41e4aac33a44cf7808fbea7462d01c6eb4a6aa91"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 14745664,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 300000000.0,
+      "record_offset": 102400,
+      "source_sha256": [
+        "c08e0d51b0d59f9b4b95e90e41e4aac33a44cf7808fbea7462d01c6eb4a6aa91"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 15335488,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1000000000.0,
+      "record_offset": 106496,
+      "source_sha256": [
+        "ff0c8563b08b64794a93211ecfd56a20c3cd86c2b85f02dee3f06c25c2ecf939"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 15925312,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 1000000000.0,
+      "record_offset": 110592,
+      "source_sha256": [
+        "ff0c8563b08b64794a93211ecfd56a20c3cd86c2b85f02dee3f06c25c2ecf939"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 16515136,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 3000000000.0,
+      "record_offset": 114688,
+      "source_sha256": [
+        "e5e14d30c5c62fe786dfa918ca664008f1ce97b2d43d80b36b487c38d38dfa4f"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 17104960,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 3000000000.0,
+      "record_offset": 118784,
+      "source_sha256": [
+        "e5e14d30c5c62fe786dfa918ca664008f1ce97b2d43d80b36b487c38d38dfa4f"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 17694784,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 10000000000.0,
+      "record_offset": 122880,
+      "source_sha256": [
+        "f0c49dba7f96d11257006a4c4545761f0d0998f6fae000b48b4471388f614434"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 18284608,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 10000000000.0,
+      "record_offset": 126976,
+      "source_sha256": [
+        "f0c49dba7f96d11257006a4c4545761f0d0998f6fae000b48b4471388f614434"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 18874432,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 30000000000.0,
+      "record_offset": 131072,
+      "source_sha256": [
+        "0e4ab5bc7633722357bf74106b3def37201d228c095cd6431d00382a0c1eb5ef"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 19464256,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 30000000000.0,
+      "record_offset": 135168,
+      "source_sha256": [
+        "0e4ab5bc7633722357bf74106b3def37201d228c095cd6431d00382a0c1eb5ef"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 20054080,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 100000000000.0,
+      "record_offset": 139264,
+      "source_sha256": [
+        "3b723f4ff693267081586f98115cd5f2afa2e7a26e8d1c087be8239635227139"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 20643904,
+      "channel": "nuclear",
+      "channel_code": 1,
+      "count": 4096,
+      "primary_energy_eV": 100000000000.0,
+      "record_offset": 143360,
+      "source_sha256": [
+        "3b723f4ff693267081586f98115cd5f2afa2e7a26e8d1c087be8239635227139"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 21233728,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 2049999.9999999998,
+      "record_offset": 147456,
+      "source_sha256": [
+        "2fba375af63846c4149d460e870ee350ce9e8ba55107693185bfc11df74f57c1"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 21823552,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 2049999.9999999998,
+      "record_offset": 151552,
+      "source_sha256": [
+        "2fba375af63846c4149d460e870ee350ce9e8ba55107693185bfc11df74f57c1"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 22413376,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 2100000.0,
+      "record_offset": 155648,
+      "source_sha256": [
+        "db9abdb8ac5f7ed7083dbeb468228840de9bb52d0cf11ac68cce2c67811e151d"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 23003200,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 2100000.0,
+      "record_offset": 159744,
+      "source_sha256": [
+        "db9abdb8ac5f7ed7083dbeb468228840de9bb52d0cf11ac68cce2c67811e151d"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 23593024,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 2200000.0,
+      "record_offset": 163840,
+      "source_sha256": [
+        "d64270c586c8853fbe570aeac1402c08dd736b3ed1eda7d3eba64f9b4dfd3135"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 24182848,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 2200000.0,
+      "record_offset": 167936,
+      "source_sha256": [
+        "d64270c586c8853fbe570aeac1402c08dd736b3ed1eda7d3eba64f9b4dfd3135"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 24772672,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 2500000.0,
+      "record_offset": 172032,
+      "source_sha256": [
+        "8a2f3f6a4a93e13041bc112e1dbf45a1ece63e4a5daf72bff0dd00df9a3c63c0"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 25362496,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 2500000.0,
+      "record_offset": 176128,
+      "source_sha256": [
+        "8a2f3f6a4a93e13041bc112e1dbf45a1ece63e4a5daf72bff0dd00df9a3c63c0"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 25952320,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 3000000.0,
+      "record_offset": 180224,
+      "source_sha256": [
+        "47ceffddc95e147ad62b19dce67ea5ecf474ae520b2c352cd3d6a292c2af9b40"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 26542144,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 3000000.0,
+      "record_offset": 184320,
+      "source_sha256": [
+        "47ceffddc95e147ad62b19dce67ea5ecf474ae520b2c352cd3d6a292c2af9b40"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 27131968,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 5000000.0,
+      "record_offset": 188416,
+      "source_sha256": [
+        "ca7593193b3681c311e054ee325b3fd9a4aa0d560cb8ab222e2c2ee63431d056"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 27721792,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 5000000.0,
+      "record_offset": 192512,
+      "source_sha256": [
+        "ca7593193b3681c311e054ee325b3fd9a4aa0d560cb8ab222e2c2ee63431d056"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 28311616,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 10000000.0,
+      "record_offset": 196608,
+      "source_sha256": [
+        "060ae540af3d348fc056c427cd419d86ed3bac97ea509ca3d32c5ec8f90a0a59"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 28901440,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 10000000.0,
+      "record_offset": 200704,
+      "source_sha256": [
+        "060ae540af3d348fc056c427cd419d86ed3bac97ea509ca3d32c5ec8f90a0a59"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 29491264,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 30000000.0,
+      "record_offset": 204800,
+      "source_sha256": [
+        "e917e8a27fa2ee928af3c961f6d3b3ca387f27987aa1f9c583ee0c0be97f3b64"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 30081088,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 30000000.0,
+      "record_offset": 208896,
+      "source_sha256": [
+        "e917e8a27fa2ee928af3c961f6d3b3ca387f27987aa1f9c583ee0c0be97f3b64"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 30670912,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 100000000.0,
+      "record_offset": 212992,
+      "source_sha256": [
+        "205d8a24a84fbc1956641fee751c10c8c388891380cf4927a25ff8dddee54c16"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 31260736,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 100000000.0,
+      "record_offset": 217088,
+      "source_sha256": [
+        "205d8a24a84fbc1956641fee751c10c8c388891380cf4927a25ff8dddee54c16"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 31850560,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 300000000.0,
+      "record_offset": 221184,
+      "source_sha256": [
+        "d354c3a71db224a6a4522d69418d123b2acfecced94a9d747eaaa4314c6e93a0"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 32440384,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 300000000.0,
+      "record_offset": 225280,
+      "source_sha256": [
+        "d354c3a71db224a6a4522d69418d123b2acfecced94a9d747eaaa4314c6e93a0"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 33030208,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 1000000000.0,
+      "record_offset": 229376,
+      "source_sha256": [
+        "d83b8a14e541bfe7c3ef6db1c95915072557b7ae8f050cbd043e1d821dc99dda"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 33620032,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 1000000000.0,
+      "record_offset": 233472,
+      "source_sha256": [
+        "d83b8a14e541bfe7c3ef6db1c95915072557b7ae8f050cbd043e1d821dc99dda"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 34209856,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 3000000000.0,
+      "record_offset": 237568,
+      "source_sha256": [
+        "f462a6f32f081e73b8bd0bd7a6ff62e61eab18d2c7bed54a2a1020a292806a76"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 34799680,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 3000000000.0,
+      "record_offset": 241664,
+      "source_sha256": [
+        "f462a6f32f081e73b8bd0bd7a6ff62e61eab18d2c7bed54a2a1020a292806a76"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 35389504,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 10000000000.0,
+      "record_offset": 245760,
+      "source_sha256": [
+        "83c1ef98fd6bc8525a77de68889deba7837f96ba47ac19ab15d25c91af00f444"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 35979328,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 10000000000.0,
+      "record_offset": 249856,
+      "source_sha256": [
+        "83c1ef98fd6bc8525a77de68889deba7837f96ba47ac19ab15d25c91af00f444"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 36569152,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 30000000000.0,
+      "record_offset": 253952,
+      "source_sha256": [
+        "c239bd1fb82cba6c5afd1ab53525df5d0697a31c142efab4bba4e542531aedc4"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 37158976,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 30000000000.0,
+      "record_offset": 258048,
+      "source_sha256": [
+        "c239bd1fb82cba6c5afd1ab53525df5d0697a31c142efab4bba4e542531aedc4"
+      ],
+      "split": "holdout"
+    },
+    {
+      "byte_offset": 37748800,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 100000000000.0,
+      "record_offset": 262144,
+      "source_sha256": [
+        "17f9152989d1f6c1936f96267d0a0ce2429e75c083b72b9fd25037c570310750"
+      ],
+      "split": "training"
+    },
+    {
+      "byte_offset": 38338624,
+      "channel": "triplet",
+      "channel_code": 2,
+      "count": 4096,
+      "primary_energy_eV": 100000000000.0,
+      "record_offset": 266240,
+      "source_sha256": [
+        "17f9152989d1f6c1936f96267d0a0ce2429e75c083b72b9fd25037c570310750"
+      ],
+      "split": "holdout"
+    }
+  ],
+  "endian": "little",
+  "endian_marker": 16909060,
+  "failures": [],
+  "final_state_models": {
+    "nuclear": "option4_G4BetheHeitler5DModel_conversion_type_1",
+    "triplet": "option4_G4BetheHeitler5DModel_conversion_type_2_extension"
+  },
+  "header_bytes": 64,
+  "holdout_records_per_node": 4096,
+  "nuclear_nodes_MeV": [
+    1.0219979,
+    1.025,
+    1.03,
+    1.05,
+    1.1,
+    1.2,
+    1.5,
+    2,
+    3,
+    5,
+    10,
+    30,
+    100,
+    300,
+    1000.0,
+    3000.0,
+    10000.0,
+    30000.0,
+    100000.0
+  ],
+  "payload_sha256": "c62cb76327c12756859877e608dcdbe0d5b1ba4e7271bd493863aabffe0d977a",
+  "promotion_eligible": true,
+  "rate_authorities": {
+    "nuclear": "canonical-air number density times option4 G4GammaConversion/G4BetheHeitler5DModel total per-atom cross section minus G4BoldyshevTripletModel per-atom cross section",
+    "triplet": "canonical-air number density times G4BoldyshevTripletModel per-atom cross section with G4EMLOW7.13 livermore/tripdata"
+  },
+  "record_bytes": 144,
+  "record_count": 270336,
+  "sampling_mode": "pair_conditional",
+  "schema_version": 2,
+  "source_energy_audit": {
+    "dynamic_mass_defect_abs_max_eV": 7.507912270433735,
+    "energy_residual_abs_max_eV": 61444.73550415039,
+    "energy_residual_max_eV": 61444.73550415039,
+    "energy_residual_min_eV": -24576.398330688477,
+    "event_count": 792000,
+    "four_energy_residual_abs_max_eV": 61444.655517578125,
+    "four_energy_residual_max_eV": 61444.655517578125,
+    "four_energy_residual_min_eV": -24576.478317260742,
+    "kinetic_scale_min": 0.9999993856240333,
+    "local_remainder_max_eV": 3580115.308364868,
+    "local_remainder_min_eV": -61437.00651550293,
+    "normalization_count": 399954,
+    "normalization_fraction_max": 6.143759666565884e-07,
+    "projection_tolerance_max_eV": 61444.73746752914,
+    "raw_kinetic_bias_abs_max_eV": 7.507781982421875,
+    "raw_kinetic_residual_abs_max_eV": 61444.587341308594,
+    "raw_kinetic_residual_max_eV": 61444.587341308594,
+    "raw_kinetic_residual_min_eV": -24574.913482666016
+  },
+  "source_energy_contract": {
+    "authoritative_kinetic_energy_definition": "Geant4 total energy minus the lepton particle-definition PDG rest energy or the exact BH5D target nuclear rest energy; this avoids high-gamma dynamic-mass cancellation in GetKineticEnergy",
+    "available_energy_definition": "incident_energy_eV - 2 * 510998.95 eV",
+    "four_energy_validation": "sum(Geant4 secondary total energies) - (incident photon energy + BH5D target rest energy); the residual is recorded as provenance because the pinned model projection is not 64-epsilon exact",
+    "geant4_raw_kinetic_energy_role": "provenance only; GetKineticEnergy uses a reconstructed dynamic mass and is not the authoritative high-energy kinetic projection",
+    "local_booking_policy": "book the exact nonnegative post-normalization remainder as target recoil/binding energy",
+    "normalization_policy": "if the fixed-mass local remainder is negative within the derived projection tolerance, multiply every nonnegative lepton kinetic energy by available/sum; otherwise retain the Geant4 lepton energies",
+    "projection_arithmetic_tolerance_definition": "64 * binary64 epsilon * max(available energy, initial total energy, final total energy)",
+    "projection_mass_offset_definition": "2 * (510998.95 eV - Geant4 electron/positron PDG rest energy)",
+    "projection_tolerance_definition": "abs(BH5D four-energy residual + projection mass offset) + projection arithmetic tolerance",
+    "raw_all_secondary_residual_definition": "sum(all fixed-PDG-mass secondary kinetic energies) - available_energy_eV",
+    "raw_local_remainder_definition": "available_energy_eV - sum(explicit lepton kinetic energies)",
+    "source_identity_validation": "fixed-mass residual equals BH5D four-energy residual plus the schema-vs-Geant4 lepton-mass offset, and raw GetKineticEnergy residual additionally equals the summed dynamic-mass defect; both identities are checked at 64 binary64 epsilons"
+  },
+  "source_inputs": [
+    {
+      "path": "pair-nuclear-e00-s0000/g4_photon_secondaries_nuclear_1p025_s0000MeV.csv",
+      "sha256": "723687947eb2f711ff047187b5ba26d8d0561ed1f7b6f261229b62f831cdf506"
+    },
+    {
+      "path": "pair-nuclear-e01-s0000/g4_photon_secondaries_nuclear_1p03_s0000MeV.csv",
+      "sha256": "4124ef519f7b59da15edceacb0e924c5d509545ad8c4ba25d47dd751475057b3"
+    },
+    {
+      "path": "pair-nuclear-e02-s0000/g4_photon_secondaries_nuclear_1p05_s0000MeV.csv",
+      "sha256": "65c2495397d3d099e553ec4e0e58875358d1a32184406abeaced434094132170"
+    },
+    {
+      "path": "pair-nuclear-e03-s0000/g4_photon_secondaries_nuclear_1p1_s0000MeV.csv",
+      "sha256": "fdd2cbdccaed06ee755a1cceedd546f8c3fc8ac3984359be6a66d0c4ec55463d"
+    },
+    {
+      "path": "pair-nuclear-e04-s0000/g4_photon_secondaries_nuclear_1p2_s0000MeV.csv",
+      "sha256": "ecd19823126eac1f7fb6597640b757332fe13e847caecd730a32207ee8d4a20a"
+    },
+    {
+      "path": "pair-nuclear-e05-s0000/g4_photon_secondaries_nuclear_1p5_s0000MeV.csv",
+      "sha256": "dcebfd0cca088d97177347acdb03aa1edb7d891aca06788c87812172ff54c668"
+    },
+    {
+      "path": "pair-nuclear-e06-s0000/g4_photon_secondaries_nuclear_2_s0000MeV.csv",
+      "sha256": "2c2327e2435433eb6d58c2390d583f0be40863ae1f56304896a69157dac6821b"
+    },
+    {
+      "path": "pair-nuclear-e07-s0000/g4_photon_secondaries_nuclear_3_s0000MeV.csv",
+      "sha256": "2525f9c4035459ef8dbe77e037d450a935d60f4bf583ee50b42337e4a6137daf"
+    },
+    {
+      "path": "pair-nuclear-e08-s0000/g4_photon_secondaries_nuclear_5_s0000MeV.csv",
+      "sha256": "c11bb6fbdcda199240e9c1968025623e01291f971d872fd3e95c3887502d52d6"
+    },
+    {
+      "path": "pair-nuclear-e09-s0000/g4_photon_secondaries_nuclear_10_s0000MeV.csv",
+      "sha256": "647e59282fc813fde5ad97931a6c2cae430656aa7fdf7ce0b7f3c88e2de67422"
+    },
+    {
+      "path": "pair-nuclear-e10-s0000/g4_photon_secondaries_nuclear_30_s0000MeV.csv",
+      "sha256": "30b355d9f2a84385004c8370bb5985dc6c08072d17f5469d00a6126298e505ce"
+    },
+    {
+      "path": "pair-nuclear-e11-s0000/g4_photon_secondaries_nuclear_100_s0000MeV.csv",
+      "sha256": "77c8071565ae5e89c5d0f2f3f07d8b7621e23055eff63e815d1125fa04d02518"
+    },
+    {
+      "path": "pair-nuclear-e12-s0000/g4_photon_secondaries_nuclear_300_s0000MeV.csv",
+      "sha256": "c08e0d51b0d59f9b4b95e90e41e4aac33a44cf7808fbea7462d01c6eb4a6aa91"
+    },
+    {
+      "path": "pair-nuclear-e13-s0000/g4_photon_secondaries_nuclear_1000_s0000MeV.csv",
+      "sha256": "ff0c8563b08b64794a93211ecfd56a20c3cd86c2b85f02dee3f06c25c2ecf939"
+    },
+    {
+      "path": "pair-nuclear-e14-s0000/g4_photon_secondaries_nuclear_3000_s0000MeV.csv",
+      "sha256": "e5e14d30c5c62fe786dfa918ca664008f1ce97b2d43d80b36b487c38d38dfa4f"
+    },
+    {
+      "path": "pair-nuclear-e15-s0000/g4_photon_secondaries_nuclear_10000_s0000MeV.csv",
+      "sha256": "f0c49dba7f96d11257006a4c4545761f0d0998f6fae000b48b4471388f614434"
+    },
+    {
+      "path": "pair-nuclear-e16-s0000/g4_photon_secondaries_nuclear_30000_s0000MeV.csv",
+      "sha256": "0e4ab5bc7633722357bf74106b3def37201d228c095cd6431d00382a0c1eb5ef"
+    },
+    {
+      "path": "pair-nuclear-e17-s0000/g4_photon_secondaries_nuclear_100000_s0000MeV.csv",
+      "sha256": "3b723f4ff693267081586f98115cd5f2afa2e7a26e8d1c087be8239635227139"
+    },
+    {
+      "path": "pair-triplet-e00-s0000/g4_photon_secondaries_triplet_2p05_s0000MeV.csv",
+      "sha256": "2fba375af63846c4149d460e870ee350ce9e8ba55107693185bfc11df74f57c1"
+    },
+    {
+      "path": "pair-triplet-e01-s0000/g4_photon_secondaries_triplet_2p1_s0000MeV.csv",
+      "sha256": "db9abdb8ac5f7ed7083dbeb468228840de9bb52d0cf11ac68cce2c67811e151d"
+    },
+    {
+      "path": "pair-triplet-e02-s0000/g4_photon_secondaries_triplet_2p2_s0000MeV.csv",
+      "sha256": "d64270c586c8853fbe570aeac1402c08dd736b3ed1eda7d3eba64f9b4dfd3135"
+    },
+    {
+      "path": "pair-triplet-e03-s0000/g4_photon_secondaries_triplet_2p5_s0000MeV.csv",
+      "sha256": "8a2f3f6a4a93e13041bc112e1dbf45a1ece63e4a5daf72bff0dd00df9a3c63c0"
+    },
+    {
+      "path": "pair-triplet-e04-s0000/g4_photon_secondaries_triplet_3_s0000MeV.csv",
+      "sha256": "47ceffddc95e147ad62b19dce67ea5ecf474ae520b2c352cd3d6a292c2af9b40"
+    },
+    {
+      "path": "pair-triplet-e05-s0000/g4_photon_secondaries_triplet_5_s0000MeV.csv",
+      "sha256": "ca7593193b3681c311e054ee325b3fd9a4aa0d560cb8ab222e2c2ee63431d056"
+    },
+    {
+      "path": "pair-triplet-e06-s0000/g4_photon_secondaries_triplet_10_s0000MeV.csv",
+      "sha256": "060ae540af3d348fc056c427cd419d86ed3bac97ea509ca3d32c5ec8f90a0a59"
+    },
+    {
+      "path": "pair-triplet-e07-s0000/g4_photon_secondaries_triplet_30_s0000MeV.csv",
+      "sha256": "e917e8a27fa2ee928af3c961f6d3b3ca387f27987aa1f9c583ee0c0be97f3b64"
+    },
+    {
+      "path": "pair-triplet-e08-s0000/g4_photon_secondaries_triplet_100_s0000MeV.csv",
+      "sha256": "205d8a24a84fbc1956641fee751c10c8c388891380cf4927a25ff8dddee54c16"
+    },
+    {
+      "path": "pair-triplet-e09-s0000/g4_photon_secondaries_triplet_300_s0000MeV.csv",
+      "sha256": "d354c3a71db224a6a4522d69418d123b2acfecced94a9d747eaaa4314c6e93a0"
+    },
+    {
+      "path": "pair-triplet-e10-s0000/g4_photon_secondaries_triplet_1000_s0000MeV.csv",
+      "sha256": "d83b8a14e541bfe7c3ef6db1c95915072557b7ae8f050cbd043e1d821dc99dda"
+    },
+    {
+      "path": "pair-triplet-e11-s0000/g4_photon_secondaries_triplet_3000_s0000MeV.csv",
+      "sha256": "f462a6f32f081e73b8bd0bd7a6ff62e61eab18d2c7bed54a2a1020a292806a76"
+    },
+    {
+      "path": "pair-triplet-e12-s0000/g4_photon_secondaries_triplet_10000_s0000MeV.csv",
+      "sha256": "83c1ef98fd6bc8525a77de68889deba7837f96ba47ac19ab15d25c91af00f444"
+    },
+    {
+      "path": "pair-triplet-e13-s0000/g4_photon_secondaries_triplet_30000_s0000MeV.csv",
+      "sha256": "c239bd1fb82cba6c5afd1ab53525df5d0697a31c142efab4bba4e542531aedc4"
+    },
+    {
+      "path": "pair-triplet-e14-s0000/g4_photon_secondaries_triplet_100000_s0000MeV.csv",
+      "sha256": "17f9152989d1f6c1936f96267d0a0ce2429e75c083b72b9fd25037c570310750"
+    }
+  ],
+  "target_selector_audits": [
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.399880561433812,
+          "observed_count": 2,
+          "passed": true,
+          "probability": 9.999502339307549e-05
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 419.615798666391,
+          "expected_count": 17158.97803248969,
+          "observed_count": 17131,
+          "passed": true,
+          "probability": 0.7149574180204037
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 404.05216471139386,
+          "expected_count": 6070.309272143744,
+          "observed_count": 6098,
+          "passed": true,
+          "probability": 0.25292955300598935
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 163.6270285157501,
+          "expected_count": 768.3128148051327,
+          "observed_count": 769,
+          "passed": true,
+          "probability": 0.03201303395021386
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 1024999.9999999999,
+      "seed": 2234,
+      "source_sha256": "723687947eb2f711ff047187b5ba26d8d0561ed1f7b6f261229b62f831cdf506"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.399880561433812,
+          "observed_count": 0,
+          "passed": true,
+          "probability": 9.99950233930755e-05
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 419.615798666391,
+          "expected_count": 17158.978032489693,
+          "observed_count": 17129,
+          "passed": true,
+          "probability": 0.7149574180204038
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 404.05216471139386,
+          "expected_count": 6070.309272143744,
+          "observed_count": 6137,
+          "passed": true,
+          "probability": 0.25292955300598935
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 163.6270285157501,
+          "expected_count": 768.3128148051327,
+          "observed_count": 734,
+          "passed": true,
+          "probability": 0.03201303395021386
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 1030000.0,
+      "seed": 2235,
+      "source_sha256": "4124ef519f7b59da15edceacb0e924c5d509545ad8c4ba25d47dd751475057b3"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.399880561433812,
+          "observed_count": 4,
+          "passed": true,
+          "probability": 9.99950233930755e-05
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 419.615798666391,
+          "expected_count": 17158.97803248969,
+          "observed_count": 17301,
+          "passed": true,
+          "probability": 0.7149574180204037
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 404.05216471139386,
+          "expected_count": 6070.309272143744,
+          "observed_count": 5921,
+          "passed": true,
+          "probability": 0.25292955300598935
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 163.6270285157501,
+          "expected_count": 768.3128148051329,
+          "observed_count": 774,
+          "passed": true,
+          "probability": 0.03201303395021387
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 1050000.0,
+      "seed": 2236,
+      "source_sha256": "65c2495397d3d099e553ec4e0e58875358d1a32184406abeaced434094132170"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.399880561433812,
+          "observed_count": 1,
+          "passed": true,
+          "probability": 9.999502339307549e-05
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 419.61579866639113,
+          "expected_count": 17158.978032489686,
+          "observed_count": 17283,
+          "passed": true,
+          "probability": 0.7149574180204036
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 404.05216471139386,
+          "expected_count": 6070.309272143746,
+          "observed_count": 5951,
+          "passed": true,
+          "probability": 0.2529295530059894
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 163.6270285157501,
+          "expected_count": 768.3128148051327,
+          "observed_count": 765,
+          "passed": true,
+          "probability": 0.03201303395021386
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 1100000.0,
+      "seed": 2237,
+      "source_sha256": "fdd2cbdccaed06ee755a1cceedd546f8c3fc8ac3984359be6a66d0c4ec55463d"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.399880561433812,
+          "observed_count": 1,
+          "passed": true,
+          "probability": 9.99950233930755e-05
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 419.615798666391,
+          "expected_count": 17158.97803248969,
+          "observed_count": 17126,
+          "passed": true,
+          "probability": 0.7149574180204037
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 404.05216471139386,
+          "expected_count": 6070.309272143746,
+          "observed_count": 6124,
+          "passed": true,
+          "probability": 0.2529295530059894
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 163.6270285157501,
+          "expected_count": 768.3128148051329,
+          "observed_count": 749,
+          "passed": true,
+          "probability": 0.03201303395021387
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 1200000.0,
+      "seed": 2238,
+      "source_sha256": "ecd19823126eac1f7fb6597640b757332fe13e847caecd730a32207ee8d4a20a"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.399880561433812,
+          "observed_count": 3,
+          "passed": true,
+          "probability": 9.999502339307549e-05
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 419.615798666391,
+          "expected_count": 17158.97803248969,
+          "observed_count": 17178,
+          "passed": true,
+          "probability": 0.7149574180204037
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 404.05216471139386,
+          "expected_count": 6070.309272143744,
+          "observed_count": 6025,
+          "passed": true,
+          "probability": 0.25292955300598935
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 163.6270285157501,
+          "expected_count": 768.3128148051329,
+          "observed_count": 794,
+          "passed": true,
+          "probability": 0.03201303395021387
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 1500000.0,
+      "seed": 2239,
+      "source_sha256": "dcebfd0cca088d97177347acdb03aa1edb7d891aca06788c87812172ff54c668"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.4248999267841636,
+          "observed_count": 4,
+          "passed": true,
+          "probability": 0.00010103749694934015
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 418.36486347635207,
+          "expected_count": 17226.269607053284,
+          "observed_count": 17212,
+          "passed": true,
+          "probability": 0.7177612336272201
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 403.6784242318487,
+          "expected_count": 6053.363426289241,
+          "observed_count": 6081,
+          "passed": true,
+          "probability": 0.25222347609538504
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 158.3437816446625,
+          "expected_count": 717.9420667306904,
+          "observed_count": 703,
+          "passed": true,
+          "probability": 0.029914252780445433
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 2000000.0,
+      "seed": 2240,
+      "source_sha256": "2c2327e2435433eb6d58c2390d583f0be40863ae1f56304896a69157dac6821b"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.4456395239465034,
+          "observed_count": 3,
+          "passed": true,
+          "probability": 0.00010190164683110432
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 417.34385457009427,
+          "expected_count": 17280.41078279433,
+          "observed_count": 17251,
+          "passed": true,
+          "probability": 0.7200171159497638
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 403.36336966418185,
+          "expected_count": 6039.128027256604,
+          "observed_count": 6083,
+          "passed": true,
+          "probability": 0.25163033446902516
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 154.0097470466622,
+          "expected_count": 678.0155504251193,
+          "observed_count": 663,
+          "passed": true,
+          "probability": 0.02825064793437997
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 3000000.0,
+      "seed": 2241,
+      "source_sha256": "2525f9c4035459ef8dbe77e037d450a935d60f4bf583ee50b42337e4a6137daf"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.44687306766637,
+          "observed_count": 0,
+          "passed": true,
+          "probability": 0.00010195304448609876
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 417.1229206454589,
+          "expected_count": 17292.03609663944,
+          "observed_count": 17220,
+          "passed": true,
+          "probability": 0.7205015040266434
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 403.38278868119664,
+          "expected_count": 6040.004150125548,
+          "observed_count": 6078,
+          "passed": true,
+          "probability": 0.2516668395885645
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 152.62405641156795,
+          "expected_count": 665.5128801673452,
+          "observed_count": 702,
+          "passed": true,
+          "probability": 0.027729703340306052
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 5000000.0,
+      "seed": 2242,
+      "source_sha256": "c11bb6fbdcda199240e9c1968025623e01291f971d872fd3e95c3887502d52d6"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.442964948027216,
+          "observed_count": 2,
+          "passed": true,
+          "probability": 0.00010179020616780067
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 417.1425799300306,
+          "expected_count": 17291.00293008916,
+          "observed_count": 17191,
+          "passed": true,
+          "probability": 0.7204584554203816
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 403.48531490848904,
+          "expected_count": 6044.632636397233,
+          "observed_count": 6107,
+          "passed": true,
+          "probability": 0.25185969318321805
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 152.2233977499485,
+          "expected_count": 661.9214685655852,
+          "observed_count": 700,
+          "passed": true,
+          "probability": 0.027580061190232714
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 10000000.0,
+      "seed": 2243,
+      "source_sha256": "647e59282fc813fde5ad97931a6c2cae430656aa7fdf7ce0b7f3c88e2de67422"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.4404185896858674,
+          "observed_count": 0,
+          "passed": true,
+          "probability": 0.00010168410790357781
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 417.1656114046177,
+          "expected_count": 17289.79222411186,
+          "observed_count": 17220,
+          "passed": true,
+          "probability": 0.7204080093379942
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 403.55383838343323,
+          "expected_count": 6047.728751364579,
+          "observed_count": 6093,
+          "passed": true,
+          "probability": 0.25198869797352413
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 152.0128723879484,
+          "expected_count": 660.0386059338715,
+          "observed_count": 687,
+          "passed": true,
+          "probability": 0.02750160858057798
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 30000000.0,
+      "seed": 2244,
+      "source_sha256": "30b355d9f2a84385004c8370bb5985dc6c08072d17f5469d00a6126298e505ce"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.4417104857354888,
+          "observed_count": 3,
+          "passed": true,
+          "probability": 0.00010173793690564536
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 417.1106829786979,
+          "expected_count": 17292.679103884544,
+          "observed_count": 17341,
+          "passed": true,
+          "probability": 0.7205282959951893
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 403.53338793457715,
+          "expected_count": 6046.804509506842,
+          "observed_count": 5989,
+          "passed": true,
+          "probability": 0.2519501878961184
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 151.7929343592529,
+          "expected_count": 658.0746761228841,
+          "observed_count": 667,
+          "passed": true,
+          "probability": 0.027419778171786834
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 100000000.0,
+      "seed": 2245,
+      "source_sha256": "77c8071565ae5e89c5d0f2f3f07d8b7621e23055eff63e815d1125fa04d02518"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.443920726258615,
+          "observed_count": 3,
+          "passed": true,
+          "probability": 0.00010183003026077562
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 417.05998928770134,
+          "expected_count": 17295.34168462196,
+          "observed_count": 17275,
+          "passed": true,
+          "probability": 0.7206392368592484
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 403.51488940824254,
+          "expected_count": 6045.968647162731,
+          "observed_count": 6078,
+          "passed": true,
+          "probability": 0.25191536029844713
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 151.587793664132,
+          "expected_count": 656.2457474890456,
+          "observed_count": 644,
+          "passed": true,
+          "probability": 0.027343572812043568
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 300000000.0,
+      "seed": 2246,
+      "source_sha256": "c08e0d51b0d59f9b4b95e90e41e4aac33a44cf7808fbea7462d01c6eb4a6aa91"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.4465423094537426,
+          "observed_count": 1,
+          "passed": true,
+          "probability": 0.00010193926289390595
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 417.0127994028045,
+          "expected_count": 17297.81874197525,
+          "observed_count": 17306,
+          "passed": true,
+          "probability": 0.7207424475823021
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 403.5120826165154,
+          "expected_count": 6045.841834903251,
+          "observed_count": 6079,
+          "passed": true,
+          "probability": 0.25191007645430213
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 151.32342799404387,
+          "expected_count": 653.8928808120442,
+          "observed_count": 614,
+          "passed": true,
+          "probability": 0.02724553670050184
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 1000000000.0,
+      "seed": 2247,
+      "source_sha256": "ff0c8563b08b64794a93211ecfd56a20c3cd86c2b85f02dee3f06c25c2ecf939"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.4475715019513546,
+          "observed_count": 5,
+          "passed": true,
+          "probability": 0.00010198214591463977
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 416.9954140226714,
+          "expected_count": 17298.730960274726,
+          "observed_count": 17295,
+          "passed": true,
+          "probability": 0.7207804566781135
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 403.5214847345411,
+          "expected_count": 6046.26664141837,
+          "observed_count": 6064,
+          "passed": true,
+          "probability": 0.25192777672576544
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 151.1728549111871,
+          "expected_count": 652.5548268049583,
+          "observed_count": 636,
+          "passed": true,
+          "probability": 0.027189784450206596
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 3000000000.0,
+      "seed": 2248,
+      "source_sha256": "e5e14d30c5c62fe786dfa918ca664008f1ce97b2d43d80b36b487c38d38dfa4f"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.4455936422719344,
+          "observed_count": 1,
+          "passed": true,
+          "probability": 0.00010189973509466394
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 417.0558625073022,
+          "expected_count": 17295.558362016876,
+          "observed_count": 17244,
+          "passed": true,
+          "probability": 0.7206482650840365
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 403.57753501335503,
+          "expected_count": 6048.799939925604,
+          "observed_count": 6091,
+          "passed": true,
+          "probability": 0.2520333308302335
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 151.24503969622901,
+          "expected_count": 653.1961044152436,
+          "observed_count": 664,
+          "passed": true,
+          "probability": 0.02721650435063515
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 10000000000.0,
+      "seed": 2249,
+      "source_sha256": "f0c49dba7f96d11257006a4c4545761f0d0998f6fae000b48b4471388f614434"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.442990264299331,
+          "observed_count": 2,
+          "passed": true,
+          "probability": 0.00010179126101247212
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 417.13267452680356,
+          "expected_count": 17291.523526176294,
+          "observed_count": 17301,
+          "passed": true,
+          "probability": 0.7204801469240122
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 403.63805987310263,
+          "expected_count": 6051.537082468134,
+          "observed_count": 5999,
+          "passed": true,
+          "probability": 0.25214737843617224
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 151.3912881599325,
+          "expected_count": 654.4964010912739,
+          "observed_count": 698,
+          "passed": true,
+          "probability": 0.02727068337880308
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 30000000000.0,
+      "seed": 2250,
+      "source_sha256": "0e4ab5bc7633722357bf74106b3def37201d228c095cd6431d00382a0c1eb5ef"
+    },
+    {
+      "channel": "nuclear",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.47617268248171,
+          "observed_count": 2,
+          "passed": true,
+          "probability": 0.00010317386177007125
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 416.0388346593272,
+          "expected_count": 17348.625247376436,
+          "observed_count": 17402,
+          "passed": true,
+          "probability": 0.7228593853073515
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 402.97274543806475,
+          "expected_count": 6021.540530977974,
+          "observed_count": 5976,
+          "passed": true,
+          "probability": 0.2508975221240823
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 148.30550421435385,
+          "expected_count": 627.3580489631091,
+          "observed_count": 620,
+          "passed": true,
+          "probability": 0.026139918706796213
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 100000000000.0,
+      "seed": 2251,
+      "source_sha256": "3b723f4ff693267081586f98115cd5f2afa2e7a26e8d1c087be8239635227139"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.9617365499928914,
+          "observed_count": 2,
+          "passed": true,
+          "probability": 0.00012340568958303714
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 401.50147820254267,
+          "expected_count": 18044.09149507038,
+          "observed_count": 18077,
+          "passed": true,
+          "probability": 0.7518371456279325
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 392.3039550096678,
+          "expected_count": 5565.840801691204,
+          "observed_count": 5597,
+          "passed": true,
+          "probability": 0.2319100334038002
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 387.1059666884244,
+          "observed_count": 324,
+          "passed": true,
+          "probability": 0.01612941527868435
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 2049999.9999999998,
+      "seed": 3234,
+      "source_sha256": "2fba375af63846c4149d460e870ee350ce9e8ba55107693185bfc11df74f57c1"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.9817932350231455,
+          "observed_count": 3,
+          "passed": true,
+          "probability": 0.00012424138479263106
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 398.7152501839576,
+          "expected_count": 18165.82783145643,
+          "observed_count": 18236,
+          "passed": true,
+          "probability": 0.7569094929773513
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 392.46134285698156,
+          "expected_count": 5572.242777718149,
+          "observed_count": 5512,
+          "passed": true,
+          "probability": 0.2321767824049229
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 258.94759759039624,
+          "observed_count": 249,
+          "passed": true,
+          "probability": 0.010789483232933177
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 2100000.0,
+      "seed": 3235,
+      "source_sha256": "db9abdb8ac5f7ed7083dbeb468228840de9bb52d0cf11ac68cce2c67811e151d"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.9785811693820023,
+          "observed_count": 2,
+          "passed": true,
+          "probability": 0.0001241075487242501
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 399.1658310411775,
+          "expected_count": 18146.361488946455,
+          "observed_count": 18344,
+          "passed": true,
+          "probability": 0.756098395372769
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 392.47368947634243,
+          "expected_count": 5572.745372564972,
+          "observed_count": 5397,
+          "passed": true,
+          "probability": 0.23219772385687384
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 277.91455731918796,
+          "observed_count": 257,
+          "passed": true,
+          "probability": 0.011579773221632832
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 2200000.0,
+      "seed": 3236,
+      "source_sha256": "d64270c586c8853fbe570aeac1402c08dd736b3ed1eda7d3eba64f9b4dfd3135"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.9785802030635846,
+          "observed_count": 2,
+          "passed": true,
+          "probability": 0.0001241075084609827
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 399.16622653468005,
+          "expected_count": 18146.34436577627,
+          "observed_count": 18197,
+          "passed": true,
+          "probability": 0.7560976819073445
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 392.4740862261474,
+          "expected_count": 5572.761524005787,
+          "observed_count": 5538,
+          "passed": true,
+          "probability": 0.23219839683357446
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 277.9155300148813,
+          "observed_count": 263,
+          "passed": true,
+          "probability": 0.011579813750620055
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 2500000.0,
+      "seed": 3237,
+      "source_sha256": "8a2f3f6a4a93e13041bc112e1dbf45a1ece63e4a5daf72bff0dd00df9a3c63c0"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.9785775613257446,
+          "observed_count": 5,
+          "passed": true,
+          "probability": 0.00012410739838857268
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 399.1660700049164,
+          "expected_count": 18146.35114285054,
+          "observed_count": 18233,
+          "passed": true,
+          "probability": 0.7560979642854392
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 392.47394042121437,
+          "expected_count": 5572.755588369921,
+          "observed_count": 5495,
+          "passed": true,
+          "probability": 0.23219814951541334
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 277.91469121821643,
+          "observed_count": 267,
+          "passed": true,
+          "probability": 0.011579778800759019
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 3000000.0,
+      "seed": 3238,
+      "source_sha256": "47ceffddc95e147ad62b19dce67ea5ecf474ae520b2c352cd3d6a292c2af9b40"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.9786927190898465,
+          "observed_count": 3,
+          "passed": true,
+          "probability": 0.0001241121966287436
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 399.13645091710896,
+          "expected_count": 18147.63334133791,
+          "observed_count": 18143,
+          "passed": true,
+          "probability": 0.7561513892224129
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 392.4444837728022,
+          "expected_count": 5571.55658258814,
+          "observed_count": 5538,
+          "passed": true,
+          "probability": 0.23214819094117253
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 277.83138335486115,
+          "observed_count": 316,
+          "passed": true,
+          "probability": 0.011576307639785881
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 5000000.0,
+      "seed": 3239,
+      "source_sha256": "ca7593193b3681c311e054ee325b3fd9a4aa0d560cb8ab222e2c2ee63431d056"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.97815113218663,
+          "observed_count": 1,
+          "passed": true,
+          "probability": 0.00012408963050777625
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 399.134808564654,
+          "expected_count": 18147.704427510973,
+          "observed_count": 18188,
+          "passed": true,
+          "probability": 0.7561543511462905
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 392.4494639648994,
+          "expected_count": 5571.759274697151,
+          "observed_count": 5535,
+          "passed": true,
+          "probability": 0.23215663644571463
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 277.5581466596888,
+          "observed_count": 276,
+          "passed": true,
+          "probability": 0.011564922777487033
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 10000000.0,
+      "seed": 3240,
+      "source_sha256": "060ae540af3d348fc056c427cd419d86ed3bac97ea509ca3d32c5ec8f90a0a59"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.9817015489121093,
+          "observed_count": 2,
+          "passed": true,
+          "probability": 0.00012423756453800456
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 399.0022732914429,
+          "expected_count": 18153.437300038666,
+          "observed_count": 18216,
+          "passed": true,
+          "probability": 0.7563932208349444
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 392.36274818943457,
+          "expected_count": 5568.231252434815,
+          "observed_count": 5507,
+          "passed": true,
+          "probability": 0.2320096355181173
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 275.349745977605,
+          "observed_count": 275,
+          "passed": true,
+          "probability": 0.011472906082400208
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 30000000.0,
+      "seed": 3241,
+      "source_sha256": "e917e8a27fa2ee928af3c961f6d3b3ca387f27987aa1f9c583ee0c0be97f3b64"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 2.9895241768279877,
+          "observed_count": 2,
+          "passed": true,
+          "probability": 0.0001245635073678328
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 398.754754194767,
+          "expected_count": 18164.124485389686,
+          "observed_count": 18165,
+          "passed": true,
+          "probability": 0.7568385202245702
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 392.22597039159626,
+          "expected_count": 5562.671975093462,
+          "observed_count": 5602,
+          "passed": true,
+          "probability": 0.2317779989622276
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 270.2140153400192,
+          "observed_count": 231,
+          "passed": true,
+          "probability": 0.011258917305834134
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 100000000.0,
+      "seed": 3242,
+      "source_sha256": "205d8a24a84fbc1956641fee751c10c8c388891380cf4927a25ff8dddee54c16"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 3.0009593538175094,
+          "observed_count": 3,
+          "passed": true,
+          "probability": 0.00012503997307572955
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 398.2293008375358,
+          "expected_count": 18186.72902021994,
+          "observed_count": 18211,
+          "passed": true,
+          "probability": 0.7577803758424976
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 391.81468853383706,
+          "expected_count": 5545.9960825788,
+          "observed_count": 5536,
+          "passed": true,
+          "probability": 0.23108317010745
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 264.2739378474428,
+          "observed_count": 250,
+          "passed": true,
+          "probability": 0.011011414076976783
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 300000000.0,
+      "seed": 3243,
+      "source_sha256": "d354c3a71db224a6a4522d69418d123b2acfecced94a9d747eaaa4314c6e93a0"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 3.0145812738047337,
+          "observed_count": 5,
+          "passed": true,
+          "probability": 0.00012560755307519723
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 397.5335521413297,
+          "expected_count": 18216.48748205912,
+          "observed_count": 18155,
+          "passed": true,
+          "probability": 0.7590203117524634
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 391.18944674352133,
+          "expected_count": 5520.76049953918,
+          "observed_count": 5601,
+          "passed": true,
+          "probability": 0.2300316874807992
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 259.7374371278948,
+          "observed_count": 239,
+          "passed": true,
+          "probability": 0.010822393213662284
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 1000000000.0,
+      "seed": 3244,
+      "source_sha256": "d83b8a14e541bfe7c3ef6db1c95915072557b7ae8f050cbd043e1d821dc99dda"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 3.0235156661251925,
+          "observed_count": 1,
+          "passed": true,
+          "probability": 0.00012597981942188302
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 397.1272190735279,
+          "expected_count": 18233.777446082284,
+          "observed_count": 18267,
+          "passed": true,
+          "probability": 0.7597407269200951
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 390.81035789248074,
+          "expected_count": 5505.527264719579,
+          "observed_count": 5475,
+          "passed": true,
+          "probability": 0.22939696936331577
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 257.6717735320145,
+          "observed_count": 257,
+          "passed": true,
+          "probability": 0.010736323897167272
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 3000000000.0,
+      "seed": 3245,
+      "source_sha256": "f462a6f32f081e73b8bd0bd7a6ff62e61eab18d2c7bed54a2a1020a292806a76"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 3.0285824889092696,
+          "observed_count": 2,
+          "passed": true,
+          "probability": 0.00012619093703788623
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 396.913933696966,
+          "expected_count": 18242.826776239563,
+          "observed_count": 18370,
+          "passed": true,
+          "probability": 0.7601177823433151
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 390.6098559133747,
+          "expected_count": 5497.490716995855,
+          "observed_count": 5389,
+          "passed": true,
+          "probability": 0.22906211320816064
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 256.65392427566854,
+          "observed_count": 239,
+          "passed": true,
+          "probability": 0.01069391351148619
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 10000000000.0,
+      "seed": 3246,
+      "source_sha256": "83c1ef98fd6bc8525a77de68889deba7837f96ba47ac19ab15d25c91af00f444"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 3.030371214413388,
+          "observed_count": 2,
+          "passed": true,
+          "probability": 0.0001262654672672245
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 396.82445807019246,
+          "expected_count": 18246.617723605737,
+          "observed_count": 18203,
+          "passed": true,
+          "probability": 0.7602757384835724
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 390.5226137505357,
+          "expected_count": 5493.998250361447,
+          "observed_count": 5542,
+          "passed": true,
+          "probability": 0.2289165937650603
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 256.3536548184002,
+          "observed_count": 253,
+          "passed": true,
+          "probability": 0.010681402284100007
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 30000000000.0,
+      "seed": 3247,
+      "source_sha256": "c239bd1fb82cba6c5afd1ab53525df5d0697a31c142efab4bba4e542531aedc4"
+    },
+    {
+      "channel": "triplet",
+      "elements": [
+        {
+          "Z": 6,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 3.030930745795856,
+          "observed_count": 0,
+          "passed": true,
+          "probability": 0.00012628878107482733
+        },
+        {
+          "Z": 7,
+          "absolute_count_tolerance": 396.7919108472322,
+          "expected_count": 18247.995917956527,
+          "observed_count": 18275,
+          "passed": true,
+          "probability": 0.7603331632481887
+        },
+        {
+          "Z": 8,
+          "absolute_count_tolerance": 390.4927158037384,
+          "expected_count": 5492.801990399617,
+          "observed_count": 5490,
+          "passed": true,
+          "probability": 0.22886674959998407
+        },
+        {
+          "Z": 18,
+          "absolute_count_tolerance": 120.0,
+          "expected_count": 256.17116089805785,
+          "observed_count": 235,
+          "passed": true,
+          "probability": 0.010673798370752411
+        }
+      ],
+      "event_count": 24000,
+      "passed": true,
+      "primary_energy_eV": 100000000000.0,
+      "seed": 3248,
+      "source_sha256": "17f9152989d1f6c1936f96267d0a0ce2429e75c083b72b9fd25037c570310750"
+    }
+  ],
+  "target_selector_contract": {
+    "atomic_numbers_in_canonical_air_order": [
+      6,
+      7,
+      8,
+      18
+    ],
+    "forced_target_validation": "single_element_couple_then_GetCurrentElement_Z_match_v1",
+    "policy": "channel_specific_external_target_z_v1",
+    "probability_definition": "normalize the four channel-specific C/N/O/Ar rate weights once per energy/topology task, then draw one target with G4UniformRand",
+    "rate_authorities": {
+      "nuclear": "canonical-air number density times max(option4 per-atom total conversion cross section - G4BoldyshevTripletModel per-atom cross section, 0)",
+      "triplet": "canonical-air number density times G4BoldyshevTripletModel per-atom cross section"
+    },
+    "rejected_legacy_policy": "drawing target Z from the unsplit option4 total-conversion rate for both conditional channels",
+    "rng": "HepJamesRandom_seed_reset_target_draw_then_BH5D_v1",
+    "schema_version": 1,
+    "statistics": "per_task_abs_count_le_max_10_6sigma_0p5pct_v1",
+    "statistics_tolerance_definition": "for every task and Z, abs(observed - N*p) <= max(10, 6*sqrt(N*p*(1-p)), 0.005*N)"
+  },
+  "target_z_resolved_records": 270336,
+  "target_z_unresolved_records": 0,
+  "threshold_policy": "analytic zero-phase-space endpoint; no empirical record",
+  "training_records_per_node": 4096,
+  "triplet_nodes_MeV": [
+    2.0439958,
+    2.05,
+    2.1,
+    2.2,
+    2.5,
+    3,
+    5,
+    10,
+    30,
+    100,
+    300,
+    1000.0,
+    3000.0,
+    10000.0,
+    30000.0,
+    100000.0
+  ]
+}

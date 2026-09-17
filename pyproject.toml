@@ -1,0 +1,26 @@
+# Repo tooling config (NOT a build/package definition — no [project] table, so
+# nothing here makes the repo pip-installable; it only configures pytest + ruff).
+# Source modules live in a few flat directories and are imported by sibling
+# tests. Pinning `pythonpath` keeps `pytest` and `python -m pytest` collection
+# behavior identical.
+
+[tool.pytest.ini_options]
+# "." lets package-style repo-root imports resolve via PEP-420 namespace
+# packages; "scripts" covers the sibling imports (`import rrea_run_support`)
+# the test files use.
+pythonpath = [".", "scripts"]
+# Generated WarpX trees and local run artifacts live under tmp/ and are not
+# repository tests.  Some are Windows links to WSL paths, which pytest cannot
+# traverse reliably from the host.
+norecursedirs = ["tmp"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+# Enable flake8-bugbear, pyflakes, and the meaningful pycodestyle subset.
+# Line-length (E501) is intentionally not enforced; E741
+# (ambiguous name `l`) is a pre-existing loop-variable style choice left as-is.
+select = ["E4", "E7", "E9", "F", "B", "W6"]
+ignore = ["E741"]

@@ -1,0 +1,78 @@
+# Compact production-path transport smoke. This is a numerical fixture, not a
+# physical comparison: it calls the real schema-6 particle interaction path,
+# measured-data electron mobility/diffusion, conservative fluid current and
+# Maxwell advance repeatedly on a multi-box mesh.
+
+authors = "RREA production transport Apply smoke"
+
+max_step = 64
+stop_time = 6.4e-11
+warpx.const_dt = 1.0e-12
+warpx.verbose = 1
+
+geometry.dims = RZ
+amr.max_level = 0
+amr.n_cell = 32 64
+amr.max_grid_size = 8
+amr.blocking_factor = 4
+geometry.prob_lo = 0.0 0.0
+geometry.prob_hi = 1.0 2.0
+
+boundary.field_lo = none pec
+boundary.field_hi = pec pec
+boundary.particle_lo = none absorbing
+boundary.particle_hi = absorbing absorbing
+
+# WarpX enters the RREA field callback through its electrostatic hook; the
+# upstream multigrid solver does not execute when rrea.enable=1.
+warpx.do_electrostatic = labframe
+warpx.poisson_solver = multigrid
+algo.particle_pusher = higuera
+algo.particle_shape = 1
+algo.current_deposition = esirkepov
+
+particles.species_names = rrea_electrons rrea_photons rrea_positrons
+
+rrea_electrons.species_type = electron
+rrea_electrons.initialize_self_fields = 0
+rrea_electrons.do_not_deposit = 0
+rrea_electrons.do_resampling = 0
+rrea_electrons.injection_style = none
+
+rrea_photons.species_type = photon
+rrea_photons.initialize_self_fields = 0
+rrea_photons.do_resampling = 0
+rrea_photons.injection_style = none
+
+rrea_positrons.species_type = positron
+rrea_positrons.initialize_self_fields = 0
+rrea_positrons.do_not_deposit = 0
+rrea_positrons.do_resampling = 0
+rrea_positrons.injection_style = none
+
+rrea.case_id = "transport_apply"
+rrea.enable = 1
+rrea.transport_model = rrea_mc_pic_v6_geant4_10_7_4p04
+rrea.transport_strict_guards = 1
+rrea.field_model = maxwell_rz_yee_material_coupled
+rrea.population_ceiling_policy = strict_abort_v1
+rrea.max_electron_macros = 100
+rrea.max_photon_macros = 100
+rrea.max_positron_macros = 100
+rrea.acceleration_z_max_m = 2.0
+rrea.acceleration_field_v_per_m = 100000.0
+rrea.fluid_attachment_model = constant
+rrea.fluid_attachment_frequency_s = 0.0
+rrea.electron_ion_recombination_coefficient_m3_s = 0.0
+rrea.ion_ion_recombination_coefficient_m3_s = 0.0
+rrea.fluid_detachment_frequency_s = 0.0
+rrea.electron_drift_enable = 1
+rrea.ion_drift_enable = 1
+rrea.electron_mobility_model = en_table_flux_v1
+rrea.electron_closure_table = "rrea_fluid_closure/dry_air_swarm_hybrid_v3/electron_flux_mobility_attachment_diffusion.csv"
+rrea.ion_mobility_model = absolute
+rrea.positive_ion_mobility_m2_per_vs = 1.4e-4
+rrea.negative_ion_mobility_m2_per_vs = 1.9e-4
+rrea.diag_interval = 8
+rrea.mesh_diag_interval = 0
+rrea.output_dir = "rrea_transport_apply_output"

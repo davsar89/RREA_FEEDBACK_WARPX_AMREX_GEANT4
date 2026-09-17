@@ -1,0 +1,71 @@
+{
+  "_comment": "Run-defining defaults; launchers validate required keys before use.",
+  "population_target_electron_macros": 400000,
+  "population_control_interval": 10,
+  "population_controller_rng_salt": 0,
+  "population_ceiling_factors": {
+    "electron": 2.5,
+    "photon": 64.0,
+    "positron": 24.0
+  },
+  "seed_macro_count": 5000,
+  "seed_source_model": "parma_continuous_column",
+  "parma_continuous_source": {
+    "latitude_deg": 28.7,
+    "longitude_deg": -80.8,
+    "minimum_energy_eV": 100000.0,
+    "source_radius_m": 2000.0,
+    "macro_count": 100000
+  },
+  "hpc_layout": {
+    "mpi_ranks": 8,
+    "cpus_per_rank": 4,
+    "transport_omp_threads": 4
+  },
+  "capture_defaults": {
+    "dt_s": 2.5E-09,
+    "stop_time_s": 0.0001,
+    "domain_radius_m": 10000.0,
+    "domain_height_m": 7000.0,
+    "altitude_at_z0_m": 9000.0,
+    "cell_size_m": 5.0,
+    "field_taper_start_fraction": 0.2,
+    "n_cell_z": 1000,
+    "channel_radius_m": 42.0,
+    "channel_length_m": 400.0,
+    "seed_energy_eV": 1000000.0,
+    "seed_time_window_s": 0.0,
+    "diag_interval": 50,
+    "injected_real_electrons": 1000000000000.0,
+    "video_frame_interval_s": 1.19E-07,
+    "warp_capture_fps": 12.0,
+    "ion_mobility_model": "reduced_stp_density_scaled",
+    "positive_ion_reduced_mobility_stp_m2_per_vs": 0.00014,
+    "negative_ion_reduced_mobility_stp_m2_per_vs": 0.00019,
+    "ion_mobility_density_ratio_floor": 0.05,
+    "ion_drift_cfl": 0.5,
+    "electron_closure_table": "rrea_fluid_closure/dry_air_swarm_hybrid_v3/electron_flux_mobility_attachment_diffusion.csv",
+    "electron_ion_recombination_coefficient_m3_s": 1.4E-12,
+    "ion_ion_recombination_coefficient_m3_s": 2E-12,
+    "detachment_frequency_s": 0.0,
+    "material_conduction_target": 0.08,
+    "material_conduction_guard": 0.1,
+    "material_diffusion_target": 0.8,
+    "material_diffusion_guard": 1.0,
+    "material_reaction_target": 0.08,
+    "material_reaction_guard": 0.1,
+    "material_min_substeps": 2,
+    "material_max_substeps": 64,
+    "checkpoint_keep": 2,
+    "max_grid_size": 64
+  },
+  "run_profiles": {
+    "e125_200us_10km": {
+      "_purpose": "Reusable 200 us, 10 km profile; explicit run values may override entries.",
+      "e0_kv_per_m": 125.0,
+      "stop_time_s": 0.0002,
+      "domain_radius_m": 10000.0,
+      "checkpoint_interval": 40
+    }
+  }
+}

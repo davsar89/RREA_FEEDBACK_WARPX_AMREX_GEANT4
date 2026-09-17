@@ -1,0 +1,123 @@
+# RREA schema-6 AMReX/WarpX production base template
+# This deck is intentionally runner-owned rather than directly runnable.  The
+# production capture driver supplies the schedule, semantic transport
+# configuration, source population, profiles, and population policy.
+# Do not add particle-only external acceleration or parsed RZ grid fields.
+#
+# NOTE: geometry/seed/diag values below are PLACEHOLDERS the driver
+# overwrites at launch from config/rrea_defaults.json (the single source).
+# Editing them here has no effect on driver-launched runs.
+
+authors = "RREA WarpX/AMReX production base template"
+
+rrea.case_id = "production"
+rrea.seed_schedule_path = "__RREA_RUNNER_MUST_SET_SEED_SCHEDULE__"
+rrea.seed_species = rrea_electrons
+rrea.electron_species = rrea_electrons
+rrea.photon_species = rrea_photons
+rrea.positron_species = rrea_positrons
+rrea.interaction_table_config = "__RREA_RUNNER_MUST_SET_TRANSPORT_CONFIG__"
+rrea.transport_model = rrea_mc_pic_v6_geant4_10_7_4p04
+rrea.transport_max_optical_depth_per_substep = 0.05
+rrea.transport_max_subcycles = 8192
+rrea.transport_strict_guards = 1
+rrea.transport_density_ratio = my_constants.rho_air_stp_ratio
+rrea.rng_seed = 20240623
+rrea.enable = 1
+rrea.diag_interval = 167
+rrea.output_dir = "rrea_diag/production"
+rrea.acceleration_z_max_m = 400
+rrea.acceleration_field_v_per_m = -400000
+# The charged handoff cutoff defaults to the selected transport bundle's
+# certified charged-energy minimum.  Its brems_absolute_cutoff_eV directly
+# owns the photon creation/transport cutoff; neither value is mirrored here.
+# The capture driver supplies population policy, target, cadence, and strict
+# ceilings from config/rrea_defaults.json.  Keeping no mirror here prevents a
+# second source of truth.
+rrea.air_density_model = constant_altitude
+my_constants.rho_air_stp_ratio = 0.25
+my_constants.altitude_m = 12000
+my_constants.domain_radius_m = 10000
+my_constants.domain_height_m = 7000
+my_constants.seed_energy_eV = 1000000
+my_constants.seed_uz = 2.78272533714
+my_constants.seed_macro_particle_weight = 4909.8
+my_constants.expected_seed_macro_particles = 0
+my_constants.injected_physical_electrons_at_final_time = 49098000
+my_constants.final_time_s = 1.67e-06
+my_constants.dt_const = 2.5e-09
+
+max_step = 668
+stop_time = my_constants.final_time_s
+warpx.const_dt = my_constants.dt_const
+warpx.verbose = 1
+amr.max_level = 0
+
+geometry.dims = RZ
+amr.n_cell = 2000 1000
+geometry.prob_lo = 0.0 0.0
+geometry.prob_hi = 10000 7000
+
+# NOTE: the field-boundary, electrostatic and pusher keys below are HOOK
+# PLUMBING, not the physics: BeforeFieldSolve returns true so WarpX's
+# Poisson solver never runs (the RREA Maxwell TM solve owns the field), and
+# the WarpX push is discarded -- the engine re-integrates from the captured
+# pre-push state.  particle_shape DOES matter (the hook's own charge
+# deposition uses it).
+boundary.field_lo = none pec
+boundary.field_hi = pec pec
+boundary.particle_lo = none absorbing
+boundary.particle_hi = absorbing absorbing
+
+warpx.do_electrostatic = labframe
+warpx.poisson_solver = multigrid
+algo.particle_pusher = higuera
+algo.particle_shape = 1
+algo.current_deposition = esirkepov
+
+particles.species_names = rrea_electrons rrea_photons rrea_positrons
+
+rrea_electrons.species_type = electron
+rrea_electrons.initialize_self_fields = 0
+rrea_electrons.do_not_deposit = 0
+rrea_electrons.do_resampling = 0
+rrea_electrons.injection_style = none
+rrea_electrons.source_schedule_file = "__RREA_RUNNER_MUST_SET_SEED_SCHEDULE__"
+rrea_electrons.source_schedule_case_id = "production"
+rrea_electrons.source_schedule_weight = my_constants.seed_macro_particle_weight
+rrea_electrons.source_schedule_energy_eV = my_constants.seed_energy_eV
+rrea_electrons.source_schedule_uz = my_constants.seed_uz
+
+rrea_photons.species_type = photon
+rrea_photons.injection_style = none
+rrea_photons.initialize_self_fields = 0
+rrea_photons.do_resampling = 0
+
+rrea_positrons.species_type = positron
+rrea_positrons.injection_style = none
+rrea_positrons.initialize_self_fields = 0
+rrea_positrons.do_not_deposit = 0
+rrea_positrons.do_resampling = 0
+
+diagnostics.diags_names = diag0 diag1
+
+diag0.diag_type = Full
+diag0.format = plotfile
+diag0.file_prefix = diags/diag0
+diag0.fields_to_plot = Er Et Ez rho phi jr jt jz
+diag0.intervals = 0:0
+diag0.dump_last_timestep = 0
+diag0.write_species = 1
+diag0.species = rrea_electrons rrea_photons rrea_positrons
+
+diag1.diag_type = Full
+diag1.format = plotfile
+diag1.file_prefix = diags/diag1
+diag1.fields_to_plot = Er Et Ez rho phi jr jt jz
+diag1.intervals = 167
+diag1.dump_last_timestep = 1
+diag1.write_species = 1
+diag1.species = rrea_electrons rrea_photons rrea_positrons
+diag1.rrea_electrons.variables = x y z ux uy uz w
+diag1.rrea_photons.variables = x y z ux uy uz w
+diag1.rrea_positrons.variables = x y z ux uy uz w
