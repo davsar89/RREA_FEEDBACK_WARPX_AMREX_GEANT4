@@ -1,0 +1,80 @@
+# Validation-only actual-WarpX Maxwell material-continuity fixture.
+#
+# The C++ fixture owns its two tiny deterministic lifecycle phases.  This deck
+# is never a physics comparison: it exists to make the production containers,
+# event/fluid state, CIC population controller, charged-boundary closure, and
+# the exact face current handed to Maxwell prove one cellwise identity together.
+
+authors = "RREA actual charge-continuity fixture"
+
+max_step = 2
+stop_time = 2.0e-12
+warpx.const_dt = 1.0e-12
+warpx.verbose = 1
+
+geometry.dims = RZ
+amr.max_level = 0
+amr.n_cell = 8 16
+amr.max_grid_size = 8
+amr.blocking_factor = 4
+geometry.prob_lo = 0.0 0.0
+geometry.prob_hi = 1.0 2.0
+
+boundary.field_lo = none pec
+boundary.field_hi = pec pec
+boundary.particle_lo = none absorbing
+boundary.particle_hi = absorbing absorbing
+
+warpx.do_electrostatic = labframe
+warpx.poisson_solver = multigrid
+algo.particle_pusher = higuera
+algo.particle_shape = 1
+algo.current_deposition = esirkepov
+
+particles.species_names = rrea_electrons rrea_photons rrea_positrons
+
+rrea_electrons.species_type = electron
+rrea_electrons.initialize_self_fields = 0
+rrea_electrons.do_not_deposit = 0
+rrea_electrons.do_resampling = 0
+rrea_electrons.injection_style = none
+
+rrea_photons.species_type = photon
+rrea_photons.initialize_self_fields = 0
+rrea_photons.do_resampling = 0
+rrea_photons.injection_style = none
+
+rrea_positrons.species_type = positron
+rrea_positrons.initialize_self_fields = 0
+rrea_positrons.do_not_deposit = 0
+rrea_positrons.do_resampling = 0
+rrea_positrons.injection_style = none
+
+rrea.case_id = "actual_continuity_fixture"
+rrea.enable = 1
+rrea.transport_model = rrea_schema6_validation_debug
+rrea.debug_actual_continuity_fixture = 1
+rrea.debug_disable_checkpoint = 1
+rrea.field_model = maxwell_rz_yee_material_coupled
+rrea.low_energy_cutoff_eV = 1000.0
+rrea.photon_cutoff_eV = 50000.0
+rrea.population_ceiling_policy = adaptive_resample_v1
+rrea.population_target_electron_macros = 6
+rrea.population_target_positron_macros = 0
+rrea.population_control_interval = 1
+rrea.population_split_min_weight = 1.0
+rrea.max_electron_macros = 20
+rrea.max_photon_macros = 20
+rrea.max_positron_macros = 20
+rrea.acceleration_z_max_m = 2.0
+rrea.acceleration_field_v_per_m = 0.0
+rrea.fluid_attachment_model = constant
+rrea.fluid_attachment_frequency_s = 0.0
+rrea.electron_ion_recombination_coefficient_m3_s = 0.0
+rrea.ion_ion_recombination_coefficient_m3_s = 0.0
+rrea.fluid_detachment_frequency_s = 0.0
+rrea.electron_drift_enable = 0
+rrea.ion_drift_enable = 0
+rrea.diag_interval = 1
+rrea.mesh_diag_interval = 0
+rrea.output_dir = "rrea_actual_continuity_output"

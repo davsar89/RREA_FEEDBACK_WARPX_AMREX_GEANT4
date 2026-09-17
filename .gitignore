@@ -1,0 +1,134 @@
+# Python/cache
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Local environments
+.venv/
+venv/
+env/
+*.egg-info/
+external/
+
+# Secrets and remote access notes
+OLIVIA_SECRETS.enc
+REMOTE_OLIVIA.md
+.olivia_known_hosts
+QR_olivia_ssh.jpg
+olivia.env
+.olivia.env
+.local_secrets/
+.gitlab_uib_token.txt
+gitlab_uib_token.txt
+*totp*
+*otp*
+*secret*
+# Credential-shaped names the wildcards above miss.  Both cases are listed
+# because gitignore matching is case-sensitive wherever core.ignorecase=false
+# (the Linux default), so lowercase-only patterns silently stop protecting
+# anything once the repo is cloned off Windows.
+*token*
+*TOKEN*
+*password*
+*PASSWORD*
+*credential*
+*CREDENTIAL*
+*SECRET*
+*TOTP*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ecdsa*
+id_ed25519*
+.netrc
+
+# Large/copyrighted local references
+*.pdf
+*.png
+EFIELD_profile/*.png
+
+# Literature lives in one tracked directory. Everything else matching *.pdf
+# stays ignored, including PDFs compiled from tracked LaTeX sources.
+!docs/papers/
+!docs/papers/*.pdf
+
+# Local review helpers are not source. The schema-6 RREATBL bundle is tracked.
+/scripts/build_code_bundle.py
+# Generated code bundles are local review artifacts, never repository source.
+**/*[Cc][Oo][Dd][Ee]_[Bb][Uu][Nn][Dd][Ll][Ee]*.[Mm][Dd]
+**/*[Cc][Oo][Dd][Ee]-[Bb][Uu][Nn][Dd][Ll][Ee]*.[Mm][Dd]
+# MAKE_ARCHIVE.py output (and any hand-made zips beside it).
+/rrea_warpx_amrex_*.zip
+/rrea_warpx_amrex_*.tar.gz
+/patch_candidate/
+/UPDATE_CANDIDATE/
+/docs/papers.zip
+
+# WarpX/openPMD/generated simulation outputs
+runs*/
+results/
+validation/
+# ...except the tracked table bundle's holdout evidence, which shares
+# the name.  Negating the directory, not the files: git cannot
+# re-include a path whose parent directory is excluded.
+!/rrea_transport_tables/schema6/production/validation/
+tmp/
+warpx_used_inputs*
+diags/
+*.bp
+*.bp4
+*.bp5
+*.h5
+*.hdf5
+*.vtk
+*.vti
+*.vtr
+*.pmd
+
+# Native build directories
+build_smoke/
+native_amrex_rrea/build_smoke/
+native_amrex_rrea/build/
+
+# AMReX profiler backtraces
+Backtrace.*
+
+# Logs and local scratch
+.codex_tmp/
+*.log
+*.out
+*.err
+*.tmp
+*.bak
+
+# Vendored PARMA model code + data (rrea_parma_source.py): its *.out tables
+# must survive the global *.out ignore above (last match wins); only the
+# locally built evaluator binary and Fortran module files stay untracked.
+!/rrea_parma_upstream/**
+/rrea_parma_upstream/parma_electron_query
+/rrea_parma_upstream/*.mod
+/rrea_parma_upstream/*.o
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# LaTeX build artifacts
+/output/
+docs/*.aux
+docs/*.toc
+docs/*.synctex.gz
+
+# Deliverable products (see docs/README.md). GB-scale MP4s and rendered
+# figures -- build products of a capture, never sources.
+# Retired generated products remain ignored until their deliberate cleanup.
+/e[0-9]*_radio/
+/e[0-9]*_videos/
