@@ -1,0 +1,13 @@
+* text=auto eol=lf
+
+# RREATBL transport-table containers: a deflate stream with a JSON
+# header.  Never let eol=lf near these -- one rewritten byte and the
+# payload no longer inflates.
+*.rtb binary
+
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.npz binary
+*.fig binary

@@ -1,0 +1,436 @@
+{
+  "brems_absolute_cutoff_eV": 50000.0,
+  "charged_energy_range_eV": [
+    1000.0,
+    10000000000.0
+  ],
+  "elastic_scattering_model": {
+    "few_collision_threshold_n": 10.0,
+    "high_energy_branch": "wentzel_vi_option4",
+    "high_energy_model": "G4WentzelVIModel",
+    "isotropic_above_path_n": 100000.0,
+    "low_energy_branch": "goudsmit_saunderson_option4",
+    "low_energy_model": "G4GoudsmitSaundersonMscModel",
+    "transition_energy_eV": 100000000.0,
+    "transition_policy": "goudsmit_saunderson_at_or_below_transition_wentzel_vi_above"
+  },
+  "geant4": {
+    "g4emlow_dataset": "G4EMLOW7.13",
+    "physics_list": "G4EmStandardPhysics_option4",
+    "release": "10.7.4-p04",
+    "version_number": 1074
+  },
+  "hard_moller_secondary_threshold_eV": 50000.0,
+  "material": {
+    "density_g_cm3": 0.00120479,
+    "mass_fractions": [
+      {
+        "atomic_number": 6,
+        "element": "C",
+        "fraction": 0.000124
+      },
+      {
+        "atomic_number": 7,
+        "element": "N",
+        "fraction": 0.755267
+      },
+      {
+        "atomic_number": 8,
+        "element": "O",
+        "fraction": 0.231781
+      },
+      {
+        "atomic_number": 18,
+        "element": "Ar",
+        "fraction": 0.012827
+      }
+    ],
+    "mean_excitation_energy_eV": 85.7,
+    "name": "G4_AIR"
+  },
+  "name": "rrea_mc_pic_schema6_full_transport",
+  "photon_energy_range_eV": [
+    1000.0,
+    100000000000.0
+  ],
+  "photon_feedback_enabled": true,
+  "positron_transport_enabled": true,
+  "provenance": {
+    "builder": "rrea-schema6-builder-v5"
+  },
+  "reference_density_kg_m3": 1.20479,
+  "schema_version": 6,
+  "tables": [
+    {
+      "allow_duplicate_x": true,
+      "duplicate_x_exact_policy": "low_side_at_exact_edge_high_side_immediately_above",
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_positive_with_zero_threshold",
+      "name": "photon_compton_inverse_length_air",
+      "path": "mc_tables/photon_process_inverse_length_air.csv.rtb",
+      "units": "1/m",
+      "value_column": "compton_inverse_m_stp",
+      "x_column": "energy_eV"
+    },
+    {
+      "allow_duplicate_x": true,
+      "duplicate_x_exact_policy": "low_side_at_exact_edge_high_side_immediately_above",
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_positive_with_zero_threshold",
+      "name": "photon_photoelectric_inverse_length_air",
+      "path": "mc_tables/photon_process_inverse_length_air.csv.rtb",
+      "units": "1/m",
+      "value_column": "photoelectric_inverse_m_stp",
+      "x_column": "energy_eV"
+    },
+    {
+      "allow_duplicate_x": true,
+      "conditional_topology_reference": "final_state/pair_channel_fraction_air_metadata.json",
+      "duplicate_x_exact_policy": "low_side_at_exact_edge_high_side_immediately_above",
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_positive_with_zero_threshold",
+      "name": "photon_pair_nuclear_inverse_length_air",
+      "path": "mc_tables/photon_process_inverse_length_air.csv.rtb",
+      "units": "1/m",
+      "value_column": "pair_nuclear_inverse_m_stp",
+      "x_column": "energy_eV"
+    },
+    {
+      "allow_duplicate_x": true,
+      "conditional_topology_reference": "final_state/pair_channel_fraction_air_metadata.json",
+      "duplicate_x_exact_policy": "low_side_at_exact_edge_high_side_immediately_above",
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_positive_with_zero_threshold",
+      "name": "photon_pair_triplet_inverse_length_air",
+      "path": "mc_tables/photon_process_inverse_length_air.csv.rtb",
+      "units": "1/m",
+      "value_column": "pair_triplet_inverse_m_stp",
+      "x_column": "energy_eV"
+    },
+    {
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_linear",
+      "name": "electron_collision_stopping_air",
+      "path": "mc_tables/electron_transport_coefficients_air.csv.rtb",
+      "units": "eV/m",
+      "value_column": "collision_stopping_eV_per_m_stp",
+      "x_column": "kinetic_energy_eV"
+    },
+    {
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_positive_with_zero_threshold",
+      "name": "electron_soft_radiative_stopping_air",
+      "path": "mc_tables/electron_transport_coefficients_air.csv.rtb",
+      "units": "eV/m",
+      "value_column": "soft_radiative_stopping_eV_per_m_stp",
+      "x_column": "kinetic_energy_eV"
+    },
+    {
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_positive_with_zero_threshold",
+      "name": "electron_hard_moller_inverse_length_air",
+      "path": "mc_tables/electron_transport_coefficients_air.csv.rtb",
+      "units": "1/m",
+      "value_column": "hard_moller_inverse_m_stp",
+      "x_column": "kinetic_energy_eV"
+    },
+    {
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_positive_with_zero_threshold",
+      "name": "electron_tracked_brems_inverse_length_air",
+      "path": "mc_tables/electron_transport_coefficients_air.csv.rtb",
+      "units": "1/m",
+      "value_column": "tracked_brems_inverse_m_stp",
+      "x_column": "kinetic_energy_eV"
+    },
+    {
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_linear",
+      "name": "electron_elastic_transport_inverse_length_air",
+      "path": "mc_tables/electron_transport_coefficients_air.csv.rtb",
+      "units": "1/m",
+      "value_column": "elastic_transport_inverse_m_stp",
+      "x_column": "kinetic_energy_eV"
+    },
+    {
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_linear",
+      "name": "positron_collision_stopping_air",
+      "path": "mc_tables/positron_transport_coefficients_air.csv.rtb",
+      "units": "eV/m",
+      "value_column": "collision_stopping_eV_per_m_stp",
+      "x_column": "kinetic_energy_eV"
+    },
+    {
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_positive_with_zero_threshold",
+      "name": "positron_soft_radiative_stopping_air",
+      "path": "mc_tables/positron_transport_coefficients_air.csv.rtb",
+      "units": "eV/m",
+      "value_column": "soft_radiative_stopping_eV_per_m_stp",
+      "x_column": "kinetic_energy_eV"
+    },
+    {
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_positive_with_zero_threshold",
+      "name": "positron_hard_bhabha_inverse_length_air",
+      "path": "mc_tables/positron_transport_coefficients_air.csv.rtb",
+      "units": "1/m",
+      "value_column": "hard_bhabha_inverse_m_stp",
+      "x_column": "kinetic_energy_eV"
+    },
+    {
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_positive_with_zero_threshold",
+      "name": "positron_tracked_brems_inverse_length_air",
+      "path": "mc_tables/positron_transport_coefficients_air.csv.rtb",
+      "units": "1/m",
+      "value_column": "tracked_brems_inverse_m_stp",
+      "x_column": "kinetic_energy_eV"
+    },
+    {
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_linear",
+      "name": "positron_elastic_transport_inverse_length_air",
+      "path": "mc_tables/positron_transport_coefficients_air.csv.rtb",
+      "units": "1/m",
+      "value_column": "elastic_transport_inverse_m_stp",
+      "x_column": "kinetic_energy_eV"
+    },
+    {
+      "extrapolation": "forbidden",
+      "interpolation": "loglog_positive_with_zero_threshold",
+      "name": "positron_annihilation_inverse_length_air",
+      "path": "mc_tables/positron_transport_coefficients_air.csv.rtb",
+      "units": "1/m",
+      "value_column": "annihilation_inverse_m_stp",
+      "x_column": "kinetic_energy_eV"
+    },
+    {
+      "active_rate_table": "electron_hard_moller_inverse_length_air",
+      "columns": [
+        "primary_energy_eV",
+        "cdf_u",
+        "secondary_energy_eV"
+      ],
+      "extrapolation": "forbidden",
+      "interpolation": "runtime_conditional_sampler_v1",
+      "name": "electron_moller_secondary_cdf_air",
+      "path": "mc_tables/electron_moller_secondary_cdf_air.csv.rtb",
+      "table_kind": "conditional_cdf",
+      "units": "eV",
+      "value_column": "secondary_energy_eV",
+      "x_column": "primary_energy_eV"
+    },
+    {
+      "active_rate_table": "positron_hard_bhabha_inverse_length_air",
+      "columns": [
+        "primary_energy_eV",
+        "cdf_u",
+        "secondary_energy_eV"
+      ],
+      "extrapolation": "forbidden",
+      "interpolation": "runtime_conditional_sampler_v1",
+      "name": "positron_hard_bhabha_secondary_cdf_air",
+      "path": "mc_tables/positron_hard_bhabha_secondary_cdf_air.csv.rtb",
+      "table_kind": "conditional_cdf",
+      "units": "eV",
+      "value_column": "secondary_energy_eV",
+      "x_column": "primary_energy_eV"
+    },
+    {
+      "active_energy_range_eV": [
+        1000.0,
+        100000000.0
+      ],
+      "columns": [
+        "primary_energy_eV",
+        "path_over_elastic_mfp",
+        "cdf",
+        "one_minus_cos_theta"
+      ],
+      "extrapolation": "forbidden",
+      "interpolation": "log_energy_log_path_log_one_minus_cos_bilinear_then_cdf_linear_v1",
+      "model": "G4GoudsmitSaundersonMscModel",
+      "name": "electron_gs_angle_cdf_air",
+      "path": "mc_tables/electron_gs_angle_cdf_air.csv.rtb",
+      "scattering_branch": "goudsmit_saunderson_option4",
+      "table_kind": "gs_angle_cdf_2d",
+      "units": "1",
+      "value_column": "one_minus_cos_theta",
+      "x_column": "primary_energy_eV"
+    },
+    {
+      "active_energy_range_eV": [
+        1000.0,
+        100000000.0
+      ],
+      "columns": [
+        "primary_energy_eV",
+        "path_over_elastic_mfp",
+        "cdf",
+        "one_minus_cos_theta"
+      ],
+      "extrapolation": "forbidden",
+      "interpolation": "log_energy_log_path_log_one_minus_cos_bilinear_then_cdf_linear_v1",
+      "model": "G4GoudsmitSaundersonMscModel",
+      "name": "positron_gs_angle_cdf_air",
+      "path": "mc_tables/positron_gs_angle_cdf_air.csv.rtb",
+      "scattering_branch": "goudsmit_saunderson_option4",
+      "table_kind": "gs_angle_cdf_2d",
+      "units": "1",
+      "value_column": "one_minus_cos_theta",
+      "x_column": "primary_energy_eV"
+    },
+    {
+      "active_energy_range_eV": [
+        100000000.0,
+        10000000000.0
+      ],
+      "columns": [
+        "primary_energy_eV",
+        "path_over_elastic_mfp",
+        "cdf",
+        "one_minus_cos_theta"
+      ],
+      "extrapolation": "forbidden",
+      "interpolation": "log_energy_log_path_log_one_minus_cos_bilinear_then_cdf_linear_v1",
+      "model": "G4WentzelVIModel",
+      "name": "electron_wentzel_vi_angle_cdf_air",
+      "path": "mc_tables/electron_wentzel_vi_angle_cdf_air.csv.rtb",
+      "scattering_branch": "wentzel_vi_option4",
+      "table_kind": "wentzel_vi_angle_cdf_2d",
+      "units": "1",
+      "value_column": "one_minus_cos_theta",
+      "x_column": "primary_energy_eV"
+    },
+    {
+      "active_energy_range_eV": [
+        100000000.0,
+        10000000000.0
+      ],
+      "columns": [
+        "primary_energy_eV",
+        "path_over_elastic_mfp",
+        "cdf",
+        "one_minus_cos_theta"
+      ],
+      "extrapolation": "forbidden",
+      "interpolation": "log_energy_log_path_log_one_minus_cos_bilinear_then_cdf_linear_v1",
+      "model": "G4WentzelVIModel",
+      "name": "positron_wentzel_vi_angle_cdf_air",
+      "path": "mc_tables/positron_wentzel_vi_angle_cdf_air.csv.rtb",
+      "scattering_branch": "wentzel_vi_option4",
+      "table_kind": "wentzel_vi_angle_cdf_2d",
+      "units": "1",
+      "value_column": "one_minus_cos_theta",
+      "x_column": "primary_energy_eV"
+    },
+    {
+      "active_rate_table": "electron_tracked_brems_inverse_length_air",
+      "columns": [
+        "primary_energy_eV",
+        "primary_energy_MeV",
+        "cdf_u",
+        "photon_fraction",
+        "photon_energy_eV",
+        "dSigma_dkappa_inverse_m"
+      ],
+      "extrapolation": "forbidden",
+      "interpolation": "runtime_conditional_sampler_v1",
+      "name": "brems_photon_energy_cdf_air",
+      "path": "mc_tables/brems_photon_energy_cdf_air.csv.rtb",
+      "table_kind": "conditional_cdf",
+      "units": "eV",
+      "value_column": "photon_energy_eV",
+      "x_column": "primary_energy_eV"
+    },
+    {
+      "active_rate_table": "positron_tracked_brems_inverse_length_air",
+      "columns": [
+        "primary_energy_eV",
+        "primary_energy_MeV",
+        "cdf_u",
+        "photon_fraction",
+        "photon_energy_eV",
+        "dSigma_dkappa_inverse_m"
+      ],
+      "extrapolation": "forbidden",
+      "interpolation": "runtime_conditional_sampler_v1",
+      "name": "positron_brems_photon_energy_cdf_air",
+      "path": "mc_tables/positron_brems_photon_energy_cdf_air.csv.rtb",
+      "table_kind": "conditional_cdf",
+      "units": "eV",
+      "value_column": "photon_energy_eV",
+      "x_column": "primary_energy_eV"
+    },
+    {
+      "allow_duplicate_x": true,
+      "column_types": {
+        "element_Z": "integer",
+        "element_symbol": "text",
+        "shell_id": "text"
+      },
+      "columns": [
+        "primary_energy_eV",
+        "cdf_u",
+        "subshell_probability",
+        "element_Z",
+        "element_symbol",
+        "shell_id",
+        "binding_energy_eV",
+        "relaxation_energy_eV"
+      ],
+      "duplicate_x_exact_policy": "low_side_at_exact_edge_high_side_immediately_above",
+      "extrapolation": "forbidden",
+      "interpolation": "runtime_conditional_sampler_v1",
+      "name": "photoelectric_subshell_cdf_air",
+      "path": "mc_tables/photoelectric_subshell_cdf_air.csv.rtb",
+      "table_kind": "photoelectric_subshell_cdf",
+      "units": "eV",
+      "value_column": "binding_energy_eV",
+      "x_column": "primary_energy_eV"
+    },
+    {
+      "columns": [
+        "primary_energy_eV",
+        "elastic_mfp_m_stp",
+        "screening_eta",
+        "transport_mfp_m_stp"
+      ],
+      "extrapolation": "forbidden",
+      "interpolation": "runtime_conditional_sampler_v1",
+      "name": "electron_elastic_mfp_air",
+      "path": "mc_tables/electron_elastic_mfp_air.csv.rtb",
+      "secondary_value_columns": [
+        "screening_eta",
+        "transport_mfp_m_stp"
+      ],
+      "table_kind": "gs_elastic_parameters",
+      "units": "m",
+      "value_column": "elastic_mfp_m_stp",
+      "x_column": "primary_energy_eV"
+    },
+    {
+      "columns": [
+        "primary_energy_eV",
+        "elastic_mfp_m_stp",
+        "screening_eta",
+        "transport_mfp_m_stp"
+      ],
+      "extrapolation": "forbidden",
+      "interpolation": "runtime_conditional_sampler_v1",
+      "name": "positron_elastic_mfp_air",
+      "path": "mc_tables/positron_elastic_mfp_air.csv.rtb",
+      "secondary_value_columns": [
+        "screening_eta",
+        "transport_mfp_m_stp"
+      ],
+      "table_kind": "gs_elastic_parameters",
+      "units": "m",
+      "value_column": "elastic_mfp_m_stp",
+      "x_column": "primary_energy_eV"
+    }
+  ],
+  "transport_model": "rrea_mc_pic_v6_geant4_10_7_4p04"
+}

@@ -1,0 +1,1087 @@
+% Beginner-friendly synthesis of the conversation of 22 September 2026.
+% Updated with the conditional 337 nm Gaussian-pulse estimate and detailed derivation.
+% Compile: latexmk -pdf thunderstorm_optical_guide_updated.tex
+% Or run pdflatex twice. No BibTeX/Biber is needed.
+% figure5.png is optional: the document still compiles without it.
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage[a4paper,left=21mm,right=21mm,top=20mm,bottom=21mm,headheight=14pt,headsep=7mm]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx,booktabs,tabularx,array,longtable}
+\usepackage[table]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem,titlesec,fancyhdr,lastpage}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{xurl}
+\usepackage{hyperref}
+\definecolor{ink}{HTML}{183B50}
+\definecolor{muted}{HTML}{52636B}
+\definecolor{pale}{HTML}{F1F5F7}
+\definecolor{rulegray}{HTML}{CDD7DE}
+\hypersetup{colorlinks=true,linkcolor=ink,citecolor=ink,urlcolor=ink,
+ pdftitle={From Runaway Electrons to FEGS Signals -- updated with a worked flux estimate},
+ pdfauthor={Conversation synthesis},
+ pdfsubject={Leader-free thunderstorm fluorescence, electron modelling, quenching and FEGS}}
+\urlstyle{same}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5.5pt plus 1pt}
+\setlength{\emergencystretch}{2em}
+\linespread{1.025}
+\raggedbottom
+\setcounter{tocdepth}{1}
+\setlist[itemize]{leftmargin=1.3em,itemsep=2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=1.5em,itemsep=3pt,topsep=3pt}
+\titleformat{\section}{\sffamily\Large\bfseries\color{ink}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\sffamily\normalsize\bfseries\color{ink}}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{0pt}{9pt}
+\titlespacing*{\subsection}{0pt}{9pt}{3pt}
+\captionsetup{font=small,labelfont=bf,skip=5pt,hypcap=false}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\small\color{muted}Thunderstorm optical emission}
+\fancyhead[R]{\sffamily\small\color{muted}Research planning guide}
+\fancyfoot[L]{\sffamily\footnotesize\color{muted}22 September 2026}
+\fancyfoot[R]{\sffamily\footnotesize\color{muted}\thepage\ / \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\renewcommand{\arraystretch}{1.17}
+\newtcolorbox{keybox}[1][]{enhanced,breakable,colback=pale,colframe=rulegray,
+ boxrule=0.5pt,arc=1mm,left=9pt,right=9pt,top=6pt,bottom=6pt,
+ before skip=7pt,after skip=7pt,fonttitle=\sffamily\bfseries,coltitle=ink,
+ colbacktitle=pale,title={#1}}
+\newcommand{\Ntwo}{\ensuremath{\mathrm{N}_2}}
+\newcommand{\Nion}{\ensuremath{\mathrm{N}_2^{+}}}
+\newcommand{\Otwo}{\ensuremath{\mathrm{O}_2}}
+\newcommand{\TwoP}{\ensuremath{2\mathrm{P}\mathrm{N}_2}}
+\newcommand{\OneN}{\ensuremath{1\mathrm{N}\mathrm{N}_2^{+}}}
+\newcommand{\nm}{\,\mathrm{nm}}
+\newcommand{\eV}{\,\mathrm{eV}}
+\newcommand{\keV}{\,\mathrm{keV}}
+\newcommand{\MeV}{\,\mathrm{MeV}}
+\newcommand{\xu}[1]{\cite[#1]{Xu2015}}
+\newcommand{\source}[1]{{\small\color{muted}#1}\par}
+\newcommand{\nextsection}[1]{\clearpage\section{#1}}
+
+\begin{document}
+\thispagestyle{empty}
+{\sffamily\small\bfseries\color{muted}BEGINNER'S GUIDE \quad / \quad CONVERSATION SYNTHESIS}
+\vspace{9mm}
+
+{\sffamily\fontsize{28}{32}\selectfont\bfseries\color{ink}From Runaway Electrons\\to FEGS Signals\par}
+\vspace{4mm}
+{\sffamily\large Optical emission from strong thunderstorm fields\\without a lightning leader channel\par}
+\vspace{4mm}
+{\small 22 September 2026 \quad | \quad Updated edition: worked 337 nm flux estimate}
+
+\begin{keybox}[The central idea]
+Energetic electrons can create many lower-energy secondary electrons. Those electrons excite nitrogen molecules, some of which emit ultraviolet or visible photons before collisions remove their excitation. To predict an aircraft measurement, model \textbf{electron transport, molecular excitation, quenching, photon propagation and the instrument response} as separate, connected steps.
+\end{keybox}
+
+\textbf{Study scope supplied in the conversation.} The intended events involve hard radiation in a thunderstorm with a strong, probably extended electric field, but \textbf{no lightning leader channel in the source model}. The immediate optical target is the nitrogen band near \textbf{337 nm}, observed through FEGS's nominal 340 nm channel. The existing \texttt{cloudscat.js} work is the planned propagation component; its implementation and validation have not been reviewed here.
+
+\textbf{What this guide is based on.} The principal reference is Xu, Celestin and Pasko (2015), especially Figure~5 and the optical model in Sections~2.2--4.2~\cite{Xu2015}. The guide also retains the laboratory, software and FEGS references discussed in the conversation. Published results, calculated examples and proposed modelling choices are distinguished in the text. This is a consolidated planning document, not a validated end-to-end simulator.
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}P{27mm}Y@{}}
+\toprule
+\textbf{Remember} & \textbf{Meaning}\\
+\midrule
+337.1 nm & Neutral nitrogen, second positive system: the main target.\\
+About 11 eV & Direct excitation threshold for the relevant nitrogen C state; not automatically a safe electron-tracking cutoff.\\
+391.4 nm & Ionized nitrogen, first negative system: a complementary diagnostic.\\
+Quenching & A collision removes excitation \emph{before} the intended photon is emitted.\\
+340 nm / 10 nm & FEGS filter centre / full width at half maximum; not an ideal rectangular passband.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{Reading route.} Sections~1--6 explain the physics and bands. Sections~7--8 cover electron modelling. Sections~9--10 connect the source to FEGS. Section~11 gives the implementation priorities. \textbf{New Section~\ref{sec:estimate} (pages~\pageref{sec:estimate}--\pageref{sec:estimateuse}) derives a conditional 337 nm peak-flux estimate for a 50 microsecond Gaussian pulse at 12 km}, including track normalization, quenching, distance scaling and the limits of a FEGS interpretation. References and a short glossary follow.
+
+\nextsection{The physical picture and the 337 nm threshold}
+\label{sec:basics}
+\subsection*{A chain reaction, followed by molecular light}
+A relativistic runaway electron avalanche, or \textbf{RREA}, is a process in which an electric field accelerates energetic seed electrons and collisions generate additional electrons. The resulting population spans a very large energy range. Xu et al. model both RREAs in a homogeneous field and a different mechanism involving strong fields near lightning leaders. The \textbf{extended-field RREA calculation is the relevant starting benchmark here}; the leader model is comparison material, not the proposed source geometry.\xu{Secs.~1 and 2.1}
+
+Electrons excite molecules by transferring energy in collisions. An excited molecule can then drop to a lower state and emit a photon. Think of this as climbing to a higher floor and subsequently descending: the light records the energy difference between the two levels involved in the descent.
+
+\subsection*{Which system makes which band?}
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}P{24mm}P{41mm}Y@{}}
+\toprule
+\textbf{Band} & \textbf{System} & \textbf{Transition}\\
+\midrule
+337.1 nm & \TwoP: neutral nitrogen & $\mathrm{N}_2(C,v'=0)\rightarrow\mathrm{N}_2(B,v''=0)$\\
+357.7 nm & \TwoP: neutral nitrogen & $\mathrm{N}_2(C,v'=0)\rightarrow\mathrm{N}_2(B,v''=1)$\\
+391.4 nm & \OneN: ionized nitrogen & $\mathrm{N}_2^+(B,v'=0)\rightarrow\mathrm{N}_2^+(X,v''=0)$\\
+427.8 nm & \OneN: ionized nitrogen & $\mathrm{N}_2^+(B,v'=0)\rightarrow\mathrm{N}_2^+(X,v''=1)$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\source{Assignments: Xu et al., Section~2.2 and Table~1 (PDF pages~4 and~8)~\cite{Xu2015}. The letters label electronic states; $v'$ and $v''$ label molecular vibration in the upper and lower states.}
+
+\subsection*{Why 11 eV, rather than the photon energy?}
+The energy of a 337.1 nm photon is
+\[
+E_\gamma=\frac{hc}{\lambda}\simeq3.68\eV.
+\]
+However, direct electron-impact excitation from ground-state nitrogen into the C state requires approximately \textbf{11 eV}. The photon corresponds to the smaller C-to-B drop, not the whole climb from the ground state.\xu{Sec.~3.3}
+
+For an already-correct electron distribution, extending the \emph{direct C-state excitation integral} below its threshold adds no contribution. This statement is about that reaction channel, not every possible molecular pathway.
+
+\begin{keybox}[An excitation threshold is not a transport cutoff]
+An 8 eV electron cannot produce that direct excitation immediately, but it may gain energy from the field, reach 12 eV and excite nitrogen later. Xu discusses such re-acceleration in the roughly 3--15 eV region. Removing electrons at 10--11 eV can therefore remove future light production.\xu{Sec.~3.2.1}
+\end{keybox}
+
+Without an accelerating field or another energy-gain mechanism, an electron already below threshold cannot make another direct C-state excitation. In the field-driven problem, retain the lower-energy population or replace it with a validated kinetic treatment. Xu's model extends into the \textbf{sub-eV range}; a safe lower boundary must be established by convergence, not chosen solely from the optical threshold.\xu{Sec.~2.1}
+
+\nextsection{How to read Figure 5 in Xu et al.}
+\label{sec:fig5}
+\textbf{Figure~5 checks the electron calculation and explains which electrons produce light.} It is not the main RREA-versus-leader comparison; that appears in Figure~6(b). The Figure~5 test uses a uniform reduced field $E/N=70$~Td, equivalent to about 18.8~kV/cm at $N_0=2.688\times10^{25}\,\mathrm{m}^{-3}$. A Townsend is $1\,\mathrm{Td}=10^{-21}\,\mathrm{V\,m^2}$.\xu{Fig.~5}
+
+\IfFileExists{figure5.png}{%
+\begin{center}
+\includegraphics[width=0.97\textwidth]{figure5.png}
+\captionof{figure}{The two panels of Xu et al.'s Figure~5, cropped from the figure supplied in the conversation. Original source: Xu et al. (2015), PDF page~8, journal page~1362~\cite{Xu2015}.}
+\end{center}
+}{%
+\begin{keybox}[Optional figure asset]
+The illustrated source bundle includes \texttt{figure5.png}. Without that file, refer to Figure~5 on page~8 of the supplied Xu paper; all explanations below remain available.
+\end{keybox}}
+
+\subsection*{Panel (a): do the models predict similar electron populations?}
+The horizontal axis is \textbf{electron energy}; the vertical axis is the \textbf{electron energy distribution per eV}, not optical brightness. Both use logarithmic scales. A normalized distribution describes relative populations, not the total number of electrons or photons.
+
+The \textbf{blue} curve is the authors' Monte Carlo result, the \textbf{green} curve is Colman et al. (2010), and the \textbf{red} curve is BOLSIG+. The inset enlarges energies below 20 eV. Xu reports agreement in the low-energy part, below about 100 eV, over six orders of magnitude in the distribution. The curves do not agree everywhere: BOLSIG+ does not reproduce the extended runaway tail in this comparison, and the two full-range tails differ at high energy.\xu{Fig.~5; Sec.~3.2.1}
+
+\subsection*{Panel (b): which energies account for the excitations?}
+Each curve is a running total of an excitation rate, normalized to its own 100\%. The colours now identify \emph{emission systems}, not electron models.
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}Y P{40mm}@{}}
+\toprule
+\textbf{Upper-state production for} & \textbf{Energy below which 50\% occurs}\\
+\midrule
+\TwoP\ (red; includes 337 nm emission) & 12.75 eV\\
+\OneN\ (blue; includes 391 nm emission) & 70.8 keV\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\source{These are Figure~5's particular RREA results, not universal constants~\cite{Xu2015}.}
+The first value makes the region just above the roughly 11 eV threshold critical. The second value is a \textbf{median contribution energy, not an excitation threshold}. Xu places the nitrogen-ion production threshold near 20 eV. Its cross section remains effective at much higher energies, whereas C-state excitation falls rapidly after its peak. These medians concern the paper's upper-state calculation, not a new, independently resolved 337 nm spectrum.\xu{Secs.~3.2.1 and 3.3}
+
+\nextsection{Quenching: why altitude changes the photon yield}
+\label{sec:quench}
+\textbf{Quenching is loss of excitation in a collision before the desired photon is emitted.} It is a competition between radiative decay and collisional loss. It is \emph{not} absorption or scattering of an already-existing photon. It belongs in the source model, before \texttt{cloudscat.js}.\xu{Sec.~2.2}
+
+For one excited state in a simple competing-rate model,
+\begin{equation}
+ Q_k=\sum_j k_{q,kj}n_j,\qquad
+ \tau_k=\frac{1}{A_k+Q_k},\qquad
+ P_{\mathrm{rad},k}=\frac{A_k}{A_k+Q_k}.
+ \label{eq:quench}
+\end{equation}
+Here $A_k$ is the total radiative rate, $k_{q,kj}$ is a quenching coefficient, $n_j$ is the density of collision partners, and $\tau_k$ is the effective lifetime. $P_{\mathrm{rad},k}$ is the probability of radiating in the associated system before being quenched; a \emph{particular band} also needs a branching fraction.
+
+\subsection*{A reproducible 0 km versus 12 km illustration}
+\textbf{Calculated example using Xu's coefficients, not a measured atmospheric profile.} Use 79\% \Ntwo\ and 21\% \Otwo, $N_0=2.688\times10^{19}\,\mathrm{cm}^{-3}$ and $N_{12}/N_0=50/211\simeq0.237$. The density ratio is inferred from Xu's quoted altitude scaling of a characteristic length from 50 to 211 m. Only that density ratio is borrowed; the leader geometry is not imported into this study. Keep the coefficients fixed to isolate density.\xu{Secs.~2.2 and 4.2}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}Y P{33mm}P{36mm}@{}}
+\toprule
+\textbf{Input} & \textbf{\TwoP\ upper state} & \textbf{\OneN\ upper state}\\
+\midrule
+$A_k$ ($\mathrm{s}^{-1}$) & $2.0\times10^7$ & $1.4\times10^7$\\
+$k_{q,\mathrm{N}_2}$ ($\mathrm{cm^3/s}$) & $1.0\times10^{-11}$ & $4.53\times10^{-10}$\\
+$k_{q,\mathrm{O}_2}$ ($\mathrm{cm^3/s}$) & $3.0\times10^{-10}$ & $7.36\times10^{-10}$\\
+\midrule
+\textbf{Calculated $P_{\mathrm{rad}}$ at 0 km} & \textbf{1.04\%} & \textbf{0.102\%}\\
+\textbf{Calculated $P_{\mathrm{rad}}$ at 12 km} & \textbf{4.24\%} & \textbf{0.427\%}\\
+Increase per excitation & $4.08\times$ & $4.21\times$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\source{Radiative and quenching inputs: Xu et al., Section~2.2~\cite{Xu2015}. Percentages are calculated with Equation~\eqref{eq:quench}. The rates are the paper's effective system-level treatment, not a complete vibrationally resolved dataset.}
+
+For example, 1,000 C-state excitations give about \textbf{10 radiative decays at ground level and 42 at 12 km}. Nevertheless, about 96\% are still quenched at 12 km. For the nitrogen-ion state, about 99.6\% are still quenched.
+
+\begin{keybox}[Four times more light per excitation is not four times more light per event]
+The comparison holds the number of excitations fixed. Lower density also changes electron collisions, excitation production, source size and timing. Recalculate the excitation source under the local conditions, then apply quenching. Xu notes that both excitation frequency and collisional quenching scale with air density.\xu{Sec.~4.2}
+\end{keybox}
+
+The ratio of the two radiative-survival probabilities changes by only about \textbf{3\%} in this fixed-coefficient example. Much of the density effect therefore cancels in an emission ratio, although quenching must still be applied separately to the two states. Temperature, humidity and state-specific coefficients add uncertainty; AIRFLY measurements explicitly demonstrate environmental effects~\cite{AIRFLY2008}. Do not mix this Xu-based estimate with a different laboratory parameterization without reconciling their definitions.
+
+\nextsection{From an electron distribution to emitted photons}
+\label{sec:rates}
+\textbf{Two calculations are needed: create the excited state, then decide how it decays.} The following is a band-resolved adaptation of Xu's rate equations, not a claim that the paper resolved every vibrational level.\xu{Eqs.~(2)--(3)}
+
+\subsection*{Step 1: calculate excitation}
+Let $f(\varepsilon)$ be the normalized electron energy distribution:
+\[
+\int_0^\infty f(\varepsilon)\,d\varepsilon=1.
+\]
+The direct production rate of a specified excited state $k$ is
+\begin{equation}
+ R_k=n_e n_{\mathrm{target}}
+ \int_0^\infty f(\varepsilon)v(\varepsilon)
+ \sigma_k(\varepsilon)\,d\varepsilon.
+ \label{eq:excitation}
+\end{equation}
+The three factors inside the integral mean: \emph{how common that electron energy is, how fast those electrons travel, and how likely the relevant collision is}. $R_k$ is excitations per volume per time. The cross section $\sigma_k$ must describe the required state, not just total ionization or total electronic excitation.
+
+For 337 nm, the target is neutral nitrogen and $k$ is ideally $\mathrm{N}_2(C,v'=0)$. For 391 nm, Xu treats production of the relevant excited ion by ionization of neutral nitrogen; the target density is \textbf{not automatically the pre-existing ion density}.\xu{Sec.~2.2}
+
+\subsection*{Step 2: calculate photon production}
+Let $n_k^*$ denote the upper-state population. A minimal time-dependent balance is
+\begin{equation}
+ \frac{dn_k^*}{dt}=R_k+R_{k,\mathrm{cascade}}-(A_k+Q_k)n_k^*.
+\end{equation}
+Cascading means that a higher state decays into the state being modelled. Under constant conditions, negligible cascading and a valid steady-state approximation,
+\begin{equation}
+ j_b=A_{kb}n_k^*\simeq R_k\frac{A_{kb}}{A_k+Q_k},
+ \label{eq:bandyield}
+\end{equation}
+where $j_b$ is the photon-production rate in band $b$, and $A_{kb}$ is the radiative rate into that band. Thus, \textbf{one excitation is not one 337 nm photon}. Some excitations are quenched and some radiate into other bands.
+
+Xu uses steady state because the relevant upper-state lifetimes are short compared with the source times considered. For a new source, compare $\tau_k$ with the time over which excitation changes; integrate the population equation when the steady-state approximation is inadequate.\xu{Sec.~2.2}
+
+\subsection*{Keep absolute normalization separate from shape}
+A normalized $f$ alone cannot predict brightness. Specify the number or injection rate of electrons, their spatial distribution and their duration. Xu's TGF optical examples assume $10^{17}$ electrons above 1 MeV, while Figure~6 normalizes the 1--100 MeV integral to unity. Those are paper-specific choices, not a normalization to adopt automatically for the present events.\xu{Sec.~2.3; Fig.~6}
+
+\begin{keybox}[Define the quantity being compared]
+\textbf{Photon number}, \textbf{optical energy}, \textbf{radiance} and \textbf{detector output} are different. At wavelength $\lambda$, energy is photon number times $hc/\lambda$. Integrate a band yield over space and time to obtain source photons; propagate them and apply the detector response before comparing with FEGS.
+\end{keybox}
+
+\nextsection{What the ratios tell us, and which band is brighter}
+\label{sec:ratios}
+\textbf{A ratio compares two differently sensitive probes of the electron population.} If electron number increases by ten while the distribution and gas conditions stay fixed, both emissions increase by ten and their ratio stays unchanged. A change in the energy distribution can affect the two systems differently. This follows from Equation~\eqref{eq:excitation}.\xu{Secs.~2.2 and 3.3}
+
+\subsection*{The nitrogen-system ratio in Xu's Table 2}
+Xu finds stronger second-positive emission as the RREA field increases, while first-negative emission changes much less under the common normalization to energetic electrons. The stronger fields sustain more electrons near 11--15 eV. A larger second-positive/first-negative ratio is therefore \textbf{not simply an electron-temperature reading} or an automatic indication of a weaker field.\xu{Sec.~3.3}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}Y P{34mm}@{}}
+\toprule
+\textbf{Paper's modelled process} & $I(\TwoP)/I(\OneN)$\\
+\midrule
+RREA, 4.3 kV/cm & 0.74\\
+RREA, 12.5 kV/cm & 1.10\\
+RREA, 18.8 kV/cm & 5.06\\
+Thermal runaway electrons, 100 MV leader & 1.58\\
+Streamer zone & 101.19\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\source{Xu et al., Table~2, PDF page~10~\cite{Xu2015}. These are ground-level, system-integrated values over \textbf{390--700 nm}. The last two rows are retained for context, not as the source proposed here.}
+
+\textbf{The interval excludes 337 nm.} These numbers are not the individual 337/391 ratio. Similar ratios can also arise from different models, as the 1.10 and 1.58 examples show; one ratio does not uniquely identify an acceleration mechanism.\xu{Sec.~3.3}
+
+\subsection*{Can 357.7 or 391.4 nm exceed 337.1 nm?}
+\textbf{357.7 nm: normally no for the intrinsic complete-band photon yield.} It shares $\mathrm{N}_2(C,v'=0)$ with 337.1 nm. Under ordinary spontaneous, optically thin emission, the ratio is a radiative branching ratio. Quenching of their common upper state cancels. AIRFLY reports about 0.67 photons at 357.7 nm per photon at 337.1 nm~\cite{AIRFLY2007}. Measured detector amplitudes need not follow that ratio because the responses and propagation differ.
+
+\textbf{391.4 nm: possible, but not established for the proposed 12 km source.} It has a different upper state, so excitation and quenching both matter. As a separate laboratory illustration, AIRFLY's pressure fit gives
+\[
+\left.\frac{N_{391}}{N_{337}}\right|_{p\rightarrow0}
+\simeq0.28\,\frac{1+800/2.94}{1+800/15.89}\simeq1.49.
+\]
+Pressures here are in hPa; this is an extrapolated, negligible-quenching limit at the reference temperature, \textbf{not a 12 km RREA prediction}~\cite{AIRFLY2007}.
+
+For a field-free comparison, Xu's 850 keV modelling column at 600 torr gives relative photon numbers \textbf{337:357.7:391.4 $\simeq$ 100:67:34}. These are calculated from its energy efficiencies using $N_\gamma\propto\eta\lambda$, not copied as photon counts. They are a laboratory-validation case, not Figure~5's field-driven source.\xu{Table~1}
+
+\nextsection{Other useful bands for a leader-free study}
+\label{sec:bands}
+The final study scope changes the priorities. \textbf{Nitrogen fluorescence is the main target, rather than the temperature of a hot lightning channel.} Neither 337 nor 391 nm emission requires a leader in Xu's RREA calculation. The paper explicitly allows fluorescence without accompanying light from lightning discharges.\xu{Sec.~4.3}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}P{22mm}P{38mm}Y@{}}
+\toprule
+\textbf{Band} & \textbf{What it samples} & \textbf{Role proposed in the conversation}\\
+\midrule
+\textbf{337.1 nm} & Neutral $C,v'=0$ & Main source-yield target; sensitive to the low-energy electrons.\\
+\textbf{391.4 nm} & Ionized $B,v'=0$ & Complementary electron-physics diagnostic; compute production over the full relevant energy range.\\
+427.8 nm & Same upper level as 391.4 & Alternative ionized-nitrogen channel or consistency check. It does not bypass that level's quenching.\\
+357.7 nm & Same upper level as 337.1 & Spectral and calibration consistency check. Not an independent electron-energy probe.\\
+353.7 nm & Neutral $C,v'=1$ & Exploratory test of vibrational-state populations and quenching; diagnostic sensitivity must be demonstrated.\\
+Red/near-IR first-positive nitrogen & Neutral nitrogen B state & Exploratory: more complex population pathways and strong quenching at the relevant altitudes.\\
+715.7 nm oxygen & Atomic oxygen; previously proposed with 777.4 nm & A hot-channel temperature diagnostic, now de-prioritized because the target source has no leader channel.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\source{Nitrogen assignments and first-positive limitations: Xu et al., Section~2.2 and Table~1~\cite{Xu2015}. Oxygen temperature application: Boggs et al. (2021)~\cite{Boggs2021}. The proposed uses are modelling judgments, not an established ranking of instrument performance.}
+
+\subsection*{Why another wavelength may not add independent information}
+Two bands sharing an upper level are like two exits from the same room. The population feeding those exits is the same, so measuring both is mainly a check of branching, spectral interpretation and instrument response. Bands with different upper levels can add new information, but only if their predicted ratios vary enough to be measurable.
+
+The 353.7 nm band is the second-positive $(1\!\rightarrow\!2)$ transition. A model that lumps every C-state excitation into one population cannot automatically predict its ratio to 337.1 nm accurately. Test a vibrationally resolved treatment and its quenching uncertainties before selecting a dedicated instrument channel.\xu{Table~1; Sec.~2.2}
+
+\subsection*{The 427.8 nm filtering complication}
+Nearby neutral-nitrogen emission can contaminate an ionized-nitrogen measurement. A sprite experiment used a \textbf{428.3 nm-centred filter with 1.44 nm FWHM} to reduce contamination from the nearby 426.8 nm feature~\cite{Heavner2010}. This demonstrates the need for a spectral-overlap calculation; it is not a ready-made filter prescription for FEGS.
+
+\begin{keybox}[Working selection]
+Start by predicting \textbf{337 and 391 nm together}. Evaluate \textbf{357.7 nm} for confirmation of nitrogen fluorescence, or \textbf{353.7 nm} for additional molecular-state information. Treat \textbf{427.8 nm} as an alternative to, or check on, 391 nm. Establish expected signal and uncertainty before recommending hardware.
+\end{keybox}
+
+The oxygen suggestion remains documented because it arose earlier, but it addresses a different physical source. Its published temperature interpretation uses assumptions about an emitting lightning channel; those assumptions should not be imported into the present leader-free model~\cite{Boggs2021}.
+
+\nextsection{Can Geant4 cover the necessary low energies?}
+\label{sec:geant}
+\textbf{The framework can be extended, but a version number or small cutoff is not a complete low-energy air model.} Distinguish three things: the physics model's range of validity, the threshold for explicitly producing a secondary particle, and the rule that stops a tracked electron. Geant4 documentation distinguishes these concepts~\cite{G4Cuts,G4DNA}.
+
+\subsection*{The version-specific example discussed here}
+In the official source tagged \texttt{v11.4.2}, the PTB nitrogen excitation model sets its lower energy limit to \textbf{13 eV}. The PTB nitrogen elastic model uses \textbf{10 eV} as its lower limit and stops electrons below that limit when that model handles them, depositing the remaining kinetic energy locally~\cite{G4PTBExc,G4PTBEl}.
+
+Those unmodified model components do not supply the full near-threshold C-state physics or the sub-eV air-electron dynamics required for this problem. This is a statement about \textbf{specified PTB components}, not a universal lower bound for every Geant4 model or custom extension. A complete air calculation also needs the appropriate gas mixture and collision channels.
+
+\begin{keybox}[Do not confuse an allowed setting with validated physics]
+Lowering a production cut cannot create missing cross sections, generate missing state-specific excitations, or extend a model below its physical applicability range. Record the exact release, data library, processes and model limits used. Here \texttt{11.4.2} is a pinned source example, not a claim about the latest release~\cite{G4Cuts,G4PTBExc,G4PTBEl}.
+\end{keybox}
+
+\subsection*{Recommended division of work}
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}P{37mm}Y@{}}
+\toprule
+\textbf{Component} & \textbf{Proposed role}\\
+\midrule
+High-energy transport & Use a validated Geant4 calculation for energetic electrons, gamma rays and the secondary-electron source.\\
+Low-energy transport & Use a dedicated electron--air kinetic or collision-by-collision model, including the lower-energy population that can affect later excitation.\\
+Molecular light model & Compute state-specific excitation, quenching and radiative branching; do not equate deposited energy with 337 nm yield by default.\\
+Propagation and detection & Use the existing propagation work as an interface target, then add the calibrated FEGS response.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+A handover near \textbf{10 keV} is a starting point to test. Xu splits its custom Monte Carlo calculation into sub-eV--10 keV and 10 keV--GeV parts, normalizes the steady-state distributions at the join and checks representative cases against full-range simulations. That supports trying a split, but does \textbf{not} validate a new Geant4 coupling automatically.\xu{Sec.~2.1}
+
+\subsection*{Useful low-energy tools}
+\textbf{BOLSIG+} is a useful uniform-field benchmark for electron distributions and reaction coefficients, using a two-term angular approximation~\cite{BOLSIG}. It is not a replacement for the full runaway population. \textbf{LXCat} provides collision datasets; choose and record a specific contributor and version~\cite{LXCat}. \textbf{Garfield++/Magboltz} is another framework to evaluate: published Geant4 couplings exist for gas detectors, but are not validation of an unchanged thunderstorm-fluorescence calculation~\cite{Pfeiffer2019}.
+
+\nextsection{How to couple the models and validate them}
+\label{sec:coupling}
+\textbf{The difficult interface is the low-energy source, not just the handover of slowing primary electrons.} Export both electrons that cross below the handover energy and secondary electrons that are \emph{born} below it. Xu explicitly samples secondary energies from differential ionization cross sections.\xu{Sec.~2.1}
+
+\subsection*{A conservative particle and energy interface}
+For every transferred electron, preserve \textbf{position, time, kinetic energy, direction and statistical weight}. Record the parent/source history for normalization. If high-energy transport represents some ionization losses continuously, a separate, consistent secondary-source treatment may be needed: local deposited energy does not by itself specify the spectrum of missing secondary electrons~\cite{G4Cuts}.
+
+Count a transferred particle's energy once, not once as final local deposition and again as transportable energy. Do not let both solvers independently generate the same ionization event. For field-accelerated electrons that return above the handover energy, either provide a return path or demonstrate that neglecting it is insignificant in the chosen configuration.
+
+\begin{keybox}[An important consequence for 391 nm]
+The nitrogen-ion excitation tally must include the high-energy sector as well as the low-energy sector. Figure~5 shows substantial ion-state production far above a 10 keV handover. Merely exporting low-energy electrons and calculating all optical excitation there would miss part of this channel. This is an implementation requirement inferred from Figure~5, not a separate feature demonstrated by the proposed coupling.\xu{Fig.~5(b)}
+\end{keybox}
+
+\subsection*{Build the low-energy optical calculation first}
+Start with a small, uniform-field cell. Use the paper's 70 Td case as a benchmark, not as the assumed field of the actual event. Reproduce the low-energy distribution, then the cumulative excitation curves and the field-free fluorescence tests. Only after this works should the calculation be connected to the large high-energy transport simulation.
+
+For changing altitude, specify \textbf{air density and reduced field $E/N$}, not electric field alone. Moving a ground-density field value unchanged to 12 km is a different collision-versus-acceleration problem. The exact meteorological profile and field geometry remain study inputs, not quantities supplied by Figure~5.\xu{Fig.~5; Sec.~3.2.1}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}P{42mm}Y@{}}
+\toprule
+\textbf{Validation test} & \textbf{What it checks}\\
+\midrule
+Field-free 50/850 keV beam cases & Electron degradation, fluorescence and quenching against Xu's laboratory comparisons.\\
+Uniform field at 70 Td & Low-energy distribution and excitation-energy contributions in Figure~5.\\
+Vary the handover energy & Missing particles, double counting and artificial dependence on the split; 5, 10 and 20 keV are trial values only where both models are valid.\\
+Refine the lower boundary and time/energy resolution & Stability of emitted band yields, not just a visually similar electron spectrum.\\
+Vary physical inputs & Cross-section, quenching, field, density and source-normalization uncertainty.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\source{The first two are paper-based benchmarks~\cite{Xu2015}; the remaining tests are proposed for the hybrid implementation.}
+
+A few-percent change in photon yield under numerical refinement is a useful initial convergence goal, \textbf{not a claim of few-percent physical accuracy}. In particular, do not substitute one field-independent ``photons per deposited MeV'' factor for the electron calculation: Xu shows that field-free fluorescence efficiency and field-driven RREA efficiency need not be equivalent.\xu{Sec.~4.1}
+
+\nextsection{FEGS bands and the 340 nm channel}
+\label{sec:fegs}
+\textbf{Use the flight-specific configuration.} For ALOFT in July 2023, the ER-2 FEGS complement was as follows~\cite{Lang2025,Fuglestad2026}.
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}P{25mm}P{22mm}Y@{}}
+\toprule
+\textbf{Nominal band} & \textbf{Number} & \textbf{Relevant interpretation}\\
+\midrule
+340 nm & 1 & 10 nm FWHM; covers the 337.1 nm nitrogen band.\\
+500 nm & 1 & Additional visible channel.\\
+780 nm & 25 & $5\times5$ directional array; 10 nm FWHM covering oxygen at 777.4 nm.\\
+870 nm & 1 & Additional near-infrared channel.\\
+1600 nm & 1 & Additional infrared channel.\\
+300--1100 nm & 1 & Broadband channel; does not isolate a single nitrogen band.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\source{The five supplementary photometers point toward nadir (straight down); all radiometers have 10 $\mu$s temporal resolution. Sources: Lang et al., Table~1, and Fuglestad et al., instrument description~\cite{Lang2025,Fuglestad2026}.}
+
+There is no dedicated 391.4 nm photometer in that list. The broadband channel includes 391.4 nm but does not separate it. A 337/777 comparison is nitrogen versus oxygen, not Xu's neutral/ionized nitrogen ratio. NASA's general FEGS catalogue lists a different supplementary set (337, 400, 500, 660 and 675 nm); do not substitute that generic list for the ALOFT flight configuration~\cite{NASAFEGS}.
+
+\subsection*{What does ``340 nm, 10 nm wide'' include?}
+The nominal half-maximum interval is roughly \textbf{335--345 nm}, assuming a symmetric filter. FWHM means full width at half maximum transmission; it does \textbf{not} specify sharp edges or zero transmission outside them. The relevant local features are:
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}P{33mm}P{42mm}Y@{}}
+\toprule
+\textbf{Feature} & \textbf{Relation to nominal interval} & \textbf{Treatment}\\
+\midrule
+337.1 nm & Inside & Main source band; integrate its profile through the response.\\
+333.9 nm, second positive (1--1) & Just below short-wavelength edge & Check filter-edge transmission.\\
+346.3 nm, weak Gaydon--Herman nitrogen feature & Just above long-wavelength edge & Check profile overlap at the edge.\\
+353.7 / 357.7 nm & Outside & Not intended in-band emission; test only residual out-of-band transmission.\\
+391.4 nm & Far outside & Not an intended contribution to this channel.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\source{Nearby spectral features: AIRFLY, Tables~1--2~\cite{AIRFLY2007}. Named band wavelengths are not sharp boundaries of the full molecular spectrum.}
+
+\textbf{337 nm is a molecular band, not one infinitely narrow line.} AIRFLY used 334.3--338.4 nm as its integration interval for that feature; these are experimental extraction bounds, not universal physical cutoffs~\cite{AIRFLY2007}. The filter is centred 2.9 nm above 337.1 nm, so its actual transmission across the band matters. A monochromatic 337.1 nm approximation is a starting test, not the final calibration.
+
+Do not multiply an already band-integrated photon yield by the filter width. Integrate over wavelength only when the quantity is a spectral density, or when weighting a normalized band profile by the response. The \textbf{measured spectral and angular response of the flown channel} is still needed; nominal centre and width cannot determine neighbouring-band contamination percentages.
+
+\nextsection{End-to-end emission, propagation and detection}
+\label{sec:endtoend}
+The desired output is a \textbf{synthetic FEGS waveform}, with the same units and processing as the observations. The equations below define the proposed interface; they are not an instrument calibration recovered from the papers.
+
+\subsection*{Emission: create a spectral, spatial and temporal source}
+For normalized band profiles $\phi_b$, a convenient source description is
+\begin{equation}
+ q_\gamma(\mathbf{x},t,\lambda)=\sum_b j_b(\mathbf{x},t)\phi_b(\lambda),
+ \qquad \int \phi_b(\lambda)\,d\lambda=1.
+ \label{eq:spectrum}
+\end{equation}
+Here $j_b$ is the quenched, band-specific emission from Equation~\eqref{eq:bandyield}. Give each emitted photon packet a position, time, wavelength, direction and weight. State the assumed angular emission distribution rather than leaving it implicit. If angularly integrated $q_\gamma$ is taken to emit isotropically, distribute it over $4\pi$ steradians.
+
+\subsection*{Propagation: keep the existing component separate}
+The study already has \texttt{cloudscat.js} as its intended propagation tool. The interface should retain \textbf{wavelength, arrival time, arrival direction and photon weight}. Its output must represent light reaching the aircraft, or permit propagation of cloud-exiting photons the remaining distance. A total cloud-escape count alone cannot predict a particular photometer.
+
+This guide makes no claim about which of these outputs \texttt{cloudscat.js} already provides. Its code was not supplied. Quenching has already been applied at emission and should not be applied a second time during propagation.
+
+\subsection*{Detection: weight arriving light by the calibrated response}
+A convenient ideal-response equation is
+\begin{equation}
+ u(t)=\int d\lambda\int d\Omega\,
+ L_\gamma(\lambda,\Omega,t)\,\mathcal{R}_{340}(\lambda,\Omega).
+ \label{eq:response}
+\end{equation}
+$L_\gamma$ is arriving photon radiance, for example photons per area, time, solid angle and wavelength. $\mathcal{R}_{340}$ is a response kernel with consistent units, including collecting geometry, optical transmission and detector sensitivity. Geometry must appear \emph{either} explicitly \emph{or} inside the kernel, not twice. If calibration is energy-based, first use $L_E=(hc/\lambda)L_\gamma$ with consistent units.
+
+A schematic sampled waveform is
+\begin{equation}
+ d_i=\frac{1}{\Delta t}\int_{t_i}^{t_i+\Delta t}
+ \left[(h*u)(t)+B(t)\right]dt+\eta_i,
+ \label{eq:waveform}
+\end{equation}
+where $h$ is the electronics' impulse response (including the chosen gain convention), $B$ is background and $\eta_i$ is the appropriately modelled noise. This form represents averaged samples; the actual sampling/ADC transfer function must match the data. \textbf{10 $\mu$s sampling alone does not specify $h$}, sensitivity or detection threshold.
+
+\begin{keybox}[A leader-free signal may be lost by the analysis, not the optics]
+Inject the predicted waveform into representative measured backgrounds and run the intended detection/background-removal procedure. This tests whether a diffuse or slowly varying source survives processing rather than being classified as background. It is a proposed end-to-end validation test, not a conclusion about an existing FEGS event.
+\end{keybox}
+
+Start with the 337 nm band, then add the neighbouring features and compare final waveforms. Omit 357.7/391.4 nm from a 340 nm-only transport run only after their rejection is established. Include them when predicting a broadband channel that admits those wavelengths.
+
+\nextsection{Practical work plan and limits of the conclusions}
+\label{sec:plan}
+\subsection*{A staged implementation}
+\begin{enumerate}
+\item \textbf{Fix the source scenario.} Supply the field geometry and history, atmospheric profile, source duration and energetic-electron normalization. Retain the no-leader condition as a model assumption, not a conclusion established by the optical calculation.
+\item \textbf{Validate the low-energy source physics.} Reproduce the relevant Xu distributions and excitation benchmarks. Calculate excitation and quenching separately. Resolve the near-11 eV region and test the treatment below threshold.
+\item \textbf{Join high- and low-energy transport.} Transfer both slowing electrons and newly born secondaries, conserve energy and preserve weights. Score each optical excitation channel in every energy sector where it contributes.
+\item \textbf{Produce emitted spectra.} Begin with 337 nm and add 391 nm as a physics diagnostic. Test neighbouring-band contributions and candidate additional channels rather than fixing all relative intensities from one laboratory spectrum.
+\item \textbf{Connect propagation and FEGS.} Preserve arrival times and directions, apply the flown instrument response and compare waveforms after the same processing as the data.
+\end{enumerate}
+
+\subsection*{Inputs that remain unresolved}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}P{42mm}Y@{}}
+\toprule
+\textbf{Needed input} & \textbf{Why it matters}\\
+\midrule
+Electron--air collision dataset & Determines the low-energy distribution, state excitation and secondary source. Record the version and its energy limits.\\
+State-resolved radiative/quenching data & Determines which photons are actually emitted. Temperature and humidity belong in the uncertainty study.\\
+Event-specific field, density and geometry & Figure~5 is a benchmark, not a measurement of the proposed source.\\
+Absolute source normalization & A normalized distribution cannot determine detectability.\\
+Flown 340 nm spectral/angular calibration & Needed for actual collection efficiency and edge contamination; not established by centre/FWHM alone.\\
+Temporal response, background and data processing & Needed to turn arriving photons into an observable waveform and detection probability.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection*{Qualifications retained from the discussion}
+\textbf{Band versus system.} Figure~5's medians concern upper-state production; Table~2 covers 390--700 nm, excluding 337 nm. Neither directly provides a band-resolved 337/391 prediction.
+
+\textbf{Altitude and software examples.} The quenching improvement is per excitation with fixed Xu coefficients, not per event. The PTB limits concern specific components, not all possible Geant4 extensions.
+
+\textbf{Leader-free scope.} These bands alone cannot prove that an observed event has no leader; that remains a study assumption to assess with other evidence.
+
+\begin{keybox}[The first useful deliverable]
+A validated prediction of \textbf{emitted 337 nm photons per explicitly specified electron source history}, with a corresponding 391 nm prediction and uncertainty budget. Then use the propagation and calibrated instrument stages to decide what FEGS would actually record.
+\end{keybox}
+
+\nextsection{Worked estimate: a 50 microsecond RREA pulse at 12 km}
+\label{sec:estimate}
+\textbf{Question.} What peak irradiance near 337 nm would reach a detector from a Gaussian RREA electron pulse with standard deviation $\sigma=50\,\mu\mathrm{s}$ and an event-integrated total of $10^{16}$ electrons above 1 MeV, at a source altitude of 12 km? Here we deliberately switch off cloud scattering, atmospheric attenuation and instrument losses, and use isotropic geometrical spreading.
+
+\begin{keybox}[Conditional working result: before the FEGS filter]
+For the lower-field, mature-avalanche example developed below,
+\[
+ \boxed{F_{337,\mathrm{pk}}(R)\simeq
+ 1.1\times10^{-3}\left(\frac{1\,\mathrm{km}}{R}\right)^2
+ \,\mathrm{W\,m^{-2}}.}
+\]
+The corresponding source emits approximately $3\times10^{18}$ photons in the 337 nm band, or 1.8 J, with a peak optical power of about 14 kW. These are \textbf{calculated values under the assumptions below}, not a measured event or an absolute FEGS detection prediction.
+\end{keybox}
+
+\subsection{Inputs: what is supplied and what must be assumed}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}P{37mm}P{34mm}Y@{}}
+\toprule
+\textbf{Quantity} & \textbf{Working value} & \textbf{Status and meaning}\\
+\midrule
+Source altitude & 12 km & Supplied scenario; not the detector distance.\\
+Integrated electron count & $N_e=10^{16}$ & Supplied total above 1 MeV. Interpreted here as avalanche \emph{output}, not injected seeds or simultaneous occupancy.\\
+Gaussian standard deviation & $\sigma=50\,\mu\mathrm{s}$ & Supplied width; assumed also to describe the emitted optical envelope.\\
+Density ratio & $q\simeq0.24$ & Rounded Xu-based density scaling, not an event-specific sounding.\\
+Sustaining electric field & $E\simeq103$ kV/m & Assumed density-scaled version of Xu's 4.3 kV/cm reference case.\\
+Effective 337 nm yield & $\eta_{337}\simeq1.5$ photons per electron-metre & Estimated from a broadband RREA yield, an assumed band fraction and quenching scaling.\\
+Effective track per output electron & $\ell_{\mathrm{eff}}\simeq200$ m & Assumed mature exponential avalanche, using an approximate avalanche-length fit.\\
+Source--detector distance & $R$ & Left variable; examples use 1, 2, 5 and 8 km.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\source{Published anchors: Xu, Secs.~3.2.1, 4.1 and 4.2~\cite{Xu2015}; the supporting laboratory spectrum and avalanche-length fit are identified below~\cite{AIRFLY2007,Cramer2016}. The parameter choices and arithmetic are this worked example.}
+
+\textbf{The essential limitation.} Electron count and pulse width do not fix the amount of light. We also need how far the electrons travel in the emitting region and how much 337 nm light is produced per metre. Keeping the same count and yield but using $\ell_{\mathrm{eff}}=1$ km increases every energy, power and irradiance below by a factor of five. It is a different track budget, not a second prediction for an identical source.
+
+\clearpage
+\subsection{Count electron paths, not just electrons}
+\label{sec:trackbudget}
+An electron can excite the gas repeatedly while moving through it. Its low-energy secondary electrons also contribute. Consequently, a useful effective coefficient is
+\[
+ \eta_{337}=\frac{\text{emitted photons in the 337 nm band}}
+ {\text{total matched runaway-electron path length}}.
+\]
+Its units are photons per electron per metre. It includes the secondary-electron fluorescence assigned to those runaway histories, the selected band and quenching. It is \textbf{not} the probability that a MeV electron directly excites nitrogen in a single collision. Xu's discussion of photon yield per runaway electron per metre motivates this approach.\xu{Sec.~4.1}
+
+For weighted simulated tracks, define
+\begin{equation}
+ \mathcal L_R=\sum_{a\,\in\,\mathrm{selected\ track\ segments}}w_a\,\Delta s_a,
+ \qquad
+ \ell_{\mathrm{eff}}=\frac{\mathcal L_R}{N_e}.
+ \label{eq:trackbudget}
+\end{equation}
+$w_a$ is the number of physical electrons represented by segment $a$, and $\Delta s_a$ is its length inside the region being modelled. The sum is informally measured in \emph{electron-metres}. For uniform representative conditions,
+\begin{equation}
+ \boxed{N_{\gamma,337}\simeq\eta_{337}\mathcal L_R
+       =\eta_{337}N_e\ell_{\mathrm{eff}}.}
+ \label{eq:totalphotons}
+\end{equation}
+For example, $10^{16}$ counted electrons with an effective path of 200 m give $2\times10^{18}$ electron-metres. At 1.5 photons per electron-metre, that makes $3\times10^{18}$ photons.
+
+\textbf{Keep the denominator consistent.} Our working count is above 1 MeV. Xu normalizes the relevant RREA distributions to electrons above 1 MeV, but the brief per-metre-yield paragraph does not fully specify a track-scoring implementation. Matching that published coefficient to an exact $>1$ MeV track tally remains a calibration task. A yield tabulated for a different cutoff, projected distance or electron history cannot be applied unchanged.\xu{Secs.~2.3, 3.2.1 and 4.1}
+
+\begin{keybox}[Three different meanings of ``number of electrons'']
+\textbf{Injected count:} how many seeds enter; their descendants may multiply the population.\\
+\textbf{Output count:} how many electrons leave the avalanche; many were created inside it.\\
+\textbf{Instantaneous occupancy:} how many are present at one moment; this is not an event-integrated count.
+
+The numerical result in Section~\ref{sec:estimate} uses the \textbf{output-count interpretation}. Changing that interpretation requires a new track normalization.
+\end{keybox}
+
+\textbf{Why not use $c\sigma$ as the path length?} The 50 microseconds describes when the ensemble passes or is produced, not how long each electron resides in the source. Multiplying $c$ by $\sigma$ gives about 15 km, but does not establish that every electron travels 15 km in the emitting region. Use its actual path or an explicit avalanche model instead. This distinction is also emphasized in the supplied practical yield note~\cite{SuppliedYieldNote}.
+
+More generally, $\mathcal L_R=\int dt\,\sum_{i\,\mathrm{inside}}w_i v_i$. Thus, the time integral of occupancy can supply a track budget when the individual speeds and counting convention are known. It cannot be substituted for $N_e$ without the time and speed factors.
+
+\clearpage
+\subsection{Why the avalanche example uses about 200 m}
+\label{sec:avlength}
+The \textbf{avalanche length} $\lambda_R$ is the forward distance over which the runaway population grows by a factor $e\simeq2.718$. For a uniform, straight-ahead avalanche of geometrical length $L$, write the event-integrated number crossing position $z$ as
+\begin{equation}
+ \mathcal N_R(z)=N_{\mathrm{in}}e^{z/\lambda_R},\qquad
+ N_{\mathrm{out}}=N_{\mathrm{in}}e^{L/\lambda_R}.
+ \label{eq:avpopulation}
+\end{equation}
+This is an idealized exponential model, not a new transport simulation. The standard avalanche-length definition is described in Cramer et al.~\cite{Cramer2016}.
+
+A thin slice of thickness $dz$ contributes approximately $\mathcal N_R(z)\,dz$ electron-metres. Integrating all slices gives
+\begin{align}
+ \mathcal L_R&\simeq\int_0^L\mathcal N_R(z)\,dz
+ =N_{\mathrm{in}}\lambda_R\left(e^{L/\lambda_R}-1\right)\nonumber\\
+ &=\lambda_R(N_{\mathrm{out}}-N_{\mathrm{in}}),\\
+ \ell_{\mathrm{eff}}^{(\mathrm{out})}
+ &=\lambda_R\left(1-e^{-L/\lambda_R}\right)
+ \ \longrightarrow\ \lambda_R\quad\text{for }L\gg\lambda_R.
+ \label{eq:effectiveavlength}
+\end{align}
+\textbf{Physical meaning:} most output electrons were born inside the avalanche. Giving every one the full length $L$ overcounts their paths. If instead the same avalanche is normalized to its injected seeds, its effective path is $\lambda_R(e^{L/\lambda_R}-1)$ per seed. The two denominators describe different quantities.
+
+For a rough field-to-length conversion, use the zero-magnetic-field fit discussed by Cramer et al., with density scaling made explicit~\cite[Eq.~(3)]{Cramer2016}:
+\begin{equation}
+ \lambda_R\simeq
+ \frac{7.3\times10^6\,\mathrm V}
+ {E-(2.76\times10^5\,\mathrm{V\,m^{-1}})q}.
+ \label{eq:avlengthfit}
+\end{equation}
+Here $E$ is in V/m and $q$ is the ratio to the fit's reference air density. For this envelope estimate we identify that reference with the density scaling used here. The exact reference-density and energy-cut conventions must be matched in a quantitative implementation; 200 m is a rounded modelling choice. The 276 kV/m term is the fit's effective drag parameter, not a universal exact runaway threshold.
+
+With $q=0.24$ and the density-scaled Xu lower-field case,
+\[
+ E=q(4.3\times10^5)=1.032\times10^5\,\mathrm{V/m},
+ \qquad
+ \lambda_R\simeq\frac{7.3\times10^6}{103200-66240}
+ =197.5\,\mathrm m\simeq200\,\mathrm m.
+\]
+For an illustrative $L=1$ km, Equation~\eqref{eq:effectiveavlength} gives 196 m per output electron, close to the mature-avalanche limit. The source can therefore be kilometre-scale without giving each output electron a kilometre of track.
+
+\begin{keybox}[Limits of this length estimate]
+This fit is a supplementary literature approximation, not a parameter supplied by the pulse description or a value read from Xu's Figure~5. It neglects magnetic deflection, curved paths and event-specific field evolution. A measured or simulated total track tally is preferable. Do not extrapolate the fit's apparent divergence to a finite, near-threshold source.
+\end{keybox}
+
+\clearpage
+\subsection{From Xu's broad optical yield to a 337 nm yield}
+\label{sec:bandfraction}
+Xu's Section~4.1 gives the following fluorescence yields for \textbf{300--430 nm} at the reference ground-level density:
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}P{49mm}Y@{}}
+\toprule
+\textbf{Reference driving field} & \textbf{Photons per runaway electron per metre}\\
+\midrule
+4.3 kV/cm & 6.2\\
+12.5 kV/cm & 10.7\\
+18.8 kV/cm & 38.3\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\source{Published values: Xu et al., Sec.~4.1, PDF p.~12 / journal p.~1366~\cite{Xu2015}. They describe the mature RREA population, including its secondary electrons, rather than direct fluorescence from only the relativistic electrons.}
+
+\textbf{Use the lower-field row for the working example.} The other rows demonstrate field dependence; they are not an uncertainty interval for an otherwise identical source. The field associated with the main Figure~5 example is the highest row, not the row selected here.
+
+Only a fraction of those broadband photons belong to the 337 nm band. Define
+\begin{equation}
+ f_{337}^{300\text{--}430}
+ =\frac{N_{\gamma,337}}{N_{\gamma,300\text{--}430}},\qquad
+ \eta_{337}(0)\simeq
+ f_{337}^{300\text{--}430}\,\eta_{300\text{--}430}(0).
+ \label{eq:bandfraction}
+\end{equation}
+For the back-of-the-envelope calculation, \textbf{assume $f_{337}^{300\text{--}430}=0.25$}.
+
+\textbf{Why one quarter?} As a separate laboratory comparison, AIRFLY Table~1 lists relative band intensities for dry air at 800 hPa and 293 K, with the 337.1 nm band set to 100. Summing its listed bands from 302.0 to 427.8 nm gives about 381.27 in the same normalization. The calculated photon fraction is therefore
+\[
+ f_{337,\mathrm{lab}}\simeq\frac{100}{381.27}\simeq0.262.
+\]
+This motivates a rounded quarter as a provisional spectral fraction. \textbf{It is not a band-resolved RREA calibration}, nor evidence that the fraction stays fixed as the thunderstorm field changes~\cite[Table~1, PDF p.~13]{AIRFLY2007}.
+
+The resulting ground-reference estimate is
+\[
+ \eta_{337}(0)\simeq6.2\times0.25
+ =1.55\ \mathrm{photons\,electron^{-1}\,m^{-1}}.
+\]
+The next subsection adjusts this band-specific coefficient to the assumed 12 km density.
+
+\begin{keybox}[Do not confuse two different spectral fractions]
+$f_{337}^{300\text{--}430}$ selects 337 nm from a wavelength interval containing \emph{both} neutral- and ionized-nitrogen emission. A branching fraction such as $A_{00}/A_C$ selects a band from radiative decays of a particular excited population. They are not interchangeable. After using the effective, band-specific $\eta_{337}$, do not apply another branching fraction or another quenching survival probability.
+\end{keybox}
+
+Xu's Table~2 cannot replace this step: it covers 390--700 nm, which excludes 337 nm, and tabulates Rayleigh intensities rather than the track-normalized yield required here.\xu{Table~2}
+
+\clearpage
+\subsection{Altitude: fewer collisions, but less quenching}
+\label{sec:yieldaltitude}
+Section~\ref{sec:quench} found about four times more radiative decays \emph{per excitation} at 12 km. That factor must not simply multiply a ground-level yield \emph{per metre}: the thinner gas also gives fewer opportunities for excitation along the same path. This controlled scaling follows from the competing rates in Xu's optical model.\xu{Secs.~2.2 and 4.2}
+
+Use the same illustrative 79\% nitrogen / 21\% oxygen mixture and fixed coefficients as before:
+\begin{align*}
+ n_0&=2.688\times10^{25}\,\mathrm{m^{-3}},& q&=n_{12}/n_0=0.24,\\
+ A_C&=2.0\times10^7\,\mathrm{s^{-1}},&
+ k_{C,\mathrm{N}_2}&=1.0\times10^{-17}\,\mathrm{m^3/s},\\
+ &&k_{C,\mathrm{O}_2}&=3.0\times10^{-16}\,\mathrm{m^3/s}.
+\end{align*}
+The SI quenching coefficients are obtained from Xu's $\mathrm{cm^3/s}$ values using $1\,\mathrm{cm^3}=10^{-6}\,\mathrm{m^3}$.\xu{Sec.~2.2}
+
+The ground-level quenching rate and its 12 km counterpart are
+\begin{align*}
+ Q_0&=n_0\left(0.79k_{C,\mathrm{N}_2}+0.21k_{C,\mathrm{O}_2}\right)
+      =1.906\times10^9\,\mathrm{s^{-1}},\\
+ Q_{12}&=qQ_0=4.574\times10^8\,\mathrm{s^{-1}}.
+\end{align*}
+Thus,
+\[
+ P_{\mathrm{rad}}(0)=\frac{A_C}{A_C+Q_0}=0.0104,\qquad
+ P_{\mathrm{rad}}(12)=\frac{A_C}{A_C+qQ_0}=0.0419.
+\]
+These are system-level radiative-survival probabilities, not yet probabilities of a particular 337 nm photon. The small difference from Section~\ref{sec:quench}'s 4.24\% is only the rounding from $50/211$ to $q=0.24$.
+
+\textbf{Now include the excitation rate.} Hold the reduced field, composition, coefficients and full electron population per counted runaway fixed. Under those assumptions, excitation per electron-metre scales as $q$. With an unchanged band branching fraction,
+\begin{equation}
+ \boxed{
+ \frac{\eta_{337}(12)}{\eta_{337}(0)}
+ \simeq q\frac{P_{\mathrm{rad}}(12)}{P_{\mathrm{rad}}(0)}
+ =q\frac{A_C+Q_0}{A_C+qQ_0}=0.968.}
+ \label{eq:yieldaltitude}
+\end{equation}
+When quenching dominates, $P_{\mathrm{rad}}\propto1/q$ approximately cancels the $q$ in excitation per metre. This is a conditional scaling argument, not a claim that all density-dependent electron kinetics are identical.
+
+\begin{keybox}[The coefficient used in the worked example]
+\[
+ \eta_{337}(12)\simeq
+ \underbrace{6.2}_{\text{broad yield}}\times
+ \underbrace{0.25}_{\text{assumed band fraction}}\times
+ \underbrace{0.968}_{\text{density correction}}
+ \simeq1.5\ \mathrm{photons\,electron^{-1}\,m^{-1}}.
+\]
+This coefficient already includes the intended band selection and quenching. It is the least directly established optical input in the estimate and should eventually be replaced by a matched, band-resolved calculation.
+\end{keybox}
+
+Holding the same \emph{air column} instead of the same distance makes electron paths longer as density decreases. That changes the total photon number through $\mathcal L_R$, even when the per-metre coefficient is nearly constant. Temperature, humidity, secondary escape and a changed electron distribution require further inputs rather than an extra universal altitude factor.
+
+\clearpage
+\subsection{Derive the Gaussian peak and the inverse-square law}
+\label{sec:gaussianflux}
+Let $g(t)$ describe the time profile with unit area:
+\begin{equation}
+ g(t)=\frac{1}{\sqrt{2\pi}\sigma}
+ \exp\!\left[-\frac{(t-t_0)^2}{2\sigma^2}\right],
+ \qquad \int_{-\infty}^{\infty}g(t)\,dt=1.
+ \label{eq:gaussian}
+\end{equation}
+Its units are $\mathrm{s^{-1}}$. A constant delay between production and arrival only shifts $t_0$; it does not change the peak. The peak output electron rate for the stated normalization would be $N_e g(t_0)=7.98\times10^{19}$ electrons/s. That rate is not the instantaneous number inside the source.
+
+\textbf{Assume the optical response follows this envelope.} This requires the secondary-electron response and source arrival-time spread to be short compared with 50 microseconds. Then
+\begin{equation}
+ \dot N_{\gamma,337}(t)=N_{\gamma,337}g(t)
+ =\eta_{337}N_e\ell_{\mathrm{eff}}g(t).
+ \label{eq:photoncurve}
+\end{equation}
+The time integral is exactly the photon count in Equation~\eqref{eq:totalphotons}. Changing $\sigma$ at fixed track budget changes the peak, not that total.
+
+\textbf{Convert photons to joules.} Approximating each band photon by the energy at 337.1 nm,
+\begin{equation}
+ \epsilon_\gamma=\frac{hc}{337.1\times10^{-9}\,\mathrm m}
+ =5.893\times10^{-19}\,\mathrm J,
+ \qquad W_{337}=N_{\gamma,337}\epsilon_\gamma.
+ \label{eq:photonenergy}
+\end{equation}
+Here $h=6.62607015\times10^{-34}\,\mathrm{J\,s}$ and $c=299792458\,\mathrm{m/s}$ are the SI constants. $W_{337}$ is total emitted energy in \emph{this band}, not the event's total radiated energy.
+
+\textbf{Convert joules per pulse to peak watts.} Since $g(t_0)=1/(\sqrt{2\pi}\sigma)$,
+\begin{equation}
+ P_{337,\mathrm{pk}}=\frac{W_{337}}{\sqrt{2\pi}\sigma}.
+ \label{eq:peakpower}
+\end{equation}
+The factor $\sqrt{2\pi}\sigma$ is the equivalent width of a rectangle having the same peak and area as the Gaussian. Here it is 125.3 microseconds. It is neither $\sigma$ alone nor the Gaussian FWHM, which is $2\sqrt{2\ln2}\,\sigma=117.7$ microseconds.
+
+\textbf{Spread the light over a sphere.} Isotropic power crosses an area $4\pi R^2$ at distance $R$. For a compact source and a detector surface facing it,
+\begin{equation}
+ \boxed{F_{337,\mathrm{pk}}(R)
+ =\frac{P_{337,\mathrm{pk}}}{4\pi R^2}
+ =\frac{\epsilon_\gamma\,\eta_{337}\,N_e\,\ell_{\mathrm{eff}}}
+ {4\pi R^2\sqrt{2\pi}\sigma}.}
+ \label{eq:peakflux}
+\end{equation}
+The unit check is $\mathrm J\times\mathrm{photons}\times\mathrm{photon}^{-1}/(\mathrm{m^2\,s})=\mathrm{W/m^2}$. The result is \textbf{band-integrated irradiance}; no additional division by a solid angle or multiplication by a filter width is needed.
+
+\clearpage
+\subsection{Insert the numbers and change the distance}
+\label{sec:numbers}
+Using the rounded choices $\eta_{337}=1.5$ photons per electron-metre and $\ell_{\mathrm{eff}}=200$ m,
+\begin{align*}
+ \mathcal L_R&=(10^{16})(200)=2.0\times10^{18}\ \text{electron-metres},\\
+ N_{\gamma,337}&=(1.5)(2.0\times10^{18})=3.0\times10^{18}\ \text{photons},\\
+ W_{337}&=(3.0\times10^{18})(5.893\times10^{-19})=1.768\,\mathrm J,\\
+ P_{337,\mathrm{pk}}&=\frac{1.768}{\sqrt{2\pi}(50\times10^{-6})}
+ =1.411\times10^4\,\mathrm W,\\
+ F_{337,\mathrm{pk}}(1\,\mathrm{km})
+ &=\frac{1.411\times10^4}{4\pi(1000)^2}
+ =1.122\times10^{-3}\,\mathrm{W/m^2}.
+\end{align*}
+The displayed intermediate digits make the arithmetic reproducible; they do not imply that the physical model is accurate to those digits.
+
+\begin{keybox}[Reusable scaling formula]
+\begin{align*}
+ F_{337,\mathrm{pk}}\simeq{}&1.12\times10^{-3}\,\mathrm{W/m^2}
+ \left(\frac{N_e}{10^{16}}\right)
+ \left(\frac{\eta_{337}}{1.5\ \mathrm{photons\,electron^{-1}\,m^{-1}}}\right)\\
+ &\times\left(\frac{\ell_{\mathrm{eff}}}{200\,\mathrm m}\right)
+ \left(\frac{50\,\mu\mathrm{s}}{\sigma}\right)
+ \left(\frac{1\,\mathrm{km}}{R}\right)^2.
+\end{align*}
+Double the matched track budget: double the signal. Double the pulse width at fixed total: halve the peak. Double the distance: divide the irradiance by four.
+\end{keybox}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}P{25mm}Y Y@{}}
+\toprule
+\textbf{Range $R$} & \textbf{200 m effective track} & \textbf{1 km effective track}\\
+ & \textbf{Peak $F_{337}$ (W/m$^2$)} & \textbf{Peak $F_{337}$ (W/m$^2$)}\\
+\midrule
+1 km & $1.12\times10^{-3}$ & $5.61\times10^{-3}$\\
+2 km & $2.81\times10^{-4}$ & $1.40\times10^{-3}$\\
+5 km & $4.49\times10^{-5}$ & $2.24\times10^{-4}$\\
+8 km & $1.75\times10^{-5}$ & $8.77\times10^{-5}$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\source{Calculated with Equation~\eqref{eq:peakflux}; no cloud or instrument losses. The columns represent two explicitly different track budgets. They are not confidence bounds.}
+
+\textbf{Useful unit translations.} At 1 km the baseline is $1.12$ mW/m$^2$, or $1120\,\mu$W/m$^2$. At 8 km it is $17.5\,\mu$W/m$^2$. An aircraft at 20 km directly above a source at 12 km would have $R=8$ km, neglecting source extent.
+
+\textbf{Fluence is different from the peak.} The integrated received energy per area is
+\[
+ H_{337}=\int F_{337}(t)dt=\frac{W_{337}}{4\pi R^2}
+ =1.41\times10^{-7}\left(\frac{1\,\mathrm{km}}{R}\right)^2\,\mathrm{J/m^2}.
+\]
+Unlike the peak, this fluence is independent of $\sigma$ when the total photon count is fixed. Dividing $F_{337}$ by $\epsilon_\gamma$ gives photon flux; at 1 km its peak is $1.90\times10^{15}$ photons m$^{-2}$ s$^{-1}$.
+
+\clearpage
+\subsection{Timing, source geometry and what FEGS would receive}
+\label{sec:peakconditions}
+\textbf{The molecular response is fast.} With the adopted coefficients,
+\[
+ \tau_C=\frac{1}{A_C+qQ_0}=2.09\times10^{-9}\,\mathrm s\simeq2.1\,\mathrm{ns},
+\]
+far below 50 microseconds. This supports an almost instantaneous \emph{excited-state} response, consistent with Xu's steady-state treatment. It does not, by itself, prove that the whole low-energy cascade or a spatially extended source responds instantaneously.\xu{Sec.~2.2}
+
+\textbf{A simple time-bin check.} A centred 10 microsecond boxcar average of a Gaussian of width 50 microseconds gives
+\[
+ \frac{\overline F_{\mathrm{pk}}}{F_{\mathrm{pk}}}
+ =\frac{\sqrt{2\pi}\sigma}{\Delta t}
+ \operatorname{erf}\!\left(\frac{\Delta t}{2\sqrt{2}\sigma}\right)
+ =0.99834.
+\]
+The calculated reduction is only 0.17\%. This is a mathematical averaging example, \textbf{not a measurement of FEGS's electronics}; its actual impulse response, sample timing and analysis still matter. The 10 microsecond instrument sampling is described in the ALOFT references~\cite{Fuglestad2026}.
+
+\textbf{``No cloud propagation'' does not mean ``ignore source extent.''} The inverse-square estimate is appropriate when one representative source distance describes the received light, or when a suitable external spherical geometry applies. A kilometre-scale elongated source viewed from only 1 km away may not meet that approximation. Inside an emitting volume, $R$ cannot be reduced to zero in Equation~\eqref{eq:peakflux}.
+
+For a general transparent, isotropically emitting volume, the geometrical extension is
+\begin{equation}
+ F_{337}(t)=\frac{\epsilon_\gamma}{4\pi}
+ \int_V
+ \frac{j_{337}(\mathbf{x},t-r/c)}{r^2}
+ \cos\theta\,\mathcal A(\mathbf{x})\,d^3x,
+ \quad r=|\mathbf{x}_{d}-\mathbf{x}|.
+ \label{eq:extendedflux}
+\end{equation}
+Here $j_{337}$ is the emitted photon rate per volume, $\mathbf{x}_d$ is the detector position, $\theta$ is the angle to the detector-facing normal, and $\mathcal A$ is a geometrical acceptance (zero outside the allowed view). Integrate only directions incident on the detector's front side. This is a derived geometry formula, not an extra attenuation prescription. When $r\simeq R$, $\theta\simeq0$ and the source is fully accepted, it reduces to the compact-source result. Differences in $r/c$ may broaden the pulse even without scattering.
+
+\begin{keybox}[The quoted W/m$^2$ is before instrument losses]
+The calculation predicts incident, band-integrated irradiance. For a fully accepted compact source with normalized band profile $\phi_{337}(\lambda)$, the filter alone gives
+\[
+ \overline T_{337}=\int\phi_{337}(\lambda)T(\lambda)\,d\lambda,
+ \qquad F_{\mathrm{transmitted}}\simeq\overline T_{337}F_{337}.
+\]
+Then apply the collecting area, detector response and electronics consistently with Section~\ref{sec:endtoend}. Do not apply $1/(4\pi R^2)$ twice. The nominal 340 nm centre and 10 nm FWHM do not determine $\overline T_{337}$ or an absolute detection threshold.
+\end{keybox}
+
+\clearpage
+\subsection{How to use this estimate without overstating it}
+\label{sec:estimateuse}
+\textbf{What is from the sources?} Xu supplies the broad RREA photon yields, electron-distribution physics and effective quenching model. AIRFLY supplies a separate laboratory spectrum, not an RREA band fraction. The avalanche-length fit is an additional literature approximation. The supplied five-page yield note organizes the calculation around matched electron tracks and warns against assigning the whole pulse duration to every electron~\cite{Xu2015,AIRFLY2007,Cramer2016,SuppliedYieldNote}.
+
+\textbf{What is assumed here?} The $10^{16}$ count is treated as output; the field is the density-scaled lower-field Xu case; the band fraction is 0.25; the effective path is rounded to 200 m; the optical envelope is Gaussian with the supplied width; and the source is treated as isotropic and compact for the distance table. These choices produce the worked $\sim10^{-3}\,\mathrm{W/m^2}$ peak at 1 km. The sources do not uniquely determine those choices for the proposed event.
+
+\subsection*{A specific caution about the supplied code}
+The supplied \texttt{fgf\_module.py} routine \texttt{get\_337()} estimates a secondary population using a representative 16 eV energy and 10 eV interval, then returns a quantity of the form
+\[
+ \texttt{emission\_rate\_2PN2 = nC * AC * volume}.
+\]
+No explicit 337 nm branching fraction appears in that return. Its quenching and radiative inputs also differ slightly from the Xu-based illustrative inputs used here. It is therefore a useful approximate \emph{second-positive source calculation}, not an independent calibration of the exact 337 nm band amplitude used in this chapter~\cite{SuppliedCode}. This observation is a reading of the supplied code, not a validation or an assertion that its full model is wrong.
+
+\subsection*{Replace the uncertain pieces in a simulation}
+For a full-energy calculation, score the relevant excitations and their expected band photons. For an effective-yield calculation, use
+\begin{equation}
+ N_{\gamma,337}\simeq
+ \sum_a w_a\,\eta_{337}(E_a/n_a,n_a,\ldots)\,\Delta s_a,
+ \label{eq:localyield}
+\end{equation}
+with a yield calibrated to the same runaway definition and secondary-electron treatment. Preserve emission positions and times. This makes geometry and the photon time history outputs rather than guesses. In either route, do not add a second copy of the low-energy fluorescence already included in the effective coefficient.
+
+\textbf{Still omitted.} The baseline does not add a separate field-free slowing-down component after electrons leave the sustaining field. It also does not include event-dependent field evolution, feedback or space-charge changes, temperature/humidity corrections, source-boundary losses or measured FEGS filtering. These require specified histories and inputs, not a universal multiplicative correction. The two distance-table columns are scenarios, not a physical error bar.
+
+\begin{keybox}[Reproduce the arithmetic]
+The source bundle includes \texttt{rrea\_337\_peak\_estimate.py}. It uses only the Python standard library and prints its assumptions and results as JSON.
+\begin{verbatim}
+python rrea_337_peak_estimate.py
+python rrea_337_peak_estimate.py --distance-m 8000
+python rrea_337_peak_estimate.py --leff-m 1000
+\end{verbatim}
+Default outputs include $3.0\times10^{18}$ photons, 1.768 J, 14.1 kW peak source power and $1.122\times10^{-3}\,\mathrm{W/m^2}$ peak irradiance at 1 km. The calculator reproduces the rounded worked example; it is not a transport or instrument simulator.
+\end{keybox}
+
+\textbf{First input to improve:} replace the assumed effective track length by a simulation's matched total track tally. Next replace the provisional spectral fraction with a band-resolved yield. The inverse-square and Gaussian arithmetic can then remain unchanged wherever their geometrical and temporal assumptions are valid.
+
+\clearpage
+\phantomsection
+\section*{Glossary and quick answers}
+\addcontentsline{toc}{section}{Glossary and quick answers}
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}P{38mm}Y@{}}
+\toprule
+\textbf{Term} & \textbf{Beginner-friendly meaning}\\
+\midrule
+Electronvolt (eV) & An energy unit. $1\,\mathrm{keV}=10^3$ eV and $1\,\mathrm{MeV}=10^6$ eV.\\
+RREA & Relativistic runaway electron avalanche: field-driven acceleration and multiplication of energetic electrons.\\
+Secondary electron & An additional electron released in a collision, often with much less energy than the incident particle.\\
+Energy distribution & How the electron population is spread over energies. A normalized distribution does not specify total electron number.\\
+Cross section & A measure of how likely a specified collision or reaction is at a given energy.\\
+Excitation & Transfer of energy into a molecular state without necessarily removing an electron.\\
+Ionization & Removal of an electron, creating an ion and an additional free electron.\\
+Band & A group of molecular spectral transitions, often labelled by a characteristic wavelength; not necessarily one narrow line.\\
+Branching fraction & The fraction of radiative decays going into a chosen band rather than other bands.\\
+Quenching & Loss of the relevant excitation in collisions before its photon is emitted.\\
+Reduced field $E/N$ & Electric field divided by gas number density; expresses the driving field relative to collision opportunities.\\
+Monte Carlo transport & Following particle histories using probabilities to sample collisions and outcomes.\\
+Production threshold & A criterion for creating explicit secondary particles; not the same as a tracking cutoff or a physics-validity limit.\\
+Photon packet weight & The number of physical photons represented by a simulated packet.\\
+FWHM & Full width at half maximum: a width defined at half the peak response, not a sharp passband boundary.\\
+Nadir & The direction straight down from the aircraft.\\
+Radiance & Direction-resolved light per projected area and solid angle, with the relevant time/spectral convention specified.\\
+Irradiance / fluence & Power arriving per area (W/m$^2$) / time-integrated energy arriving per area (J/m$^2$).\\
+Effective track length & Total matched runaway track length divided by the chosen electron count; not necessarily the source length.\\
+Convergence test & Refining numerical choices until the requested output changes negligibly; not a test of all physical uncertainties.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{Which system makes 337 nm?} Neutral nitrogen's second positive system, \TwoP.\quad
+\textbf{Which makes 391 nm?} Ionized nitrogen's first negative system, \OneN.
+
+\textbf{What is the minimum relevant electron energy?} About 11 eV for direct C-state excitation, but electrons below it can matter to later emission in an electric field.
+
+\textbf{Are 357.7 and 391.4 inside FEGS's intended 340 nm passband?} No. They require separate channels or contribute to an appropriate broadband measurement, except for any verified filter leakage.
+
+\textbf{What has not yet been established?} Section~\ref{sec:estimate} supplies a conditional brightness estimate, not a validated event prediction. Event-specific brightness, band ratios, FEGS detectability and neighbouring-band contributions still require the specified source, collision data and instrument calibration.
+
+\clearpage
+\phantomsection
+\section*{References and source notes}
+\addcontentsline{toc}{section}{References and source notes}
+{\small
+The Xu paper supplied with the conversation is the main physics source. PDF page references count from the first page of that 16-page file. External references below are the primary sources or official documentation used in the discussion; the relevant software and instrument claims were checked for this synthesis on 22 September 2026. The document does not attempt a broader literature review. The existing \texttt{cloudscat.js} status and no-leader study scope are user-supplied, not findings in these references. The added worked estimate also uses the supplied yield note and code; these are contextual modelling material, not independent experimental validations. Cramer et al. is the supplementary source for the approximate avalanche-length fit.
+}
+\begingroup
+\small
+\renewcommand{\refname}{}
+\begin{thebibliography}{99}
+\vspace{-12mm}
+
+\bibitem{Xu2015}
+W. Xu, S. Celestin and V. P. Pasko (2015).
+\emph{Optical emissions associated with terrestrial gamma ray flashes}.
+Journal of Geophysical Research: Space Physics, 120, 1355--1370.
+\href{https://doi.org/10.1002/2014JA020425}{doi:10.1002/2014JA020425}.
+Main locations: electron model, Sec.~2.1; excitation/quenching, Sec.~2.2;
+Figure~5 and Table~1, PDF p.~8; Table~2, p.~10; fluorescence and altitude discussion, Secs.~4.1--4.2.
+
+\bibitem{AIRFLY2007}
+M. Ave et al. (AIRFLY Collaboration) (2007).
+\emph{Measurement of the pressure dependence of air fluorescence emission induced by electrons}.
+\href{https://arxiv.org/abs/astro-ph/0703132}{arXiv:astro-ph/0703132}.
+Used for branching checks, nearby spectral features and the separate low-pressure example.
+Tables~1, 2 and 4 are on preprint PDF pp.~13, 17 and 28.
+
+\bibitem{AIRFLY2008}
+M. Ave et al. (AIRFLY Collaboration) (2008).
+\emph{Temperature and humidity dependence of air fluorescence yield measured by AIRFLY}.
+Nuclear Instruments and Methods in Physics Research A, 597, 50--54.
+\href{https://doi.org/10.1016/j.nima.2008.08.050}{doi:10.1016/j.nima.2008.08.050};
+\href{https://arxiv.org/abs/0711.4583}{arXiv:0711.4583}.
+
+\bibitem{Lang2025}
+T. J. Lang et al. (2025).
+\emph{Hunting for Gamma Rays above Thunderstorms: The ALOFT Campaign}.
+Bulletin of the American Meteorological Society, 106, E1649--E1669.
+\href{https://doi.org/10.1175/BAMS-D-24-0060.1}{doi:10.1175/BAMS-D-24-0060.1}.
+FEGS channel complement: Table~1, PDF p.~5.
+\href{https://www.david-sarria.com/pdf/Lang2025hunting.pdf}{Author-hosted paper}.
+
+\bibitem{Fuglestad2026}
+A. N. Fuglestad et al. (2026).
+\emph{The Source Brightness Distribution of Terrestrial Gamma-Ray Flashes From the ALOFT Flight Campaign}.
+Journal of Geophysical Research: Atmospheres.
+\href{https://doi.org/10.1029/2025JD045235}{doi:10.1029/2025JD045235}.
+Instrument description supplies the 340/780 nm centres, 10 nm FWHM and sampling information.
+
+\bibitem{NASAFEGS}
+NASA IMPACT, Catalog of Archived Suborbital Earth Science Investigations.
+\emph{FEGS: Fly's Eye GLM Simulator}.
+\url{https://impact.earthdata.nasa.gov/casei/instrument/FEGS/}.
+Generic catalogue entry; its supplementary channel list differs from the ALOFT-specific description.
+
+\bibitem{G4Cuts}
+Geant4 Collaboration.
+\emph{Production Threshold versus Tracking Cut}, Book for Application Developers.
+\url{https://geant4.web.cern.ch/documentation/pipelines/master/bfad_html/ForApplicationDevelopers/TrackingAndPhysics/thresholdVScut.html}.
+Used for the conceptual distinction, not to establish the latest release number.
+
+\bibitem{G4DNA}
+Geant4-DNA Collaboration. \emph{Processes and models}.
+\url{https://geant4-dna.in2p3.fr/styled-3/styled-8/index.html}.
+Official model documentation and applicability cautions.
+
+\bibitem{G4PTBExc}
+Geant4 official source, tag \texttt{v11.4.2}.
+\emph{G4DNAPTBExcitationModel.cc}.
+Nitrogen initialization sets the lower limit to 13 eV.
+\href{https://raw.githubusercontent.com/Geant4/geant4/v11.4.2/source/processes/electromagnetic/dna/models/src/G4DNAPTBExcitationModel.cc}{Pinned source file}.
+
+\bibitem{G4PTBEl}
+Geant4 official source, tag \texttt{v11.4.2}.
+\emph{G4DNAPTBElasticModel.cc}.
+Nitrogen initialization sets a 10 eV lower limit; the sampling routine includes the below-limit stopping/deposition treatment.
+\href{https://raw.githubusercontent.com/Geant4/geant4/v11.4.2/source/processes/electromagnetic/dna/models/src/G4DNAPTBElasticModel.cc}{Pinned source file}.
+
+\bibitem{BOLSIG}
+G. J. M. Hagelaar and L. C. Pitchford (2005).
+\emph{Solving the Boltzmann equation to obtain electron transport coefficients and rate coefficients for fluid models}.
+Plasma Sources Science and Technology, 14, 722--733.
+\href{https://doi.org/10.1088/0963-0252/14/4/011}{doi:10.1088/0963-0252/14/4/011}.
+Official software site: \url{https://www.bolsig.laplace.univ-tlse.fr/}.
+
+\bibitem{LXCat}
+LXCat collaboration. \emph{About the project}.
+\url{https://nl.lxcat.net/home/}.
+Repository of electron/ion collision and transport data; individual datasets require their own attribution.
+
+\bibitem{Pfeiffer2019}
+D. Pfeiffer et al. (2019).
+\emph{Interfacing Geant4, Garfield++ and Degrad for the Simulation of Gaseous Detectors}.
+\href{https://arxiv.org/abs/1806.05880}{arXiv:1806.05880} (preprint originally submitted 2018).
+An implementation precedent, not a thunderstorm-specific validation.
+
+\bibitem{Heavner2010}
+M. J. Heavner et al. (2010).
+\emph{NUV/Blue spectral observations of sprites in the 320--460 nm region: N$_2$ (2PG) Emissions}.
+\href{https://arxiv.org/abs/1002.3949}{arXiv:1002.3949}.
+Instrument section describes the narrow, shifted 427.8 nm-channel filter.
+
+\bibitem{Boggs2021}
+L. D. Boggs et al. (2021).
+\emph{Vertical Temperature Profile of Natural Lightning Return Strokes Derived From Optical Spectra}.
+Journal of Geophysical Research: Atmospheres.
+\href{https://doi.org/10.1029/2020JD034438}{doi:10.1029/2020JD034438}.
+Source of the earlier 715.7/777.4 nm temperature suggestion, de-prioritized after the leader-free scope was clarified.
+
+\bibitem{Cramer2016}
+E. S. Cramer, J. R. Dwyer and H. K. Rassoul (2016).
+\emph{Magnetic field modification to the relativistic runaway electron avalanche length}.
+Journal of Geophysical Research: Space Physics, 121, 11261--11270.
+\href{https://doi.org/10.1002/2016JA022891}{doi:10.1002/2016JA022891}.
+Section~3 and Eq.~(3) discuss the zero-magnetic-field 7300 kV avalanche-length fit, attributed there to Coleman and Dwyer (2006). Used as an approximate supplementary input, not a fitted parameter of the proposed event.
+
+\bibitem{SuppliedYieldNote}
+\emph{Estimating 337 nm photons from RREA electrons}.
+Five-page practical study note supplied in \texttt{optical.zip} as
+\texttt{optical/rrea\_337\_photon\_yield.pdf}.
+Used for track-length normalization, the distinction between injected/output/instantaneous counts, density scaling and the two numerical implementation routes. Its source framework is Xu et al.; it is not an independent measured yield.
+
+\bibitem{SuppliedCode}
+Supplied research-code snapshot, \texttt{optical/Lehtinen\_codes/fgf\_module.py} and its \texttt{README.md}, in \texttt{optical.zip}.
+The \texttt{get\_337()} function, lines 652--669 in the supplied Python file, estimates a second-positive emission rate from a representative secondary energy and returns \texttt{nC * AC * volume} without a separate 337 nm branching factor. Only this relevant optical routine and its documentation are discussed here; no full model validation is claimed.
+\end{thebibliography}
+\endgroup
+
+\end{document}

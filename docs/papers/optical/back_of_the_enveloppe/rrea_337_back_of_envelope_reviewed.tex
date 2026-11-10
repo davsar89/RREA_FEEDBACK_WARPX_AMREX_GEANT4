@@ -1,0 +1,295 @@
+% Revised standalone calculation note, 22 September 2026. Review revision 2.
+% Compile with: pdflatex rrea_337_back_of_envelope_reviewed.tex
+% Run twice to resolve citations and page numbers. No BibTeX or external assets.
+% Published inputs and modelling assumptions are distinguished in the text.
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage[a4paper,left=21mm,right=21mm,top=19mm,bottom=20mm,headheight=14pt,headsep=7mm]{geometry}
+\usepackage{amsmath,booktabs,tabularx,array,microtype}
+\usepackage[table]{xcolor}
+\usepackage{tcolorbox,titlesec,fancyhdr,lastpage}
+\usepackage{xurl,hyperref}
+\definecolor{ink}{HTML}{173D51}
+\definecolor{muted}{HTML}{50616B}
+\definecolor{pale}{HTML}{F0F5F7}
+\definecolor{linegray}{HTML}{CAD7DF}
+\hypersetup{colorlinks=true,linkcolor=ink,citecolor=ink,urlcolor=ink,
+ pdftitle={337 nm light from an RREA pulse: a back-of-the-envelope calculation},
+ pdfsubject={Conditional peak irradiance for 10 to the power 16 output electrons, 50 microsecond Gaussian width, 12 km altitude},
+ pdfauthor={Research calculation note}}
+\urlstyle{same}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\emergencystretch}{2em}
+\linespread{1.015}
+\raggedbottom
+\titleformat{\section}{\sffamily\large\bfseries\color{ink}}{\thesection}{0.6em}{}
+\titlespacing*{\section}{0pt}{9pt}{5pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\small\color{muted}RREA fluorescence / 337 nm}
+\fancyhead[R]{\sffamily\small\color{muted}Calculation note / revised}
+\fancyfoot[L]{\sffamily\footnotesize\color{muted}22 September 2026}
+\fancyfoot[R]{\sffamily\footnotesize\color{muted}\thepage\ / \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\renewcommand{\arraystretch}{1.15}
+\newtcolorbox{resultbox}{colback=pale,colframe=linegray,boxrule=0.5pt,
+ arc=1mm,left=8pt,right=8pt,top=6pt,bottom=6pt,before skip=7pt,after skip=7pt}
+\newcommand{\unitsflux}{\mathrm{W\,m^{-2}}}
+\newcommand{\unitseta}{\mathrm{photons\,electron^{-1}\,m^{-1}}}
+\newcommand{\xu}[1]{~\cite[#1]{Xu2015}}
+
+\fancypagestyle{firstpage}{\fancyhead{}\renewcommand{\headrulewidth}{0pt}}
+
+\begin{document}
+\thispagestyle{firstpage}
+{\sffamily\small\bfseries\color{muted}BACK-OF-THE-ENVELOPE CALCULATION / REVIEWED VERSION}
+\vspace{3mm}
+
+{\sffamily\fontsize{23}{27}\selectfont\bfseries\color{ink}337 nm light from an RREA pulse\par}
+{\sffamily\normalsize A 12 km source, a 50 microsecond Gaussian pulse, and no cloud propagation\par}
+\vspace{2mm}
+
+\textbf{Question.} What peak optical power per square metre reaches a detector from $10^{16}$ electrons above 1 MeV? An RREA (\emph{relativistic runaway electron avalanche}) is a population of energetic electrons multiplying in a strong electric field. Here the field is extended: no lightning leader channel is assumed. The 337.1 nm light is the neutral-nitrogen second-positive (0--0) band.\xu{Table~1}
+
+\begin{resultbox}
+\textbf{Two different source boundaries give two useful estimates}
+\begin{align*}
+F_{\mathrm{pk,in}}(R)&\simeq1.1\times10^{-3}
+\left(\frac{1\,\mathrm{km}}{R}\right)^2\unitsflux,\\
+F_{\mathrm{pk,in+exit}}(R)&\simeq1.8\times10^{-3}
+\left(\frac{1\,\mathrm{km}}{R}\right)^2\unitsflux.
+\end{align*}
+The first is the original \textbf{in-field} estimate. The second adds an illustrative \textbf{post-exit slowing-down} component, assuming its energy is deposited in nearby, effectively field-free air and its light has the same pulse envelope and distance. Neither is a universally determined event prediction.
+\end{resultbox}
+
+\section{What is supplied, and what must be assumed?}
+\begin{tabularx}{\textwidth}{@{}P{35mm}P{38mm}Y@{}}
+\toprule
+\textbf{Quantity} & \textbf{Value} & \textbf{Meaning / status}\\
+\midrule
+Altitude & $12$ km & Supplied source altitude; not distance $R$.\\
+Electron count $N_e$ & $10^{16}$ above 1 MeV & Supplied total, interpreted as \emph{output electrons crossing the field boundary}.\\
+Pulse width $\sigma$ & $50\,\mu\mathrm{s}$ & Gaussian standard deviation, not full width.\\
+Field at 12 km & About $103$ kV/m & Chosen density-scaled, lower-field Xu case.\\
+In-field yield $\eta_{337}$ & $1.5$ photons per electron-metre & Provisional emitted-band yield; Section~\ref{sec:yield}.\\
+Effective length $\ell_{\mathrm{eff}}$ & About $200$ m & Mature-avalanche approximation; Section~\ref{sec:tracks}.\\
+Geometry & Isotropic, compact source & $1/(4\pi R^2)$ spreading, no absorption or scattering.\\
+\bottomrule
+\end{tabularx}
+
+\textbf{The counting idea.} More electrons can produce more light, but so can longer paths. Use the optical yield and an electron-distance budget defined with the \emph{same} counting threshold and distance convention:
+\begin{equation}
+\boxed{N_{\gamma,\mathrm{in}}=\eta_{337}\,\mathcal L_R
+=\eta_{337}\,N_e\ell_{\mathrm{eff}}.}\label{eq:budget}
+\end{equation}
+Here $N_{\gamma,\mathrm{in}}$ is the number of emitted 337 nm photons inside the accelerating region. The coefficient includes the light of the associated low-energy secondary electrons; do not add those photons again. Xu supplies a broad-window yield in this form.\xu{Sec.~4.1, p.~1366}
+
+The pulse width describes \emph{when the ensemble occurs}, not how long each electron remains in the source. It does not imply $c\sigma\simeq15$ km of travel per electron. Likewise an instantaneous electron population or injected-seed count cannot be substituted for the output count without revising the distance budget.
+
+\clearpage
+\section{Estimate the in-field 337 nm yield}\label{sec:yield}
+\textbf{Published starting point.} Xu reports $6.2$ photons per runaway electron per metre over \textbf{300--430 nm}, for the $4.3$ kV/cm case at its reference ground density. The other two field cases give 10.7 and 38.3 photons per electron-metre. These are not individual 337 nm yields.\xu{Sec.~4.1, p.~1366}
+
+\textbf{Important interpretation.} We treat those per-metre values as \emph{emitted yields including quenching at the stated pressure}, consistently with the paper's emission model and laboratory-scale yields. The per-metre paragraph does not explicitly repeat the quenching convention; the preceding, separate efficiency comparisons explicitly omit it. This interpretation must be recorded rather than silently carried over from that preceding discussion. It is supported by the order-of-magnitude cross-check in Section~\ref{sec:checks}, not by an author confirmation.\xu{Secs.~2.2 and 4.1}
+
+\textbf{Select the band.} Assume $f_{337}=0.25$ of the 300--430 nm photons belong to the 337 nm band. AIRFLY's laboratory Table~1 gives $100/381.27=0.262$ when the listed bands from 302.0 to 427.8 nm are summed. This motivates one quarter, but is \textbf{not a measured RREA spectral fraction}.~\cite[Table~1]{AIRFLY2007}
+\[
+\eta_{337}(0)\simeq6.2\times0.25=1.55\,\unitseta.
+\]
+
+\textbf{Quenching is a competing collision.} An excited molecule either radiates or loses its excitation in a collision. With $A_C$ the radiative rate and $Q$ the quenching rate, its radiative probability is $A_C/(A_C+Q)$. Use Xu's illustrative band-system parameters and a 79\% nitrogen/21\% oxygen mixture:\xu{Sec.~2.2}
+\begin{align*}
+n_0&=2.688\times10^{25}\,\mathrm{m^{-3}}, &q&=n_{12}/n_0=0.24,\\
+A_C&=2.0\times10^7\,\mathrm{s^{-1}}, &k_{\mathrm{N_2}}&=10^{-17}\,\mathrm{m^3\,s^{-1}},\\
+&&k_{\mathrm{O_2}}&=3\times10^{-16}\,\mathrm{m^3\,s^{-1}}.
+\end{align*}
+The rounded density ratio is consistent with Xu's 50-to-211 m inverse-density scaling. Separately, the review's illustrative $p=194$ hPa and $T=216.65$ K give $n=p/(k_BT)=6.49\times10^{24}\,\mathrm{m^{-3}}$, hence $q=0.2413$. Neither substitutes for an event-specific atmosphere.\xu{Sec.~4.2}
+\begin{equation}
+Q_0=n_0(0.79k_{\mathrm{N_2}}+0.21k_{\mathrm{O_2}})
+=1.906\times10^9\,\mathrm{s^{-1}}.
+\end{equation}
+The radiative probability rises from 0.0104 at $q=1$ to 0.0419 at $q=0.24$. But at fixed reduced field $E/n$, electron distribution and collision coefficients, excitations \emph{per metre} fall by $q$. The derived correction is
+\begin{equation}
+\frac{\eta_{337}(12)}{\eta_{337}(0)}
+\simeq q\frac{A_C+Q_0}{A_C+qQ_0}=0.968,
+\qquad
+\boxed{\eta_{337}(12)\simeq1.50\,\unitseta.}
+\end{equation}
+\textbf{Do not quench this yield again.} The fourfold improvement \emph{per excitation} nearly cancels the reduction in excitations \emph{per metre}. Temperature is deliberately held fixed in this density-only calculation; a separate temperature-sensitive laboratory check follows in Section~\ref{sec:exit}.
+
+\clearpage
+\section{From avalanche length to peak irradiance}\label{sec:tracks}
+Assume a forward-moving avalanche with crossing count $\mathcal N(z)=N_{\mathrm{in}}e^{z/\lambda_R}$. The avalanche length $\lambda_R$ is the distance for a factor-$e$ increase.~\cite[Eq.~(3)]{Cramer2016} Integrating the assumed growth gives
+\begin{align}
+\mathcal L_{\parallel}&=\int_0^L\mathcal N(z)\,dz
+=\lambda_R(N_{\mathrm{out}}-N_{\mathrm{in}}),\\
+\ell_{\mathrm{eff}}&=\frac{\mathcal L_{\parallel}}{N_{\mathrm{out}}}
+=\lambda_R(1-e^{-L/\lambda_R})\simeq\lambda_R\quad(L\gg\lambda_R).
+\end{align}
+\textbf{Why not give every electron the whole region length?} Most output electrons were created partway through the region. The integral counts their shorter histories.
+
+Use the approximate avalanche fit with density scaling, identifying its reference density with Xu's for this estimate:~\cite[Eq.~(3)]{Cramer2016}
+\begin{equation}
+\lambda_R\simeq\frac{7.3\times10^6\,\mathrm V}
+{E-(2.76\times10^5\,\mathrm{V/m})q},\qquad E=q(4.3\times10^5\,\mathrm{V/m}).
+\end{equation}
+At $q=0.24$, $E=103200$ V/m and $\lambda_R=197.5$ m, rounded to \textbf{200 m}. We use \emph{forward electron-metres} consistently in this straight-ahead approximation. Xu's short yield paragraph does not settle forward-distance versus actual-path scoring. A Monte Carlo path tally must be matched to its yield; a universal $276/218$ correction is not established by this note.
+
+\textbf{Convert photons to energy.} Using the rounded yield and length,
+\begin{align}
+N_{\gamma,\mathrm{in}}&=(1.5)(10^{16})(200)=3.0\times10^{18},\\
+\epsilon_\gamma&=\frac{hc}{337.1\times10^{-9}\,\mathrm m}
+=5.89\times10^{-19}\,\mathrm J,\\
+U_{\mathrm{in}}&=N_{\gamma,\mathrm{in}}\epsilon_\gamma=1.768\,\mathrm J.
+\end{align}
+Here $h=6.62607015\times10^{-34}\,\mathrm{J\,s}$ and $c=299792458\,\mathrm{m/s}$. For a Gaussian, the unit-area time envelope has peak $1/(\sqrt{2\pi}\sigma)$. Therefore
+\begin{equation}
+P_{\mathrm{pk,in}}=\frac{U_{\mathrm{in}}}{\sqrt{2\pi}\sigma}
+=\frac{1.768}{125.3\times10^{-6}}=14.1\,\mathrm{kW}.
+\end{equation}
+Distribute that power over a sphere of area $4\pi R^2$:
+\begin{equation}
+\boxed{F_{\mathrm{pk,in}}(R)=
+\frac{(hc/\lambda_{337})\eta_{337}N_e\ell_{\mathrm{eff}}}
+{4\pi R^2\sqrt{2\pi}\sigma}.}\label{eq:flux}
+\end{equation}
+The units are $\mathrm{J}/(\mathrm{s\,m^2})=\mathrm{W/m^2}$. Double the matched electron-distance budget: double the signal. Double $\sigma$ at fixed energy: halve the peak. Double $R$: divide the irradiance by four.
+
+The same quenching model gives a C-state lifetime of 2.09 ns, much shorter than 50 $\mu$s. We also assume secondary-electron response and geometric arrival-time spread are short compared with the pulse. Its full width at half maximum is 118 $\mu$s; a centred 10 $\mu$s boxcar retains 0.99834 of its peak. These are source/timing calculations, not a measured FEGS response.
+
+\clearpage
+\section{Add light after electrons leave the field}\label{sec:exit}
+Leaving the accelerating region does not make an energetic electron disappear. If it slows in nearby air with negligible accelerating field, the energy actually deposited there can produce additional fluorescence. \textbf{This was omitted from the original in-field result.} In this field-free component a deposited-energy yield is an appropriate approximation; it is not generally interchangeable with the field-driven yield.\xu{Sec.~4.1}
+
+AIRFLY measured $Y_{337}=5.61\pm0.06_{\rm stat}\pm0.21_{\rm syst}$ photons per MeV deposited at 1013 hPa and 293 K.~\cite{AIRFLY2013} Using $p'_0=15.89$ hPa and its temperature parametrization, write~\cite[Eq.~(13)]{AIRFLY2007}\cite[Eqs.~(1),(3), Table~1]{AIRFLY2008}
+\begin{equation}
+Y_{337}(p,T)=5.61\,
+\frac{1+1013.25/15.89}
+{1+(p/15.89)(T/293)^{\alpha-1/2}}.
+\label{eq:airfly}
+\end{equation}
+Pressures are in hPa; using 1013.25 instead of the rounded 1013 is negligible here. At the review's $p=194$ hPa, $T=216.65$ K:
+\[
+Y_{337}\simeq
+\begin{cases}
+23.9\ \mathrm{photons/MeV},&\alpha=0\quad\text{(constant quenching cross section)},\\
+21.6\ \mathrm{photons/MeV},&\alpha=-0.36\quad\text{(AIRFLY 337 nm fit)}.
+\end{cases}
+\]
+AIRFLY measured $\alpha=-0.36\pm0.08$ over 240--310 K; applying it at 217 K is an \emph{extrapolation}. Its rate coefficient scales as $k\propto T^{\alpha+1/2}\simeq T^{0.14}$, not simply $T^{1/2}$. Thus a blanket 15\% temperature uplift is not justified. These laboratory parameters do not replace Xu's coefficients silently.
+
+\textbf{Keep energy containment explicit.} Let $f_{\mathrm{dep}}$ be the fraction of the counted exiting electrons' kinetic energy deposited in the selected post-field air volume. Then
+\begin{equation}
+N_{\gamma,\mathrm{exit}}\simeq
+Y_{337}\,f_{\mathrm{dep}}\,N_e\,\overline{\varepsilon}_{\mathrm{exit}},
+\quad\overline{\varepsilon}_{\mathrm{exit}}\ \text{in MeV}.\label{eq:exit}
+\end{equation}
+An ideal exponential spectrum with scale 7.3 MeV has a conditional mean above 1 MeV of $1+7.3=8.3$ MeV. This is a useful derived approximation, not an exact measured exit spectrum; use the actual crossing spectrum when available.~\cite[Sec.~6, Eq.~(17)]{Dwyer2011}
+
+For $f_{\mathrm{dep}}=1$, $\overline{\varepsilon}_{\mathrm{exit}}=8.3$ MeV and $Y_{337}=21.6$, the extra count is $1.79\times10^{18}$ photons: \textbf{about 60\% of the original in-field count}. The combined count is $4.79\times10^{18}$ photons, or $2.82$ J. If both components share $R$ and the Gaussian envelope,
+\begin{equation}
+\boxed{F_{\mathrm{pk,total}}(R)\simeq
+[1.12+0.67f_{\mathrm{dep}}]\times10^{-3}
+\left(\frac{1\,\mathrm{km}}{R}\right)^2\unitsflux.}
+\end{equation}
+\textbf{This is a scenario, not an automatic correction.} Bremsstrahlung escape, incomplete containment, nonzero post-exit fields, other exiting particles and different emission positions/times need explicit treatment. Do not add this term to a transport calculation that already follows and counts those same downstream deposits. A positive extra component makes the in-field count a subset of that specified event, not a rigorous lower bound across all uncertain source models.
+
+\clearpage
+\section{Results, cross-checks and remaining limits}\label{sec:checks}
+\begin{center}
+\begin{tabular}{@{}ccc@{}}
+\toprule
+\textbf{Distance} & \textbf{In-field peak} & \textbf{In-field + contained exit peak}\\
+ & ($\mathrm{W/m^2}$) & ($\mathrm{W/m^2}$)\\
+\midrule
+1 km & $1.12\times10^{-3}$ & $1.79\times10^{-3}$\\
+2 km & $2.81\times10^{-4}$ & $4.48\times10^{-4}$\\
+5 km & $4.49\times10^{-5}$ & $7.17\times10^{-5}$\\
+8 km & $1.75\times10^{-5}$ & $2.80\times10^{-5}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The last column uses Section~\ref{sec:exit}'s $f_{\mathrm{dep}}=1$ scenario; the columns are \textbf{not error bars}. A 1 km effective distance per counted electron, instead of 200 m, would multiply only the in-field term by five. Increasing field changes both the yield and avalanche length; a sixfold \emph{per-metre} increase does not imply sixfold light at fixed output count.
+
+\textbf{Laboratory scale check.} Keeping the review's rough collisional mass stopping power $S_{\mathrm{coll}}=1.8\,\mathrm{MeV\,cm^2/g}$ as an \emph{assumed representative value}, $Y_{337}S_{\mathrm{coll}}\rho$ gives 1.22 photons per electron-metre at room-temperature sea level. At 12 km ($\rho\simeq3.10\times10^{-4}\,\mathrm{g/cm^3}$), it gives 1.34 with $\alpha=0$, or 1.21 with $\alpha=-0.36$. This supports the scale of 1.5, but does not identify the difference uniquely as field enhancement. A spectrum-resolved check should use collision stopping powers, radiation losses and energy-deposition geometry from ESTAR or particle transport, not a single constant.~\cite{AIRFLY2013,NIST}
+
+\textbf{Energy-budget check, not independent proof.} With the same avalanche fit,
+\[
+eE\lambda_R\simeq20.4\,\mathrm{MeV},\qquad
+20.4-7.3\simeq13.1\,\mathrm{MeV}.
+\]
+The second expression represents a simplified runaway-sector energy-loss budget per output electron. Multiplying by 23.9 gives 313 photons, or by 21.6 gives 282, close to the baseline's 300. The relation between avalanche length, mean energy and effective drag is approximate; energy cutoffs, radiation escape and field work on secondary populations must be reconciled before treating this as total deposited energy. A field-free yield is only a scale check in the accelerating region.~\cite[Secs.~3.1 and 6]{Dwyer2011}\xu{Sec.~4.1}
+
+\textbf{Implementation checks prompted by the review.} Direct evaluation of the supplied \texttt{fgf\_module.py} coefficients gives about 0.380 and 0.366 photons per electron-metre for its \emph{whole modeled C-state emission}, at $q=1$ and $q=0.24$. Its representative 16 eV, 10 eV-wide first-generation source is not a full secondary cascade. Do not use it as a calibrated 337 nm yield or repair it with an arbitrary universal factor of 15. The 337/whole-2P branching fraction also differs from the 337/(300--430 nm) fraction used here. See the bundle's audit notes for reproducibility.
+
+\textbf{An unresolved earlier plot.} The supplied September review quotes $6\times10^{-6}\,\mathrm{J/m^2}$ \emph{unscattered} fluence, versus $2.57\times10^{-9}\,\mathrm{J/m^2}$ here at 7.4 km for the in-field model: a factor $2.34\times10^3$. Its 50--70 mW/m$^2$ peak is instead the \emph{scattered} curve. Even adding exit light leaves a large fluence mismatch. Different source normalizations must be tested before declaring an error or transferring the earlier detectability claim.
+
+\textbf{Detection boundary.} These are incident, band-integrated 337 nm irradiances before any FEGS response. Do not multiply by a 10 nm filter width. The compact source must be external to, and accepted by, the detector; at close distances use the spatial emission integral rather than extrapolating $1/R^2$ inside the source. The decisive next inputs remain the matched electron-distance tally, band-resolved yield and exiting energy-deposition history.
+
+\clearpage
+\section*{Sources and reproducibility}
+\textbf{What changed in this revision.} The in-field arithmetic is unchanged. The scope is now explicit; downstream slowing light is a separate conditional term; the pressure-yield interpretation, distance convention and temperature assumptions are stated; and cross-checks are not presented as independent transport validation. The earlier 24-page guide has not been rewritten by this short-note revision.
+
+\textbf{Run the bundled check.} The self-contained \texttt{rrea\_337\_review\_check.py} uses only the Python standard library. It reproduces the original rounded values, computes both temperature parametrizations and the contained-exit example, and prints results as JSON. A numerical assertion checks arithmetic, not the correctness of the physical model.
+\begin{verbatim}
+python rrea_337_review_check.py
+python rrea_337_review_check.py --distance-m 8000
+python rrea_337_review_check.py --deposition-fraction 0.5
+\end{verbatim}
+
+\begingroup
+\small
+\setlength{\parskip}{2pt}
+\begin{thebibliography}{9}
+\setlength{\itemsep}{6pt}
+\bibitem{Xu2015}
+W. Xu, S. Celestin and V. P. Pasko (2015).
+\emph{Optical emissions associated with terrestrial gamma ray flashes}.
+J. Geophys. Res.: Space Physics \textbf{120}, 1355--1370.
+\href{https://doi.org/10.1002/2014JA020425}{doi:10.1002/2014JA020425}.
+Sec.~2.2: radiative and quenching rates; Sec.~4.1, p.~1366: broad-window per-metre yields and limitations of field-free efficiencies; Sec.~4.2: density scaling.
+\bibitem{AIRFLY2007}
+M. Ave et al., AIRFLY Collaboration (2007).
+\emph{Measurement of the pressure dependence of air fluorescence emission induced by electrons}.
+Astropart. Phys. \textbf{28}, 41--57.
+\href{https://doi.org/10.1016/j.astropartphys.2007.04.006}{doi:10.1016/j.astropartphys.2007.04.006};
+\href{https://arxiv.org/abs/astro-ph/0703132}{arXiv:astro-ph/0703132}.
+Table~1: relative spectrum; Eq.~(13): 337 nm reference quenching pressure.
+\bibitem{Cramer2016}
+E. S. Cramer, J. R. Dwyer and H. K. Rassoul (2016).
+\emph{Magnetic field modification to the relativistic runaway electron avalanche length}.
+J. Geophys. Res.: Space Physics \textbf{121}, 11261--11270.
+\href{https://doi.org/10.1002/2016JA022891}{doi:10.1002/2016JA022891}.
+Eq.~(3) quotes the zero-magnetic-field avalanche fit of Coleman and Dwyer (2006).
+\bibitem{AIRFLY2013}
+M. Ave et al., AIRFLY Collaboration (2013).
+\emph{Precise measurement of the absolute fluorescence yield of the 337 nm band in atmospheric gases}.
+Astropart. Phys. \textbf{42}, 90--102.
+\href{https://arxiv.org/abs/1210.6734}{arXiv:1210.6734}.
+Absolute room-temperature 337 nm yield per MeV deposited; reported uncertainties are experimental, not the uncertainty of the RREA estimate.
+\bibitem{AIRFLY2008}
+M. Ave et al., AIRFLY Collaboration (2008).
+\emph{Temperature and humidity dependence of air fluorescence yield measured by AIRFLY}.
+Nucl. Instrum. Methods A \textbf{597}, 50--54.
+\href{https://doi.org/10.1016/j.nima.2008.08.050}{doi:10.1016/j.nima.2008.08.050};
+\href{https://arxiv.org/abs/0711.4583}{arXiv:0711.4583}.
+Eqs.~(1),(3), Table~1: temperature law and $\alpha_{337}$; Sec.~3: measured temperature range.
+\bibitem{Dwyer2011}
+J. R. Dwyer and L. P. Babich (2011).
+\emph{Low-energy electron production by relativistic runaway electron avalanches in air}.
+J. Geophys. Res. \textbf{116}, A09301.
+\href{https://doi.org/10.1029/2011JA016494}{doi:10.1029/2011JA016494}.
+Secs.~2 and 5: secondary production; Sec.~3.1: mean energy/drag relation; Sec.~6, Eq.~(17): exponential energy spectrum.
+\bibitem{NIST}
+NIST, \emph{ESTAR: stopping-power and range tables for electrons}.
+\url{https://physics.nist.gov/PhysRefData/Star/Text/ESTAR.html}.
+Reference method for a future spectrum-resolved stopping calculation. The constant $1.8\,\mathrm{MeV\,cm^2/g}$ above is the review's rough input, not a newly retrieved ESTAR table entry.
+\end{thebibliography}
+\endgroup
+\end{document}

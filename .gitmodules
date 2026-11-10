@@ -1,0 +1,11 @@
+[submodule "upstream/WarpX-26.06"]
+	path = upstream/WarpX-26.06
+	url = https://github.com/davsar89/warpx.git
+	branch = rrea-pinned-26.06
+[submodule "upstream/AMReX-26.06"]
+	path = upstream/AMReX-26.06
+	url = https://github.com/davsar89/amrex.git
+	branch = rrea-pinned-26.06
+[submodule "upstream/Geant4-10.7.4"]
+	path = upstream/Geant4-10.7.4
+	url = https://github.com/davsar89/geant4.git

@@ -1,0 +1,89 @@
+{
+  "assumptions": {
+    "distance_m": 1000.0,
+    "electrons": 1e+16,
+    "sigma_us": 50.0,
+    "eta337": 1.5,
+    "leff_m": 200.0,
+    "pressure_hpa": 194.0,
+    "temperature_k": 216.65,
+    "exit_mean_mev": 8.3,
+    "deposition_fraction": 1.0
+  },
+  "arithmetic_assertions_pass": true,
+  "original_rounded_example": {
+    "lambda_m": 197.51082251082252,
+    "Q0": 1905792000.0000002,
+    "Prad0": 0.010385337565012212,
+    "Prad12": 0.04189446081493775,
+    "dens_corr": 0.9681602097806473,
+    "Ngam": 3e+18,
+    "W_J": 1.7678248506220071,
+    "Ppk_W": 14105.201545149313,
+    "Fpk_1km": 0.0011224562746089766,
+    "tauC": 2.0947230407468873e-09,
+    "boxcar": 0.9983358303600337
+  },
+  "inferred_Xu_eta337_12km": 1.5006483251600033,
+  "AIRFLY_cross_check": {
+    "constant_cross_section_ph_MeV": 23.906841107704324,
+    "fitted_alpha_extrapolation_ph_MeV": 21.59115005775336,
+    "fixed_density_k217_over_k293": 0.9586161695521707,
+    "field_free_ground_ph_e_m": 1.216809,
+    "field_free_12km_constant_xsec_ph_e_m": 1.3350056551726095,
+    "field_free_12km_fitted_alpha_ph_e_m": 1.2056928516370196,
+    "stopping_power_1p8_is_review_approximation_not_new_ESTAR_table": true
+  },
+  "in_field": {
+    "photons": 3e+18,
+    "energy_J": 1.7678248506220071,
+    "peak_source_W": 14105.201545149313,
+    "peak_irradiance_W_m2": 0.0011224562746089766,
+    "fluence_J_m2": 1.4067903174859196e-07
+  },
+  "post_exit": {
+    "photons": 1.792065454793529e+18,
+    "energy_J": 1.0560192816417433,
+    "peak_source_W": 8425.8148073208,
+    "peak_irradiance_W_m2": 0.0006705050380809954,
+    "fluence_J_m2": 8.403534433681793e-08
+  },
+  "combined": {
+    "photons": 4.792065454793529e+18,
+    "energy_J": 2.8238441322637504,
+    "peak_source_W": 22531.016352470113,
+    "peak_irradiance_W_m2": 0.0017929613126899723,
+    "fluence_J_m2": 2.247143760854099e-07
+  },
+  "extra_photons_relative_to_in_field": 0.597355151597843,
+  "energy_scale_check": {
+    "field_work_MeV": 20.383116883116887,
+    "simplified_loss_MeV": 13.083116883116887,
+    "photons_using_constant_xsec_Y": 312.77599651819924,
+    "photons_using_fitted_alpha_Y": 282.47953984650314,
+    "independently_validates_transport": false
+  },
+  "supplied_code_scalar_replication": {
+    "1.0": {
+      "whole_C_photons_per_electron_m": 0.38031215831407417,
+      "direct_births_in_representative_window_per_m": 111.35190383996053
+    },
+    "0.24": {
+      "whole_C_photons_per_electron_m": 0.3659134857113239,
+      "direct_births_in_representative_window_per_m": 26.724456921590527
+    }
+  },
+  "earlier_plot_comparison": {
+    "original_baseline_unscattered_fluence_7p4km": 2.569010806219722e-09,
+    "old_plot_quoted_unscattered_fluence_J_m2": 6e-06,
+    "fluence_ratio_to_original_baseline": 2335.529296129723,
+    "same_source_normalization_established": false
+  },
+  "warnings": [
+    "Peaks add only under the same assumed Gaussian envelope and distance.",
+    "Post-exit light is not to be added if its deposits are already counted.",
+    "Density-only Xu baseline and AIRFLY temperature check use different quenching models.",
+    "The mean energy above 1 MeV is 8.3 MeV only for the assumed ideal exponential tail.",
+    "No cloud propagation, finite-source geometry, or FEGS response is simulated."
+  ]
+}
